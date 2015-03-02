@@ -1,0 +1,284 @@
+{"frames": {
+
+"Angel_Chick_Layers.psd":
+{
+	"frame": {"x":1240,"y":1550,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Angry_Chick_Layers.psd":
+{
+	"frame": {"x":1240,"y":1240,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Anime_Chick_Layers.psd":
+{
+	"frame": {"x":1550,"y":930,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Baseball_Chick_Layers.psd":
+{
+	"frame": {"x":1240,"y":930,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Basic_Chick_Layers.psd":
+{
+	"frame": {"x":930,"y":1550,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Chicken_Chick_Layers.psd":
+{
+	"frame": {"x":930,"y":1240,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Cook_Chick_Layers.psd":
+{
+	"frame": {"x":930,"y":930,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Cool_Chick_Layers.psd":
+{
+	"frame": {"x":1550,"y":620,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Cow_Chick_Layers.psd":
+{
+	"frame": {"x":1240,"y":620,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Devil_Chick_Layers.psd":
+{
+	"frame": {"x":930,"y":620,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Ghost_Chick_Layers.psd":
+{
+	"frame": {"x":620,"y":1550,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Glasses_Chick_Layers.psd":
+{
+	"frame": {"x":620,"y":1240,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Guard_Chick_Layers.psd":
+{
+	"frame": {"x":620,"y":930,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Happy_Chick_Layers.psd":
+{
+	"frame": {"x":620,"y":620,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Jieitai_Chick_Layers.psd":
+{
+	"frame": {"x":1550,"y":310,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Kaiju_Chick_Layers.psd":
+{
+	"frame": {"x":1240,"y":310,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"King_Chick_Layers.psd":
+{
+	"frame": {"x":930,"y":310,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Love_Chick_Layers.psd":
+{
+	"frame": {"x":620,"y":310,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Monkey_Chick_Layers.psd":
+{
+	"frame": {"x":310,"y":1550,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"MukiMuki_Chick_Layers.psd":
+{
+	"frame": {"x":310,"y":1240,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Ninja_Chick_Layers.psd":
+{
+	"frame": {"x":310,"y":930,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Oyaji_Chick_Layers.psd":
+{
+	"frame": {"x":310,"y":620,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Police_Chick_Layers.psd":
+{
+	"frame": {"x":310,"y":310,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Rabbit_Chick_Layers.psd":
+{
+	"frame": {"x":1550,"y":0,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"SailorBoy_Chick_Layers.psd":
+{
+	"frame": {"x":1240,"y":0,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"SailorBoyblue_Chick_Layers.psd":
+{
+	"frame": {"x":930,"y":0,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Santa_Chick_Layers.psd":
+{
+	"frame": {"x":620,"y":0,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Sleeping_Chick_Layers.psd":
+{
+	"frame": {"x":310,"y":0,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Snowboard_Chick_Layers.psd":
+{
+	"frame": {"x":0,"y":1550,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Sumo_Chick_Layers.psd":
+{
+	"frame": {"x":0,"y":1240,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Surprised_Chick_Layers.psd":
+{
+	"frame": {"x":0,"y":930,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Teeth_Chick_Layers.psd":
+{
+	"frame": {"x":0,"y":620,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Watermelon_Chick_Layers.psd":
+{
+	"frame": {"x":0,"y":310,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+},
+"Zombie_Chick_Layers.psd":
+{
+	"frame": {"x":0,"y":0,"w":309,"h":309},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":309,"h":309},
+	"sourceSize": {"w":309,"h":309}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "Atlas3DTexture.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
+	"scale": "0.6",
+	"smartupdate": "$TexturePacker:SmartUpdate:14d6b0e0ccd840b4ae033b6f5cfd6d37$"
+}
+}

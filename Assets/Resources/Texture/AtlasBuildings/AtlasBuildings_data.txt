@@ -1,0 +1,36 @@
+{"frames": {
+
+"BasketUV.psd":
+{
+	"frame": {"x":1577,"y":2,"w":469,"h":473},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":12,"y":8,"w":469,"h":473},
+	"sourceSize": {"w":481,"h":481}
+},
+"castle_uvmap.png":
+{
+	"frame": {"x":2,"y":2,"w":1573,"h":1881},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":158,"y":20,"w":1573,"h":1881},
+	"sourceSize": {"w":1925,"h":1925}
+},
+"kinoko.psd":
+{
+	"frame": {"x":1577,"y":477,"w":435,"h":461},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":33,"y":6,"w":435,"h":461},
+	"sourceSize": {"w":481,"h":481}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "AtlasBuildings_data.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
+	"scale": "0.94",
+	"smartupdate": "$TexturePacker:SmartUpdate:8a7f5bb837ada04b3080aaadf0c7e781$"
+}
+}
