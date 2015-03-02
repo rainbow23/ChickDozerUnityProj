@@ -9,6 +9,7 @@ Material:
   m_Name: Atlas3DTextureMaterial
   m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
   m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -31,4 +32,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .485294104, g: .485294104, b: .485294104, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
