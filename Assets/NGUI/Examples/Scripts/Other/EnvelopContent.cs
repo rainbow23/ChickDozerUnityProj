@@ -1,6 +1,6 @@
-﻿//----------------------------------------------
+//----------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2014 Tasharen Entertainment
+// Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
 using UnityEngine;
@@ -10,6 +10,7 @@ using UnityEngine;
 /// </summary>
 
 [RequireComponent(typeof(UIWidget))]
+[AddComponentMenu("NGUI/Examples/Envelop Content")]
 public class EnvelopContent : MonoBehaviour
 {
 	public Transform targetRoot;
@@ -18,7 +19,15 @@ public class EnvelopContent : MonoBehaviour
 	public int padBottom = 0;
 	public int padTop = 0;
 
-	void Start () { Execute(); }
+	bool mStarted = false;
+
+	void Start ()
+	{
+		mStarted = true;
+		Execute();
+	}
+
+	void OnEnable () { if (mStarted) Execute(); }
 
 	[ContextMenu("Execute")]
 	public void Execute ()
@@ -41,6 +50,7 @@ public class EnvelopContent : MonoBehaviour
 
 			UIWidget w = GetComponent<UIWidget>();
 			w.SetRect(x0, y0, x1 - x0, y1 - y0);
+			BroadcastMessage("UpdateAnchors", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }
