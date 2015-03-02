@@ -11,15 +11,18 @@ public class Pool : MonoBehaviour
 	private int interval = 1;
 	private List<GameObject> pooledObjectList = new List<GameObject> ();
 	private static GameObject poolAttachedObject = null;
+	
 	void OnEnable ()
 	{
 		if (interval > 0)
 			StartCoroutine (RemoveObjectCheck ());
 	}
+	
 	void OnDisable ()
 	{
 		StopAllCoroutines ();
 	}
+	
 	public void OnDestroy ()
 	{
 		if (poolAttachedObject == null)
@@ -50,6 +53,7 @@ public class Pool : MonoBehaviour
 			}
 		}
 	}
+	
 	public GameObject GetInstance ()
 	{
 		return GetInstance(transform);
@@ -74,6 +78,7 @@ public class Pool : MonoBehaviour
 		}
 		return null;
 	}
+	
 	IEnumerator RemoveObjectCheck ()
 	{
 		while (true) {
@@ -81,6 +86,7 @@ public class Pool : MonoBehaviour
 			yield return new WaitForSeconds (interval);
 		}
 	}
+	
 	public void RemoveObject (int max)
 	{
 		if (pooledObjectList.Count > max) {
@@ -97,6 +103,7 @@ public class Pool : MonoBehaviour
 			}
 		}
 	}
+	
 	public static Pool GetObjectPool (GameObject obj)
 	{
 		if (poolAttachedObject == null) {

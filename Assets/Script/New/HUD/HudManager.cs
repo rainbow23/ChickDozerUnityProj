@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class HudManager : MonoBehaviour {
+	#region variable
 	ScoreManager ScoreManagerScript;
 	GameObject chickScoreHud;
 	GameObject scoreHud;
@@ -18,7 +19,12 @@ public class HudManager : MonoBehaviour {
 	Camera camera2D;
 	Transform UIRootBottomTransform;
 	
+	//Particle
+	GameObject particle;
+	#endregion
+	
 	void Awake () {
+		Application.targetFrameRate = 60;
 		ScoreManagerScript = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 		//chickScoreHud = Resources.Load("HUD/LevelUpSprite", typeof(GameObject)) as GameObject;
 		
@@ -29,11 +35,13 @@ public class HudManager : MonoBehaviour {
 		ClearCamera = GameObject.Find("ClearCamera").GetComponent<Camera>();
 		camera2D = GameObject.Find("2D Camera").GetComponent<Camera>();
 		UIRootBottomTransform = GameObject.Find("UI Root/Bottom").transform;
+		
+		//Particle
+		particle = Resources.Load("Particle/CFXM2_CartoonFight", typeof(GameObject)) as GameObject; 
 	}
 	
 	
 	void showChickScoreHud(int receiveChickScore, Transform receiveChickTransformFromBasketManager){	
-		
 		//receive
 		int score =  receiveChickScore;
 		Vector3 chickPos = receiveChickTransformFromBasketManager.transform.position;
@@ -57,10 +65,29 @@ public class HudManager : MonoBehaviour {
 		createHudGrp.transform.setLocalPositionY(160f);
 		createHudGrp.transform.setLocalPositionZ(0f);
 		
+		//particle position
+		if(CharacterPool.objectPoolMode){
+			//trouble
+			var poolParticle = Pool.GetObjectPool(particle);
+			GameObject pParticle = poolParticle.GetInstance();
+			pParticle.SetActive(true);
+			pParticle.transform.position = chickPosInCamera2DWorld;
+			
+			pParticle.transform.parent = UIRootBottomTransform;
+			pParticle.transform.setLocalPositionY(160f);
+			pParticle.transform.setLocalPositionZ(0f);
+		}
+		else{
+			GameObject pParticle =  Instantiate(particle, chickPosInCamera2DWorld, Quaternion.identity) as GameObject;
+			pParticle.name = particle.name;
+			pParticle.transform.parent = UIRootBottomTransform;
+			pParticle.transform.setLocalPositionY(160f);
+			pParticle.transform.setLocalPositionZ(0f);
+			pParticle.SetActive(true);
+		}
 		
 		bool hoge = false;
 		for(int i = 0; i < 5; i++){	
-			
 			hudPointUISprite[i] = createHudGrp.transform.FindChild("AnchorLeft" + i.ToString())
 				.transform.FindChild("HudPoint" + i.ToString()).GetComponent<UISprite>();
 			
@@ -96,7 +123,7 @@ public class HudManager : MonoBehaviour {
 			}
 			
 			if(score / 10 == 0){
-				hudPointUISprite[i].spriteName = "numberFont/" + score.ToString();
+				hudPointUISprite[i].spriteName = /*"numberFont/" + */score.ToString();
 				hudPointUISprite[i].MakePixelPerfect();
 //				print("spriteGameObjName: " + hudPointUISprite[i].gameObject.name);
 				hoge = true;
@@ -107,7 +134,7 @@ public class HudManager : MonoBehaviour {
 			}
 			else{
 				string num =  (score % 10).ToString();
-				hudPointUISprite[i].spriteName = "numberFont/" + num;
+				hudPointUISprite[i].spriteName = /*"numberFont/" + */num;
 				//hudPointUISprite[i].MakePixelPerfect();
 				score = score / 10;
 			}
@@ -124,8 +151,7 @@ public class HudManager : MonoBehaviour {
 								"easetype", "easeOutCirc",
 								"oncompletetarget", createHudGrp, 
 								"oncomplete", "destroythisGameObject"
-								));
-		
+								));	
 	}
 	
 	

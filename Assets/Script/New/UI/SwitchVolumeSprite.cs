@@ -35,7 +35,7 @@ public class SwitchVolumeSprite : MonoBehaviour {
 	
 	#region Delegate
 	void OnEnable(){
-		SoundManager._volumeSwitch += switchvolumeUISprite;
+//		SoundManager._volumeSwitch += switchvolumeUISprite;
 	}
 	void OnDisable(){
 		UnSubscribeEvent();
@@ -44,7 +44,7 @@ public class SwitchVolumeSprite : MonoBehaviour {
 		UnSubscribeEvent();
 	}
 	void UnSubscribeEvent(){
-		SoundManager._volumeSwitch -= switchvolumeUISprite;
+//		SoundManager._volumeSwitch -= switchvolumeUISprite;
 	}
 	#endregion
 

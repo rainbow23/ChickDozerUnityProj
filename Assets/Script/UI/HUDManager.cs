@@ -47,7 +47,8 @@ public class HUDManager : MonoBehaviour {
 		
 	}
 	void OnEnable(){
-		BasketManager._hitChickBasket2 += displayChickScore;
+		//BasketManager._hitChickBasket2 += displayChickScore;
+
 		//GameControlManager._levelUpTiming += levelUp;
 	}
 	void OnDisable(){
@@ -57,7 +58,7 @@ public class HUDManager : MonoBehaviour {
 		UnSubscribeEvent();
 	}
 	void UnSubscribeEvent(){		
-		BasketManager._hitChickBasket2 -= displayChickScore;
+		//BasketManager._hitChickBasket2 -= displayChickScore;
 		//GameControlManager._levelUpTiming -= levelUp;
 	}
 }

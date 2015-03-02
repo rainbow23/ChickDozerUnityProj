@@ -6,27 +6,48 @@ public class UI_GameScene : MonoBehaviour {
 	public delegate void SceneHandler();
 	public static event SceneHandler _startTransition;
 	public static event SceneHandler _feverTimeEvent; //horynAppPurchaseuu
+	//public static event SceneHandler _isMoveChick; //horynAppPurchaseuu
 	
-	WebViewObject webViewObjectScript;
+	FadeManager FadeManagerScript;
+	PlugInObject PlugInObjectScript;
 	ScoreManager ScoreManagerScript;
-	
 	public Transform pointGrpTransform;
 	public Transform levelGrpTransform;
 	Transform LevelUpSpriteTransform;
 	GameObject InAppPurchaseMenu;
 	GameObject Timer;
 	GameObject newChickSignBoard;
+	
+	UIRoot uiRoot;
+	
+	UISprite ButtonToTitleUISprite;
+	UISprite BackgroundUISprite;
+	
+	public UISprite howToUISprite;
 	public UISprite[] pointDigits = new UISprite[5];
 	public UISprite[] levelDigits = new UISprite[2];
 	public UISprite[] StockChicksUISprite = new UISprite[4];
+	UISprite BgCastle; 
+	UISprite Tree1;
+	UISprite Tree2;
 	UISprite[] digitUISprite = new UISprite[4];
 	UISprite percentateUISprite;
 	UISprite feverTimeGageUISprite;
 	UISprite colonUISprite;
 	UILabel FeverTimerLabel;
+	
+	float aspect;
 	#endregion
 	
 	void Awake(){
+		ButtonToTitleUISprite = GameObject.Find("ButtonToTitle").GetComponent<UISprite>();
+		BackgroundUISprite = GameObject.Find("Background").GetComponent<UISprite>();
+		howToUISprite = GameObject.Find("HowToUIScene").GetComponent<UISprite>();
+		Tree1 = GameObject.Find("Tree1").GetComponent<UISprite>();
+		Tree2 = GameObject.Find("Tree2").GetComponent<UISprite>();
+		uiRoot = GameObject.Find("UI Root").GetComponent<UIRoot>();
+		BgCastle = GameObject.Find("BgCastle").GetComponent<UISprite>();
+		
 		InAppPurchaseMenu = GameObject.Find("InAppPurchaseMenu");
 		pointGrpTransform = GameObject.Find("PointGrp").GetComponent<Transform>();
 		levelGrpTransform = GameObject.Find("LvGrp").GetComponent<Transform>();
@@ -34,15 +55,52 @@ public class UI_GameScene : MonoBehaviour {
 		feverTimeGageUISprite = GameObject.Find("FeverGage").GetComponent<UISprite>();
 		colonUISprite = GameObject.Find("Colon").GetComponent<UISprite>();
 		FeverTimerLabel = GameObject.Find("FeverTimerLabel").GetComponent<UILabel>();
-		webViewObjectScript = GameObject.Find("webViewGameObject").GetComponent<WebViewObject>();
+		
+		FadeManagerScript = GameObject.Find("FadeManager").GetComponent<FadeManager>(); 
+		PlugInObjectScript = GameObject.Find("webViewGameObject").GetComponent<PlugInObject>();
 		ScoreManagerScript = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 		Timer = GameObject.Find("Timer");
 		newChickSignBoard = GameObject.Find("newChickSignBoard");
-		//Timer.SetActive(true);
+		
+		aspect = (float)Screen.width / (float)Screen.height;
+		aspect = Mathf.Round(aspect * 100);
+		
+		//start配置だと実機で落ちる
+		//setHowTo();
+		
 	}
 	
 	void Start(){
-//		webViewObjectScript.asutarisukuLoad();
+		PlugInObjectScript.reportGameStartToFlurry();
+		//TargetがBottomに強制変更される
+		//BgCastle.topAnchor.target = GameObject.Find("BgCamera").transform;
+		
+		//ipad
+		if(aspect >= 75 ){
+			BgCastle.SetDimensions(870, 1575);
+			BgCastle.transform.setLocalPositionY(-100f);
+			Tree1.transform.setLocalPositionY(-60f);
+			Tree2.transform.setLocalPositionY(-140f);
+		}
+		//iPhone4
+		else if(aspect >= 67){
+			BgCastle.SetDimensions(663, 1200);
+			BgCastle.transform.setLocalPositionY(-90f);
+			Tree1.transform.setLocalPositionY(18f);
+			Tree2.transform.setLocalPositionY(-22f);
+		}
+		//iPhone5
+		else if(aspect >= 56 ){
+			BgCastle.SetDimensions(663, 1200);
+			BgCastle.transform.setLocalPositionY(-130f);
+			Tree1.transform.setLocalPositionY(-21f);
+			Tree2.transform.setLocalPositionY(-90f);
+		}
+		
+		//print ("Tree2 posY: " + Tree2.transform.localPosition.y);
+		
+		
+//		PlugInObjectScript.asutarisukuLoad();
 		bitmapScoreInitialize();
 		bitmapLvInitialize();
 		bitmapScoreUpdate(ScoreManager.point);
@@ -54,6 +112,8 @@ public class UI_GameScene : MonoBehaviour {
 		newChickSignBoard.SetActive(false);
 		
 		LevelUpSpriteTransform = GameObject.Find("LevelUpSprite").GetComponent<Transform>();
+		
+		//_isMoveChick(); // Delegate in scene All chicks and Fever Time is Start UI_FeverTime.cs
 	}
 	
 	#region Initialize
@@ -70,6 +130,58 @@ public class UI_GameScene : MonoBehaviour {
 			hideGageAndTimer();
 		}
 	}
+	
+	/*
+	public void setHowTo(){
+		if(PlayerPrefs.GetInt("loadSceneFromCollection") == 0 ){
+			howToUISprite.transform.setLocalPositionX(0f);
+			//print ("aspect: " + aspect);
+			
+			//ipad
+			if(aspect == 75){
+				howToUISprite.transform.setLocalPositionX(0f);
+				howToUISprite.transform.setLocalPositionY(-76f);
+				howToUISprite.SetDimensions(503, 640);
+			}
+			//iPhone4
+			else if(aspect >= 67){
+				howToUISprite.transform.setLocalPositionX(0f);
+				howToUISprite.transform.setLocalPositionY(0f);
+				howToUISprite.SetDimensions(443, 563);
+			}
+			//iPhone5
+			else if(aspect >= 56 ){
+				howToUISprite.transform.setLocalPositionX(0f);
+				howToUISprite.transform.setLocalPositionY(-95f);
+			}
+		}
+	}
+	*/
+	
+	/*
+	void hideHowTo(){
+		if(FadeManagerScript.isFading ){return;}
+		if(FadeManagerScript.isFading == false){
+			StartCoroutine(moveChick());
+		}
+		
+	}
+	
+	bool once = false;
+	IEnumerator moveChick(){
+		yield return new WaitForSeconds(0.15f);
+		if(once == false){
+			//print ("check");
+			_isMoveChick(); // Delegate in scene All chicks and Fever Time is Start UI_FeverTime.cs
+			howToUISprite.transform.setLocalPositionX(4000f);
+			once = true;
+		
+			if(ScoreManager.feverTimeFlag){
+				_feverTimeEvent(); // delegate UI_GameScene.cs ChickManager.cs, UI_FeverTime.cs SoundManager.cs
+			}
+		}
+	}
+	*/
 	
 	void stockChicksUISpriteInitialize(){
 		for(int i = 0; i < 4; i++){
@@ -153,6 +265,7 @@ public class UI_GameScene : MonoBehaviour {
 	}
 	
 	void bitmapScoreUpdate(int receivePoint) {
+		//print("Time.timeScale: " + Time.timeScale);
 		//print ("receivePoint: " + receivePoint);
 		int storeDivideNum = receivePoint;
 		int offsetCount = 0;
@@ -162,7 +275,7 @@ public class UI_GameScene : MonoBehaviour {
 			for(int i =0; i < 5; i++){
 				if(i == 0){
 					pointDigits[i].enabled = true;
-					pointDigits[i].spriteName = "numberFont/" + "0";
+					pointDigits[i].spriteName = "" + "0";
 				}
 				else{
 					pointDigits[i].enabled = false;
@@ -187,7 +300,7 @@ public class UI_GameScene : MonoBehaviour {
 			pointDigits[i].transform.addLocalPositionX(offsetCount * 15f);
 			//display number
 			int digit = storeDivideNum %10;	
-			pointDigits[i].spriteName = "numberFont/" + digit.ToString();
+			pointDigits[i].spriteName = "" + digit.ToString();
 			pointDigits[i].MakePixelPerfect();
 			//prepare for next num
 			storeDivideNum /= 10;
@@ -217,8 +330,8 @@ public class UI_GameScene : MonoBehaviour {
 		
 		string digit0String = digit0.ToString();
 		string digit1String = digit1.ToString();
-		levelDigits[0].spriteName = "numberFont/" + digit0String;
-		levelDigits[1].spriteName = "numberFont/" + digit1String;
+		levelDigits[0].spriteName = "" + digit0String;
+		levelDigits[1].spriteName = "" + digit1String;
 	}
 	
 	void levelUpEvent(int receiveLv){
@@ -231,32 +344,38 @@ public class UI_GameScene : MonoBehaviour {
 		FadeManager.Instance.LoadLevel("Collection", 0.5f);
 		_startTransition(); //Delegate :   ScoreManager.cs SaveData
 		PlayerPrefs.SetInt("ApplicationPauseCount", 1);
+		
 	}
 	
+	bool onceTouch = false;
 	void gotoGameScene(){
-		FadeManager.Instance.LoadLevel("Title", 0.5f);
-		_startTransition(); //Delegate :   ScoreManager.cs SaveData
-		PlayerPrefs.SetInt("ApplicationPauseCount", 1);
+		if(Time.timeSinceLevelLoad < 1.0f ){return;}
+		if(!onceTouch){
+			FadeManager.Instance.LoadLevel("Title", 0.5f);
+			_startTransition(); //Delegate :   ScoreManager.cs SaveData
+			PlayerPrefs.SetInt("ApplicationPauseCount", 1);
+			_startTransition(); //Delegate :   ScoreManager.cs SaveData
+			PlayerPrefs.SetInt("ApplicationPauseCount", 1);
+			onceTouch = true;
+		}
+		
 	}
 	
 	void bitmapPercentageUpdate(int receiveNextLevelPercentage){
 		//print ("receiveNextLevelPercentage:" + receiveNextLevelPercentage);	
-		percentateUISprite.spriteName = "levelpercent_sprite/" +receiveNextLevelPercentage + "pcnt";
+		percentateUISprite.spriteName = /*"levelpercent_sprite/" +*/ receiveNextLevelPercentage + "pcnt";
 	}
 	
 	/// <summary>
 	/// contact iOS App
 	/// </summary>
 	public void inAppPurchase(){
-		//webViewObjectScript.ShowAddRanking();
-		webViewObjectScript.inAppPurchase();
+		//PlugInObjectScript.ShowAddRanking();
+	//	PlugInObjectScript.inAppPurchase();
 	}
 	
 	#region feverTimer
 	//カウントだけScoreManagerから貰う
-	
-	
-	
 	
 	void UIFeverTime(int receiveCountSecond, int receiveCountMinusSecond){
 		//percentage
@@ -282,18 +401,18 @@ public class UI_GameScene : MonoBehaviour {
 			int digit3Minute = minutes % 10;
 			int digit4Minute = minutes / 10;
 			
-			digitUISprite[0].spriteName = "numberFont/" + digit1Second.ToString();
-			digitUISprite[1].spriteName = "numberFont/" + digit2Second.ToString();
-			digitUISprite[2].spriteName = "numberFont/" + digit3Minute.ToString();
-			digitUISprite[3].spriteName = "numberFont/" + digit4Minute.ToString();
+			digitUISprite[0].spriteName = "" + digit1Second.ToString();
+			digitUISprite[1].spriteName = "" + digit2Second.ToString();
+			digitUISprite[2].spriteName = "" + digit3Minute.ToString();
+			digitUISprite[3].spriteName = "" + digit4Minute.ToString();
 			
 			//offset positionX of digitUISprite[0] and digitUISprite[2]
-			if(digitUISprite[0].spriteName == "numberFont/1"){
+			if(digitUISprite[0].spriteName == "1"){
 				digitUISprite[0].transform.setLocalPositionX(54f);
 			}
 			else{ digitUISprite[0].transform.setLocalPositionX(74f); }
 			
-			if(digitUISprite[2].spriteName == "numberFont/1"){
+			if(digitUISprite[2].spriteName == "1"){
 				digitUISprite[2].transform.setLocalPositionX(-24f);
 			}
 			else{ digitUISprite[2].transform.setLocalPositionX(-4f); }
@@ -365,6 +484,10 @@ public class UI_GameScene : MonoBehaviour {
 		UI_FeverTime._feverTimeTimingEnd -= feverTimeIsEnd;
 	}
 	#endregion
+	
+	void Update(){
+		
+	}
 	
 	
 	/*

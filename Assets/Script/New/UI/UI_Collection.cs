@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class UI_Collection : MonoBehaviour {
 	#region variable
+	PlugInObject PlugInObjectScript;
+
 	public static int allChickCount =33;
 	public bool showAllChickCollection = false;
 	
@@ -11,6 +13,7 @@ public class UI_Collection : MonoBehaviour {
 	
 	Transform[] ItemsTransform = new Transform[33];
 	//Transform UIGridTransform;
+	Transform BackButtonTransform;
 	
 	UISprite[] chickUISprites = new UISprite[33];
 	UISprite[] collectionBgUISprites = new UISprite[33];
@@ -22,7 +25,25 @@ public class UI_Collection : MonoBehaviour {
 	string displayChick = "_1";
 	#endregion
 	
+	UIAtlas atlas;
+	
+	int showPopUpNum;
+	
 	void Awake(){
+
+
+		
+		if(GameObject.Find("webViewGameObject")  == true){
+			PlugInObjectScript = GameObject.Find("webViewGameObject").GetComponent<PlugInObject>();
+		}
+		BackButtonTransform = GameObject.Find("BackButton").GetComponent<Transform>(); 
+		atlas = Resources.Load("Texture/newAtlas/2DUI/TitleCollectionAtlas", typeof(UIAtlas)) as UIAtlas;
+		UISprite[] allUISprites = FindObjectsOfType(typeof(UISprite)) as UISprite[];
+		
+		foreach(var eachUISprites in allUISprites){
+			eachUISprites.atlas = atlas;
+		}
+		
 		//UIGridTransform = GameObject.Find("UIGrid").GetComponent<Transform>();
 		initializeChickUISprites();
 		setEachChickLabels();
@@ -46,7 +67,6 @@ public class UI_Collection : MonoBehaviour {
 			else{
 				chickNames[i].spriteName = "chick_name/chick_name_" + i.ToString();	
 			}
-			
 		}
 	}
 	
@@ -56,6 +76,85 @@ public class UI_Collection : MonoBehaviour {
 		hideAllGetPlate();
 		showFirstGetChikPlate();
 		showOnlygetChick();
+		scrollFitIPad();
+	}
+	
+	void scrollFitIPad(){
+		//UIRoot
+		UIRoot ViewUIRoot = GameObject.Find("View UI").GetComponent<UIRoot>();
+		
+		
+		// 1 of vertical rows change position
+		int rowsOf1 = 1;
+		while(rowsOf1 < 34){
+			string rowsOf1String = rowsOf1.ToString();
+			Transform rowsOf1Transform =  GameObject.Find(rowsOf1String + "Item").GetComponent<Transform>(); 
+			
+			if(UIRootManager.Aspect >= (float)ScreenAspect.iPad){//iPad
+				rowsOf1Transform.setLocalPositionX(-333f);	
+			}
+			else{
+				rowsOf1Transform.setLocalPositionX(-305f);	
+			}
+			rowsOf1 += 3;
+		}
+		
+		
+		
+		if(UIRootManager.Aspect >= (float)ScreenAspect.iPad){//iPad
+			ViewUIRoot.manualHeight = 1024;
+			
+			
+			// 2 and 3 of vertical rows change position
+			int rowsOf2 = 2;
+			while(rowsOf2 < 34){
+				string rowsOf2String = rowsOf2.ToString();
+				Transform rowsOf2Transform =  GameObject.Find(rowsOf2String + "Item").GetComponent<Transform>(); 
+				rowsOf2Transform.setLocalPositionX(-98f);
+				rowsOf2 += 3;
+			}
+			
+			int rowsOf3 = 3;
+			while(rowsOf3 < 34){
+				string rowsOf3String = rowsOf3.ToString();
+				Transform rowsOf3Transform =  GameObject.Find(rowsOf3String + "Item").GetComponent<Transform>(); 
+				rowsOf3Transform.setLocalPositionX(142f);
+				rowsOf3 += 3;
+			}
+			
+			BackButtonTransform.setLocalPositionX(64f);
+		}
+		
+		else if(UIRootManager.Aspect >= (float)ScreenAspect.inch4){//iphone4
+			ViewUIRoot.manualHeight = 960;
+		}
+		else{//iphone5
+			ViewUIRoot.manualHeight = 1136;
+		}
+		
+		
+		//iphone4,5
+		if(UIRootManager.Aspect < (float)ScreenAspect.iPad){
+			BackButtonTransform.setLocalPositionX(24.5f);	
+			
+			// 2 and 3 of vertical rows change position
+			int rowsOf2 = 2;
+			while(rowsOf2 < 34){
+				string rowsOf2String = rowsOf2.ToString();
+				Transform rowsOf2Transform =  GameObject.Find(rowsOf2String + "Item").GetComponent<Transform>(); 
+				rowsOf2Transform.setLocalPositionX(-98f);
+				rowsOf2 += 3;
+			}
+			
+			int rowsOf3 = 3;
+			while(rowsOf3 < 34){
+				string rowsOf3String = rowsOf3.ToString();
+				Transform rowsOf3Transform =  GameObject.Find(rowsOf3String + "Item").GetComponent<Transform>(); 
+				rowsOf3Transform.setLocalPositionX(107f);
+				rowsOf3 += 3;
+			}
+		}	
+		
 	}
 	
 	void showHideAllChickCollection(){
@@ -105,15 +204,49 @@ public class UI_Collection : MonoBehaviour {
 			
 			if(PlayerPrefs.GetInt(key) == 1){
 				eachObjNameisNew[chickNum].SetActive(true);
-				
 				eachObjNameisNew[chickNum].animation["newChickSignBoard"].wrapMode = WrapMode.Loop;
 				eachObjNameisNew[chickNum].animation.Play("newChickSignBoard");
 				StartCoroutine(hideSignBoardWhenAnimIsFinished(chickNum));
-				
-				
 				//表示したらフラグを変える
 				PlayerPrefs.SetInt(key, -1);
+				
+				//Display New Panel
+				eachObjNameisNew[chickNum].SetActive(true);
+				eachObjNameisNew[chickNum].animation["newChickSignBoard"].wrapMode = WrapMode.Loop;
+				eachObjNameisNew[chickNum].animation.Play("newChickSignBoard");
+				//表示したらフラグを変える
+				PlayerPrefs.SetInt(key, -1);
+				
+				
+				//6つ取得するごとにレビューポップアップを表示
+				bool show = false;
+				
+				switch(chickNum){	
+					case(5):
+					case(11):
+					case(17):
+					case(23):
+					case(29):
+					case(32):
+						show = true;
+						break;
+				}
+				
+				//print ("show: " + show);
+				
+				showPopUpNum = PlayerPrefs.GetInt("showPopUpNum",6);
+				
+				if(show){
+					if(showPopUpNum != 0){
+						PlugInObjectScript.showReviewPopUp();
+						//print ("Show Review PopUP: " + showPopUpNum);
+						
+						showPopUpNum -=1;
+						PlayerPrefs.SetInt("showPopUpNum", showPopUpNum);
+					}
+				}
 			}
+			
 			chickNum += 1;
 		}
 	}
@@ -130,30 +263,22 @@ public class UI_Collection : MonoBehaviour {
 		int chickNum = 0;
 		string key;
 		string ItemNum;
-		
+		bool showReviewPopUpFlag = false;
+				
 		while(chickNum < allChickCount){
 			key = "chickHitFirst" + chickNum.ToString();	
 			ItemNum = (chickNum + 1).ToString();
 			
-			//過去に獲得したひよこ表示
 			if(PlayerPrefs.GetInt(key) != 0){
-				
-				if(chickNum < 10){
+				//過去に獲得したひよこ表示
+				if(chickNum < 9){
 					chickUISprites[chickNum].spriteName = "COLLECTIONCharacter/Lv0" + ItemNum + displayChick;
 					chickUISprites[chickNum].depth = 1;
 				}
 				else{
 					chickUISprites[chickNum].spriteName = "COLLECTIONCharacter/Lv" + ItemNum + displayChick;
 					chickUISprites[chickNum].depth = 1;
-				}
-			}
-			//Display New Panel
-			else if(PlayerPrefs.GetInt(key) == 1){
-				eachObjNameisNew[chickNum].SetActive(true);
-				eachObjNameisNew[chickNum].animation["newChickSignBoard"].wrapMode = WrapMode.Loop;
-				eachObjNameisNew[chickNum].animation.Play("newChickSignBoard");
-				//表示したらフラグを変える
-				PlayerPrefs.SetInt(key, -1);
+				}	
 			}
 			
 			chickNum += 1;

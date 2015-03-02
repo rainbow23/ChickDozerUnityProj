@@ -6,7 +6,7 @@ using System.Linq;
 
 public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 	#region variable
-	WebViewObject webViewObjectScript;
+	PlugInObject PlugInObjectScript;
 	public delegate void scoreHandler(int num);
 	public static event scoreHandler _percentageUpdate;
 	public static event scoreHandler _levelUpdate;
@@ -29,6 +29,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
     public static event hudHandler  _hudChickPointIsStart;
 	
 	public static int point = 2000;
+	public static int totalPoint = 0;
 	public static int score = 0;
 	public static int levelNum = 1;
 	public static int nextLevelPercentage;
@@ -42,7 +43,8 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 //	public static float feverTimer; //not use
 	//use void pointUpdateByTouch
 	public static bool touchNguiButtonFlag = false;
-	
+	public  bool autoCreateMode = true;
+	//public static bool loadSceneFromCollection = false;
 	
 	public Dictionary<string, int> chickScoreDic{private set; get;}
 	public Dictionary<string, int> collectionChickDic{private set; get;}
@@ -72,8 +74,12 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		if(PlayerPrefsDeleteAll){ PlayerPrefs.DeleteAll(); }
 		#if UNITY_EDITOR
 		#elif UNITY_IPHONE
-		webViewObjectScript = GameObject.Find("webViewGameObject").GetComponent<WebViewObject>();//Plugin
+		PlugInObjectScript = GameObject.Find("webViewGameObject").GetComponent<PlugInObject>();//Plugin
 		#endif
+		
+		totalPoint = PlayerPrefs.GetInt("totalPoint");
+		//print ("Load totalPoint: " + totalPoint);
+		
 		touchNguiButtonFlag = false;
 		
 		if(PlayerPrefs.GetInt("FirstStartGame") == 0){
@@ -86,11 +92,12 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 				posZ = -5f + (z * 2f);
 				for(int i = 0; i < 4; i++){//offset X
 					posX = -1.6f - (i * 1.7f);
-					chick = Instantiate(ChickManager.allChickObjs[0]) as GameObject;
+					chick = Instantiate(CharacterPool.allChickObjs[0]) as GameObject;
 					chick.transform.position = new Vector3(posX, 0.4f, posZ);
-					chick.name = ChickManager.allChickObjs[0].name;
+					chick.name = CharacterPool.allChickObjs[0].name;
 				}
 			}
+			
 			PlayerPrefs.SetInt("FirstStartGame", 1);
 			_afterLoadGameData(); //Delegate use UI_GameScene.cs
 		}
@@ -161,17 +168,18 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		int chickScore = chickScoreDic["chick" + num];
 //		print("chickScore: " + chickScore);
 		
-		
 		score += chickScore;
-		
 		
 		int addPoint = chickScore * 10;
 		
-		print ("point: " + point);
+		//print ("point: " + point);
 		point += addPoint;
 		
-		print ("addPoint: " + addPoint);
-		print ("point: " + point);
+		//use totalScore in GameCenter
+		totalPoint += addPoint;
+		
+		//print ("addPoint: " + addPoint);
+		//print ("point: " + point);
 		
 		if(point > 9999){
 				point = 9999;
@@ -512,7 +520,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 			
 			#if UNITY_EDITOR
 			#elif UNITY_IPHONE
-				webViewObjectScript.ShowAddRanking();
+				PlugInObjectScript.ShowAddRanking();
 			#endif
 			//Time.timeScale = 0f;
 		}
@@ -526,9 +534,15 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 	
 	#region SaveData 
 	void saveGameData(){
-		PlayerPrefs.DeleteAll();
+		//PlayerPrefs.DeleteAll();
+	
+		PlayerPrefs.SetInt("totalPoint", totalPoint);
 		
-		PlayerPrefs.SetInt("FeverTimeCountSecond", UI_FeverTime.FeverTimeCountSecond);
+//		PlayerPrefs.SetInt("volumeSwitch", SoundManager.volumeSwitch);
+		//print("volumeSwitch: " + PlayerPrefs.GetInt("volumeSwitch"));
+		//Debug.Break();
+		
+		PlayerPrefs.SetFloat("FeverTimeCountSecond", UI_FeverTime.FeverTimeCountSecond);
 		//print ("Save: FeverTimeCountSecond" +  PlayerPrefs.GetInt("FeverTimeCountSecond"));
 		
 		saveChickFirstHitBasketFlagToDisk();
@@ -546,15 +560,6 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		PlayerPrefs.SetInt("countMinusSecond", countMinusSecond);
 		PlayerPrefs.SetInt("feverTimeFlag", Convert.ToInt32(feverTimeFlag));
 		PlayerPrefs.SetInt("countFeverTimeEvent", countFeverTimeEvent);
-		//print ("Save countFeverTimeEvent: " + PlayerPrefs.GetInt("countFeverTimeEvent"));
-		//PlayerPrefs.SetFloat("percentage", percentage);
-		//PlayerPrefs.SetInt("feverTimeCount", feverTimeCount);
-		//PlayerPrefs.SetInt("feverTimeGage", feverTimeGage); // not use
-		//PlayerPrefs.SetFloat("feverTimer", feverTimer);
-		
-		
-//		print ("Save feverTimeFlag: " + PlayerPrefs.GetInt("feverTimeFlag"));
-//		print ("Save point: " + point);
 		
 		countChickAtSave = 0;
 		storeTime();
@@ -601,6 +606,11 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 	int count;
 	#region LoadData
 	void loadGameData(){
+		//volumeSwitch = PlayerPrefs.GetInt("volumeSwitch");
+		//print("volumeSwitch: " + PlayerPrefs.GetInt("volumeSwitch"));
+		
+		UI_FeverTime.FeverTimeCountSecond = PlayerPrefs.GetFloat("FeverTimeCountSecond", UI_FeverTime.FeverTimeCountSecond);
+		
 		countFeverTimeEvent = PlayerPrefs.GetInt("countFeverTimeEvent");
 		//print ("Load countFeverTimeEvent: " + countFeverTimeEvent);
 		
@@ -609,6 +619,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		point = PlayerPrefs.GetInt("point", point);
 		nextLevelPercentage = PlayerPrefs.GetInt("nextLevelPercentage", nextLevelPercentage);
 		countChickAtSave = PlayerPrefs.GetInt("countChickAtSave", countChickAtSave);
+		print ("countChickAtSave: " + countChickAtSave);
 		chickHitBasketCount = PlayerPrefs.GetInt("chickHitBasketCount", chickHitBasketCount);
 //		feverTimeGage = PlayerPrefs.GetInt("feverTimeGage", feverTimeGage); not use
 		//feverTimeCount = PlayerPrefs.GetInt("feverTimeCount", feverTimeCount);
@@ -649,7 +660,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 	#region load Chick
 	void loadChick(){
 		//load chick when stored number matchs  registered chick
-		foreach(GameObject eachObj in ChickManager.allChickObjs){
+		foreach(GameObject eachObj in CharacterPool.allChickObjs){
 			//print ("eachObj.name: " + eachObj.name);
 			string ChickNum = eachObj.name.Substring(eachObj.name.Length - 3);			
 			
@@ -682,6 +693,11 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 					GameObject instantiateObj = Instantiate(eachObj, storedChickPos, Quaternion.Euler(storedChickRotation)) as GameObject;
 					instantiateObj.name = eachObj.name;	
 				}
+				
+				//initialize
+				PlayerPrefsPlus.SetVector3(storedKeyChickPos, new Vector3(0f, 0f, 0f));
+				PlayerPrefsPlus.SetVector3(storedKeyChickRotation, new Vector3(0f, 0f, 0f));
+				
 			}	
 		}
 		//Debug.Break();
@@ -726,7 +742,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		countMinusSecond -= 1;
 		
 		// Send Message to UI  
-		_feverTimeScoreUpdate(countSecond, countMinusSecond); //Delegate to UI_Game_Scene.cs
+		//_feverTimeScoreUpdate(countSecond, countMinusSecond); //Delegate to UI_Game_Scene.cs
 	}
 	
 	void feverTimeIsStart(){
@@ -783,13 +799,25 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 	}
 	
 	float secTimer = 0f;
+	float autoCreateTimer = 0f;
 	void Update(){
+		if(autoCreateMode){
+			float hoge = UnityEngine.Random.Range(-6.49f, -1.6f);
+			autoCreateTimer += Time.deltaTime;
+			if(autoCreateTimer > 1.0f){
+				_touchPositionFromTouchControl(new Vector3(hoge, 3.5f, -3.8f));
+				autoCreateTimer = 0f;
+			}	
+		}
+			
 		pointTimer += Time.deltaTime;
 		if(pointTimer > 3.0f){
 			addPointByTime();
 			pointTimer = 0f;
 		}
 		
+		//Fever Timer
+		//if(feverTimeFlag || isMoveTimer == false){return;}
 		if(feverTimeFlag){return;}
 		secTimer += Time.deltaTime;
 		//if(secTimer > 1.0f){
@@ -799,15 +827,24 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		}	
 	}
 	
+	/* not use
+	public  bool isMoveTimer = false;
+	void moveTimer(){
+		isMoveTimer = true;
+	}
+	*/
 	
 	#region Delegate
 	void OnEnable(){
-		BasketManager._hitChickBasket2 += scoreUpdate;
-		BasketManager._hitChickBasket += collectionUpdate;
-		UI_GameScene._startTransition += saveGameData;
-		TouchControl._touchPosition += pointUpdateByTouch;
-		UI_GameScene._feverTimeEvent +=feverTimeIsStart;
-		UI_FeverTime._feverTimeTimingEnd += feverTimeIsEnd;
+//		BasketManager._hitChickBasket2 += scoreUpdate;
+//		BasketManager._hitChickBasket += collectionUpdate;
+//		UI_GameScene._startTransition += saveGameData;
+//		TouchControl._touchPosition += pointUpdateByTouch;
+//		UI_GameScene._feverTimeEvent +=feverTimeIsStart;
+//		UI_FeverTime._feverTimeTimingEnd += feverTimeIsEnd;
+
+		//UI_GameScene._isMoveChick += moveTimer;
+		//SoundManager._isMoveTimer += moveTimer;
 	}
 	void OnDisable(){
 		UnSubscribeEvent();
@@ -816,12 +853,16 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		UnSubscribeEvent();
 	}
 	void UnSubscribeEvent(){
-		BasketManager._hitChickBasket2 -= scoreUpdate;
-		BasketManager._hitChickBasket -= collectionUpdate;
-		UI_GameScene._startTransition -= saveGameData;
-		TouchControl._touchPosition -= pointUpdateByTouch;
-		UI_GameScene._feverTimeEvent -=feverTimeIsStart;
-		UI_FeverTime._feverTimeTimingEnd -= feverTimeIsEnd;
+//		BasketManager._hitChickBasket2 -= scoreUpdate;
+//		BasketManager._hitChickBasket -= collectionUpdate;
+//		UI_GameScene._startTransition -= saveGameData;
+//		TouchControl._touchPosition -= pointUpdateByTouch;
+//		UI_GameScene._feverTimeEvent -=feverTimeIsStart;
+//		UI_FeverTime._feverTimeTimingEnd -= feverTimeIsEnd;
+
+
+		//UI_GameScene._isMoveChick -= moveTimer;
+		//SoundManager._isMoveTimer -= moveTimer;
 	}
 	#endregion
 	
