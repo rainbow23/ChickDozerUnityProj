@@ -47,13 +47,6 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
 	private void Awake ()
 	{
-		if (this != Instance) {
-			Destroy (this);
-			return;
-		}
-
-		DontDestroyOnLoad (this.gameObject);
-
 		//リソースフォルダから全SE&BGMのファイルを読み込みセット
 		_bgmDic = new Dictionary<string, AudioClip> ();
 		_seDic  = new Dictionary<string, AudioClip> ();

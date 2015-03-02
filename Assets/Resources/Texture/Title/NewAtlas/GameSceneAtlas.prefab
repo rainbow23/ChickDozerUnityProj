@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 42d1024e48ac24dbf932bab99dea9df2, type: 2}
+  material: {fileID: 2100000, guid: 393c4cc09fabd40aa892b844dea23f25, type: 2}
   mSprites:
   - name: 0
     x: 1714

@@ -31,12 +31,17 @@ public class FunctionManager : MonoBehaviour {
 			thisUISprite = GetComponent<UISprite>();
 			audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
+
 			if(audioManager.IsMute)
 			{ 
 				audioManager.StopBGM();
 				thisUISprite.spriteName = offSoundBtnSpriteName;
 			}
-			else thisUISprite.spriteName = onSoundBtnSpriteName;
+			else 
+			{
+
+				thisUISprite.spriteName = onSoundBtnSpriteName;
+			}
 
 
 			break;
