@@ -160,7 +160,7 @@ public class AdManager: SingletonMonoBehaviour<AdManager>
 	//Android iOS
 	private void showIconAd(int scene, bool enable)
 	{
-		PlugInObjectScript.showIconAd(scene, enable);		
+		//PlugInObjectScript.showIconAd(scene, enable);		
 	}
 	
 	private void showGenuineAdInAndroid(bool visible)
@@ -203,7 +203,7 @@ public class AdManager: SingletonMonoBehaviour<AdManager>
 	}
 	
 	public void showGoodiaHeaderAd(bool visibility){
-		PlugInObjectScript.webViewGoodiaAd_SetVisibility(visibility);
+		//PlugInObjectScript.webViewGoodiaAd_SetVisibility(visibility);
 	}
 	
 	public void showReviewPopUp(){

@@ -12,5 +12,4 @@ public static class DATA
 	//オーディオファイルのパス
 	public const string BGM_PATH = "Audio/BGM";
 	public const string SE_PATH  = "Audio/SE";
-
 }

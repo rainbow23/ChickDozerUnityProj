@@ -27,9 +27,9 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager> {
 	{
 		//とりあえずレベル１だけしか作らない
 		GameObject obj = Instantiate(
-				AllChicks[0], 
-				touchPos, 
-				Quaternion.Euler(-30f, 0f, 0f)) as GameObject;
+			AllChicks[0], 
+			touchPos, 
+			Quaternion.Euler(-30f, 0f, 0f)) as GameObject;
 			obj.name = AllChicks[0].name;
 			obj.rigidbody.angularDrag = 0f;
 			obj.SetActive(true);

@@ -27,7 +27,7 @@ public class TouchControl : MonoBehaviour {
 			touchToWorldPos = new Vector3(touchToWorldPos.x, touchToWorldPos.y, offsetZ);
 
 			GameController.touchPos.Value = touchToWorldPos;
-
+			GameController.createCharNum.Value += 1;
 			StartCoroutine(waitTime());
 		}	
 	}

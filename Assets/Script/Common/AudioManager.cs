@@ -47,6 +47,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
 	private void Awake ()
 	{
+		_isMute = PlayerPrefs.GetInt(MUTE_KEY);
 		//リソースフォルダから全SE&BGMのファイルを読み込みセット
 		_bgmDic = new Dictionary<string, AudioClip> ();
 		_seDic  = new Dictionary<string, AudioClip> ();
@@ -69,7 +70,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
 	private void Start()
 	{
-
+		GameController.createCharNum.AddListener(PlayTouchSE);
 	}
 
 	//=================================================================================
@@ -90,12 +91,22 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 		Invoke ("DelayPlaySE", delay);
 	}
 
+	public void PlayTouchSE (int touchNum)
+	{
+		if (!_seDic.ContainsKey (AUDIO.SE_PIYP)) {
+			Debug.Log (AUDIO.SE_PIYP + "という名前のSEがありません");
+			return;
+		}
+		_nextSEName = AUDIO.SE_PIYP;
+		Invoke ("DelayPlaySE", 0f);
+	}
+
 	private void DelayPlaySE ()
 	{
 		if(_isMute == MUTE_ON){
 			return;
 		}
-
+		print ("_seDic [_nextSEName]: " + _seDic [_nextSEName]);
 		AttachSESource.PlayOneShot (_seDic [_nextSEName] as AudioClip);
 	}
 

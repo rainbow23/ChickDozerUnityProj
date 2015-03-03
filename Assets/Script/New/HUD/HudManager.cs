@@ -3,7 +3,6 @@ using System.Collections;
 
 public class HudManager : MonoBehaviour {
 	#region variable
-	ScoreManager ScoreManagerScript;
 	GameObject chickScoreHud;
 	GameObject scoreHud;
 	Transform hudParentTransform;
@@ -24,8 +23,6 @@ public class HudManager : MonoBehaviour {
 	#endregion
 	
 	void Awake () {
-		Application.targetFrameRate = 60;
-		ScoreManagerScript = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 		//chickScoreHud = Resources.Load("HUD/LevelUpSprite", typeof(GameObject)) as GameObject;
 		
 		HudGrpResource = Resources.Load("HUD/HudGrp", typeof(GameObject)) as GameObject;

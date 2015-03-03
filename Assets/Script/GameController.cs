@@ -6,6 +6,8 @@ using System.Collections;
 /// </summary>
 public class GameController : SingletonMonoBehaviour<GameController> 
 {
+	private const string TOTALSCOREKEY =  "totalScore";
+	public static int  totalScore{private set; get;}
 
 	private NotificationObject<int> _score = new NotificationObject<int>(0);
 	public static NotificationObject<int> score
@@ -26,10 +28,10 @@ public class GameController : SingletonMonoBehaviour<GameController>
 		//set{ Instance._touchPos = value; }
 	}
 
-	private NotificationObject<int> _charHitGoalNum = new NotificationObject<int>();
-	public static NotificationObject<int> CharHitGoalNum
+	private NotificationObject<int> _createCharNum = new NotificationObject<int>(0);
+	public static NotificationObject<int> createCharNum
 	{
-		get{ return Instance._charHitGoalNum; }
+		get{ return Instance._createCharNum; }
 	}
 
 	public enum GameState
@@ -41,6 +43,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 
 	void Start()
 	{
+		Application.targetFrameRate = 60;
+		score.AddListener(addScore);
 		switch (Application.loadedLevelName) {
 			case SCENE.TITLE:
 				AudioManager.Instance.PlayBGM(AUDIO.BGM_TITLE);
@@ -54,12 +58,30 @@ public class GameController : SingletonMonoBehaviour<GameController>
 			}
 	}
 
+	void addScore(int score){ totalScore += score; }
+
 	void OnDestroy()
 	{
 		score.Dispose();
 		gameState.Dispose();
 	}
 
+	void OnApplicationPause(bool pauseStatus) 
+	{
+		if(pauseStatus)//離れる時
+		{
+			PlayerPrefs.SetInt( TOTALSCOREKEY,totalScore);
+			print ("GameController.totalScore: " + totalScore);
+		} 
+		else//戻る時
+		{
+			totalScore = PlayerPrefs.GetInt(TOTALSCOREKEY);
+			print ("GameController.totalScore: " + totalScore);
+		}
+
+
+	}
+	
 	void OnLevelWasLoaded(int level)
 	{
 		switch (level) 

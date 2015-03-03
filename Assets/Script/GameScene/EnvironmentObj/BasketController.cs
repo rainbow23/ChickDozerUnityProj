@@ -21,8 +21,8 @@ public class BasketController : MonoBehaviour {
 	
 	bool once = false;
 	void OnTriggerEnter(Collider collider){
+		/*deferment
 		//かごに触れたひよこ種類をDelegate
-
 				if(this.gameObject.name == "CountChickInBasket"){
 					Transform topParent = searchParent(collider.transform);
 					string index = topParent.gameObject.name.Substring(topParent.gameObject.name.Length - 3);
@@ -38,19 +38,18 @@ public class BasketController : MonoBehaviour {
 					}
 					//print ("num:" + num);
 				}
+				*/
 	}
 	
 	//かごに触れている間シーン遷移した場合、Triggerの中で復元されるため
 	void OnTriggerStay (Collider collider){
 		//かごに触れたひよこ種類をDelegate
 		if(collider.gameObject.name == "BottomCollider" || collider.gameObject.name == "CapsuleCollider"){
+			/*
 				print ("hit");
 				Collider hitCollider =  collider.gameObject.GetComponent<Collider>();
 				hitCollider.enabled = false;
 				Transform topParent = searchParent(collider.transform);
-				
-				
-				
 				
 				string index = topParent.gameObject.name.Substring(topParent.gameObject.name.Length - 3);
 				int num =int.Parse(index);
@@ -65,6 +64,7 @@ public class BasketController : MonoBehaviour {
 				}
 				
 				print ("num:" + num);
+				*/
 		}
 	}
 	

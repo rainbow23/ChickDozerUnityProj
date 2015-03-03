@@ -23,7 +23,7 @@ public class FunctionManager : MonoBehaviour {
 
 	AudioManager audioManager;
 
-	void Awake()
+	void Start()
 	{
 		switch (funcType) 
 		{
@@ -39,7 +39,6 @@ public class FunctionManager : MonoBehaviour {
 			}
 			else 
 			{
-
 				thisUISprite.spriteName = onSoundBtnSpriteName;
 			}
 

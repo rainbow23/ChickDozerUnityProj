@@ -17,10 +17,6 @@ public class ChickManager : CharacterManager{
 	public static bool sceneLoadFromCollection = false;
 	private float timer = 0f;
 	Animation anim;
-	
-	public delegate void touchDozerBaseFlag();
-    public static event touchDozerBaseFlag  _touchDozerBaseFlag;
-	
 	/*
 	public delegate void onHitChickByBasket(string chickName, Transform posChick);
     public static event onHitChickByBasket  _onHitChickByBasket;
@@ -28,14 +24,15 @@ public class ChickManager : CharacterManager{
 	public delegate void chickHitExceptBasket(string chickName, Transform posChick);
     public static event chickHitExceptBasket  _chickHitExceptBasket;
 	*/
-	GameObject Basket;
-	GameObject EffectScore;
 	#endregion
 	
 	void Awake(){		
 		anim = GetComponent<Animation>();
 		boxCollider = GetComponentInChildren<BoxCollider>();
 		capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+		string index = gameObjName.Substring(gameObjName.Length - 3);
+		thisCharScore =int.Parse(index);
+
 		ChickFootMaterial = (PhysicMaterial)Resources.Load("PhysicMaterials/ChickFoot");
 		//ChickHeadMaterial = (PhysicMaterial)Resources.Load("PhysicMaterials/ChickHead");
 		//GetComponent<Animation>().animatePhysics = true;
@@ -51,10 +48,6 @@ public class ChickManager : CharacterManager{
 		
 		//GameObject childHasCapsuleCollider = GetComponentInChildren<CapsuleCollider>().gameObject;
 		//childHasCapsuleCollider.GetComponent<CapsuleCollider>().sharedMaterial = ChickHeadMaterial;
-		
-		Basket = GameObject.Find("Basket");
-		int layerNo = LayerMask.NameToLayer("BG");
-		EffectScore = Resources.Load("HUD/EffectScore") as GameObject;
 	}
 	
 	Vector3 velocityValue = new Vector3(0f, 0f, 0f);
@@ -72,13 +65,19 @@ public class ChickManager : CharacterManager{
 		gameObject.animation.enabled = true;
 		scoreParticles.Stop();
 	}	
+
+	private void DisableCollider()
+	{
+		boxCollider.enabled = false;
+		capsuleCollider.enabled = false;
+	}
+
 	
 	void OnCollisionEnter(Collision collision){
 		//print ("collision.gameObject.name: " + collision.gameObject.name);
 		if(	collision.gameObject.tag == "Dozer" && !touchDozer)
 		{
 			touchDozer = true;
-			_touchDozerBaseFlag(); //delegate Touch DozerManager.cs
 		}
 	}
 	
@@ -88,17 +87,16 @@ public class ChickManager : CharacterManager{
 		{
 			//二度当たるのを防ぐためオフにする
 			DisableCollider();
-			GameController.CharHitGoalNum.Value += 1;
+			GameController.score.Value = thisCharScore;
+			print ("GameController.score.Value: " + GameController.score.Value);
 			goToBasket();
 		}
 	}
 	
 	private void goToBasket(){
-		//if(scoreParticles != null){scoreParticles.Play();}
-		if(rigidbody != null){rigidbody.isKinematic = true;}
-		if(capsuleCollider != null){capsuleCollider.enabled = false;}
-		//newUVひよこは iTween Scaleをするには Animation Componentをoffにする。
-		if(anim != null){ anim.enabled = false;}
+		if(scoreParticles != null){scoreParticles.Play();}
+		if(rigidbody != null){ rigidbody.isKinematic = true; }
+		if(anim != null){ anim.enabled = false;} //newUVひよこは iTween Scaleをするには Animation Componentをoffにする。
 		
 		iTween.ScaleTo(gameObject, 
 						iTween.Hash("x", 0.5f, 
@@ -119,7 +117,6 @@ public class ChickManager : CharacterManager{
 										"easetype", "linear"
 					)); //Y移動
 		lastActionFlag = true;
-		//Debug.Break();
 	}
 	
 	/* not use
@@ -180,8 +177,6 @@ public class ChickManager : CharacterManager{
 			Debug.DrawLine(rigidbody.centerOfMass, new Vector3(rigidbody.centerOfMass.x, rigidbody.centerOfMass.y + 1f, rigidbody.centerOfMass.z), Color.green);
 			//this.rigidbody.centerOfMass = new Vector3(this.rigidbody.centerOfMass.x + 7f, this.rigidbody.centerOfMass.y +2f, this.rigidbody.centerOfMass.z);				
 		}
-		
-		//goToBasket();
 		
 		if(rigidbody.IsSleeping()) { rigidbody.WakeUp(); }
 		if(transform.position.y < -15f){ 

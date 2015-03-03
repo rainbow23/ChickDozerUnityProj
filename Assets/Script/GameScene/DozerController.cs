@@ -10,7 +10,7 @@ public class DozerController : MonoBehaviour {
 		
 		void Start () 
 		{
-
+			MoveDozer();
 		}
 		
 		public void MoveDozer(){
@@ -24,7 +24,6 @@ public class DozerController : MonoBehaviour {
 				            "delay", 0));
 			}
 			chickTouchDozerBase =true;
-			
 		}
 		
 		void feverTiming(){
