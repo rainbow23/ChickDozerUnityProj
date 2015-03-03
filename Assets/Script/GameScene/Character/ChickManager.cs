@@ -6,23 +6,20 @@ public class ChickManager : CharacterManager{
 	#region variable
 	public static int indexInt;
 	public PhysicMaterial ChickFootMaterial;
-	public PhysicMaterial ChickHeadMaterial;
+	//public PhysicMaterial ChickHeadMaterial;
 	BoxCollider boxCollider;
 	CapsuleCollider capsuleCollider; 
 	ParticleSystem scoreParticles;
 	bool lastActionFlag = false;
 	bool falldownFlag = false;
 	bool sideFalldownFlag = false;
-	bool chickTouchDozerBaseFlag = false;
+	bool touchDozer = false;
 	public static bool sceneLoadFromCollection = false;
-	
+	private float timer = 0f;
 	Animation anim;
 	
 	public delegate void touchDozerBaseFlag();
     public static event touchDozerBaseFlag  _touchDozerBaseFlag;
-	
-	public delegate void hitBasket();
-    public static event hitBasket  _hitBasket;
 	
 	/*
 	public delegate void onHitChickByBasket(string chickName, Transform posChick);
@@ -40,12 +37,11 @@ public class ChickManager : CharacterManager{
 		boxCollider = GetComponentInChildren<BoxCollider>();
 		capsuleCollider = GetComponentInChildren<CapsuleCollider>();
 		ChickFootMaterial = (PhysicMaterial)Resources.Load("PhysicMaterials/ChickFoot");
-		ChickHeadMaterial = (PhysicMaterial)Resources.Load("PhysicMaterials/ChickHead");
+		//ChickHeadMaterial = (PhysicMaterial)Resources.Load("PhysicMaterials/ChickHead");
 		//GetComponent<Animation>().animatePhysics = true;
 	}
 	
 	void Start (){
-		
 		ChickFootMaterial.dynamicFriction = 0.10f;
 		ChickFootMaterial.staticFriction =0.1f;
 		
@@ -53,20 +49,18 @@ public class ChickManager : CharacterManager{
 		rigidbody.centerOfMass = new Vector3(0f, -0.5f, -0.7f);
 		scoreParticles = gameObject.transform.FindChild("Particle").GetComponent<ParticleSystem>(); 
 		
-		GameObject childHasCapsuleCollider = GetComponentInChildren<CapsuleCollider>().gameObject;
-		childHasCapsuleCollider.GetComponent<CapsuleCollider>().sharedMaterial = ChickHeadMaterial;
+		//GameObject childHasCapsuleCollider = GetComponentInChildren<CapsuleCollider>().gameObject;
+		//childHasCapsuleCollider.GetComponent<CapsuleCollider>().sharedMaterial = ChickHeadMaterial;
 		
 		Basket = GameObject.Find("Basket");
 		int layerNo = LayerMask.NameToLayer("BG");
 		EffectScore = Resources.Load("HUD/EffectScore") as GameObject;
-		
-		
 	}
 	
 	Vector3 velocityValue = new Vector3(0f, 0f, 0f);
 	void initialize(){
 		timer = 0f;
-		chickTouchDozerBaseFlag = false;
+		touchDozer = false;
 		gameObject.transform.setEulerAngles(-30f, 0f, 0f);
 		boxCollider.enabled = true;
 		capsuleCollider.enabled = true;
@@ -77,34 +71,29 @@ public class ChickManager : CharacterManager{
 		iTween.Stop(this.gameObject);
 		gameObject.animation.enabled = true;
 		scoreParticles.Stop();
-	}
-	
+	}	
 	
 	void OnCollisionEnter(Collision collision){
 		//print ("collision.gameObject.name: " + collision.gameObject.name);
-		if(	collision.gameObject.name == "DozerMove" || !chickTouchDozerBaseFlag)
+		if(	collision.gameObject.tag == "Dozer" && !touchDozer)
 		{
-			chickTouchDozerBaseFlag = true;
+			touchDozer = true;
 			_touchDozerBaseFlag(); //delegate Touch DozerManager.cs
 		}
 	}
 	
-	
-	public static  int hitBasketCount = 0;
+	//public static  int hitBasketCount = 0;
 	void OnTriggerEnter(Collider collider){
-		if(collider.gameObject.name == "CountChickInBasket"){
-			hitBasketCount += 1;
-			
-			if(boxCollider != null ||capsuleCollider != null  ){
-				boxCollider.enabled = false;
-				capsuleCollider.enabled = false;
-			}
+		if(collider.gameObject.tag == "Basket")
+		{
+			//二度当たるのを防ぐためオフにする
+			DisableCollider();
+			GameController.CharHitGoalNum.Value += 1;
 			goToBasket();
-			_hitBasket();
 		}
 	}
 	
-	public void goToBasket(){
+	private void goToBasket(){
 		//if(scoreParticles != null){scoreParticles.Play();}
 		if(rigidbody != null){rigidbody.isKinematic = true;}
 		if(capsuleCollider != null){capsuleCollider.enabled = false;}
@@ -150,7 +139,7 @@ public class ChickManager : CharacterManager{
 		}
 	}
 	
-	float timer = 0f;
+
 	
 	void Update (){
 		//test
@@ -158,11 +147,10 @@ public class ChickManager : CharacterManager{
 		Debug.DrawLine(rigidbody.centerOfMass, new Vector3(rigidbody.centerOfMass.x, rigidbody.centerOfMass.y + 1f, rigidbody.centerOfMass.z), Color.yellow);
 		//print ("rigidbody.centerOfMass: " + rigidbody.centerOfMass);
 		
-		// if chick has not landed when 5 second time passes from game start   
-		// bottom collider is not going to use
+		// bottom collider is disable if chick has not landed after 3 second time passes from game start   
 		timer += Time.deltaTime;
 		if(timer > 3.0f){
-			if(chickTouchDozerBaseFlag == false && boxCollider.enabled == true){
+			if(touchDozer == false && boxCollider.enabled == true){
 				boxCollider.enabled = false;	
 			}
 		}

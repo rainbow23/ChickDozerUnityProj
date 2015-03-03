@@ -6,6 +6,7 @@ using System.Collections;
 /// </summary>
 public class GameController : SingletonMonoBehaviour<GameController> 
 {
+
 	private NotificationObject<int> _score = new NotificationObject<int>(0);
 	public static NotificationObject<int> score
 	{
@@ -23,6 +24,12 @@ public class GameController : SingletonMonoBehaviour<GameController>
 	{
 		get{ return Instance._touchPos; }
 		//set{ Instance._touchPos = value; }
+	}
+
+	private NotificationObject<int> _charHitGoalNum = new NotificationObject<int>();
+	public static NotificationObject<int> CharHitGoalNum
+	{
+		get{ return Instance._charHitGoalNum; }
 	}
 
 	public enum GameState

@@ -16,17 +16,12 @@ public class BasketController : MonoBehaviour {
 	}
 
 	void Start (){
-		
+		moveBasket();
 	}	
 	
 	bool once = false;
 	void OnTriggerEnter(Collider collider){
 		//かごに触れたひよこ種類をDelegate
-		
-		//二度当たるのを防ぐためオフにする
-		ChickManager chickManager =  collider.gameObject.GetComponent<ChickManager>();
-		chickManager.DestroyCollider();
-
 
 				if(this.gameObject.name == "CountChickInBasket"){
 					Transform topParent = searchParent(collider.transform);

@@ -38,13 +38,6 @@ public class TouchControl : MonoBehaviour {
 		touchlimit = false;
 	}
 
-	void Awake(){}
-
-	void Start () {}
-	
-	void Update () {}
-
-	
 	void OnEnable(){
 		EasyTouch.On_TouchStart += On_TouchStart; 
 	}

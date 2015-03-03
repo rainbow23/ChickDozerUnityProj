@@ -12,9 +12,9 @@ public class CharacterPool : SingletonMonoBehaviour<CharacterPool>{
 	public bool _objectPoolMode;
 	List<Transform> chickPoolObj = new List<Transform>();
 	public static GameObject[] allChickObjs = new GameObject[36];
-	ScoreManager ScoreManagerScript;
+	//ScoreManager ScoreManagerScript;
 	
-	UISprite HowToUISceneUISprite;
+	//UISprite HowToUISceneUISprite;
 	
 	public void Awake (){
 		if (this != Instance) {
@@ -42,8 +42,8 @@ public class CharacterPool : SingletonMonoBehaviour<CharacterPool>{
 	}
 	
 	void Start(){
-		ScoreManagerScript = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
-		HowToUISceneUISprite = GameObject.Find("HowToUIScene").GetComponent<UISprite>();
+		//ScoreManagerScript = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+		//HowToUISceneUISprite = GameObject.Find("HowToUIScene").GetComponent<UISprite>();
 		
 		GameObject PoolChick = GameObject.Find("PoolChick");
 		for(int num = 0; num < PoolChick.transform.childCount; num++){
@@ -157,6 +157,7 @@ public class CharacterPool : SingletonMonoBehaviour<CharacterPool>{
 	float createTiming = 1.0f;
 	void Update () {
 		//HowToが表示されていないならばひよこを作る
+		/*
 		if(ScoreManager.feverTimeFlag && HowToUISceneUISprite.transform.localPosition.x != 0f){
 			feverTimer += Time.deltaTime;
 			if(feverTimer > createTiming){
@@ -164,6 +165,7 @@ public class CharacterPool : SingletonMonoBehaviour<CharacterPool>{
 				feverTimer = 0f;
 			}
 		}
+		*/
 	}
 	
 	#region random

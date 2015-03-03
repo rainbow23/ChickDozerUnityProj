@@ -4,9 +4,7 @@ using System.Collections;
 
 public class CharacterManager : MonoBehaviour 
 {	
-	private string gameObjName {
-		get{return gameObject.name;}
-	}
+	private string gameObjName { get{return gameObject.name;} }
 	Collider[] allCollider;
 
 	public int thisCharScore
@@ -14,8 +12,6 @@ public class CharacterManager : MonoBehaviour
 		get;
 		private set;
 	}
-
-	private float timer = 0f;
 
 	void Awake()
 	{
@@ -31,7 +27,7 @@ public class CharacterManager : MonoBehaviour
 
 
 
-	public void DestroyCollider()
+	public void DisableCollider()
 	{
 		foreach (var eachCollider in allCollider) 
 		{
@@ -47,7 +43,6 @@ public class CharacterManager : MonoBehaviour
 	
 	void Update () 
 	{
-		timer += Time.deltaTime;
 
 		//ChildHasMeshRender.transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
 		//transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
