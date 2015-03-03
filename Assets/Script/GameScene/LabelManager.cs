@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class LabelManager : MonoBehaviour {
 	Camera ClearCamera;
@@ -7,20 +9,66 @@ public class LabelManager : MonoBehaviour {
 	Transform UIRootBottomTransform;
 	GameObject hudObj;
 	GameObject particle;
+	UISprite[] pointsLabels;
+	UISprite[] levelLabels = new UISprite[2];
 
 	// Use this for initialization
 	void Awake () {
+
+
 		ClearCamera = GameObject.Find("ClearCamera").GetComponent<Camera>();
 		camera2D = GameObject.Find("2D Camera").GetComponent<Camera>();
 		hudObj = Resources.Load("HUD/HudGrp", typeof(GameObject)) as GameObject;
 		UIRootBottomTransform = GameObject.Find("UI Root/Bottom").transform;
-		GameController.touchPos.AddListener(ShowScoreEffect);
+		pointsLabels = GameObject.Find("PointGrp").GetComponentsInChildren<UISprite>()
+				.OrderBy( t=>{
+					string index = t.name.Substring(t.name.Length - 1);
+					t.gameObject.SetActive(false);
+					return int.Parse(index);
+				})
+				.ToArray();
+
+		levelLabels[0] = GameObject.Find("LvScore1").GetComponent<UISprite>();
+		levelLabels[1] = GameObject.Find("LvScore2").GetComponent<UISprite>();
+		levelLabels[0].gameObject.SetActive(false);
+		levelLabels[1].gameObject.SetActive(false);
 		//particle = Resources.Load("Particle/CFXM2_CartoonFight", typeof(GameObject)) as GameObject; 
 	}
+	void Start () 
+	{
+		GameController.touchPos.AddListener(ShowScoreEffect);
+		UpdatePoint(0);
+		UpdateLevel(0);
+		GameController.score.AddListener(UpdatePoint);
+		GameController.score.AddListener(UpdateLevel);
+	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+
+	//引数使わない
+	void UpdatePoint( int score)
+	{
+		int totalScore = GameController.totalScore;
+		foreach(var each in pointsLabels)
+		{
+			if(totalScore < 1) return;
+			if(!each.gameObject.activeSelf) each.gameObject.SetActive(true);
+			each.spriteName = "numberFont/" + (totalScore % 10).ToString();
+			totalScore  /= 10;
+		}
+	}
+
+	//引数使わない
+	void UpdateLevel(int score)
+	{
+		int level = GameController.level;
+		foreach (var each in levelLabels) 
+		{
+			//print ("level: "  + level);
+			if(level < 1) return;
+			if(!each.gameObject.activeSelf) each.gameObject.SetActive(true);
+			each.spriteName = "numberFont/" + (level % 10).ToString();
+			level  /= 10;
+		}
 	}
 	
 	void ShowScoreEffect(Vector3 worldPos)
@@ -50,5 +98,9 @@ public class LabelManager : MonoBehaviour {
 		return new Vector3(camera2DPos.x, 160f, 0f);
 	}
 
+	// Update is called once per frame
+	void Update () {
+		
+	}
 
 }

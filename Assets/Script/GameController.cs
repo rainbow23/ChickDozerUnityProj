@@ -7,7 +7,9 @@ using System.Collections;
 public class GameController : SingletonMonoBehaviour<GameController> 
 {
 	private const string TOTALSCOREKEY =  "totalScore";
+	private const string LEVELKEY =  "level";
 	public static int  totalScore{private set; get;}
+	public static int level = 1;
 
 	private NotificationObject<int> _score = new NotificationObject<int>(0);
 	public static NotificationObject<int> score
@@ -41,9 +43,14 @@ public class GameController : SingletonMonoBehaviour<GameController>
 		Collection
 	}
 
-	void Start()
+	void Awake()
 	{
 		Application.targetFrameRate = 60;
+	}
+
+	void Start()
+	{
+		LoadData();
 		score.AddListener(addScore);
 		switch (Application.loadedLevelName) {
 			case SCENE.TITLE:
@@ -58,7 +65,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
 			}
 	}
 
-	void addScore(int score){ totalScore += score; }
+	void addScore(int score)
+	{ 
+		totalScore += score; 
+		UpdateLevel(totalScore);
+	}
+
+	 void UpdateLevel(int updateTotalScore)
+	{
+		if (updateTotalScore < 10) {  level = 1; }		
+		else if(updateTotalScore < 21) { level = 2; }
+		else{level = 3;}
+		print ("level: " + level);
+	}
 
 	void OnDestroy()
 	{
@@ -70,16 +89,31 @@ public class GameController : SingletonMonoBehaviour<GameController>
 	{
 		if(pauseStatus)//離れる時
 		{
-			PlayerPrefs.SetInt( TOTALSCOREKEY,totalScore);
-			print ("GameController.totalScore: " + totalScore);
+			SaveData();
 		} 
 		else//戻る時
 		{
-			totalScore = PlayerPrefs.GetInt(TOTALSCOREKEY);
-			print ("GameController.totalScore: " + totalScore);
+			LoadData();
 		}
+	}
 
+	void OnApplicationQuit()
+	{
+		//print ("OnApplicationQuit");
+		SaveData();
+	}
 
+	void SaveData()
+	{
+		PlayerPrefs.SetInt( TOTALSCOREKEY,totalScore);
+		PlayerPrefs.SetInt( LEVELKEY,level); 
+	}
+
+	void LoadData()
+	{
+		totalScore = PlayerPrefs.GetInt(TOTALSCOREKEY);
+		level = PlayerPrefs.GetInt(LEVELKEY);
+		//print ("level: " + level);
 	}
 	
 	void OnLevelWasLoaded(int level)

@@ -88,7 +88,6 @@ public class ChickManager : CharacterManager{
 			//二度当たるのを防ぐためオフにする
 			DisableCollider();
 			GameController.score.Value = thisCharScore;
-			print ("GameController.score.Value: " + GameController.score.Value);
 			goToBasket();
 		}
 	}
