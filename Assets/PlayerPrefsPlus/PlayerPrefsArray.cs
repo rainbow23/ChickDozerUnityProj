@@ -20,8 +20,13 @@ public class PlayerPrefsArray : MonoBehaviour {
 	    int[] returns = new int[PlayerPrefs.GetInt("PlayerPrefsArray:Int:L:"+key)];
 	    
 	   	int i = 0;
+
+	//	Debug.Log("returns.Length: " + returns.Length);
+	//	Debug.Log("PlayerPrefs.GetInt(PlayerPrefsArray:Int:L+key) " + PlayerPrefs.GetInt("PlayerPrefsArray:Int:L"+key));
+	//	Debug.Break();
 	    
-	    while(i < PlayerPrefs.GetInt("PlayerPrefsArray:Int:L"+key)){
+		//while(i <= PlayerPrefs.GetInt("PlayerPrefsArray:Int:L:"+key)){
+		while(i < returns.Length){
 	        returns.SetValue(PlayerPrefs.GetInt("PlayerPrefsArray:Int:"+key + i.ToString()), i);
 	        ++i;
 	    }

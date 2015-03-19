@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 [System.Serializable]
@@ -27,4 +28,9 @@ public class NotificationObject<T> :  UnityEngine.Events.UnityEvent<T>
 	{
 		RemoveAllListeners();
 	}
+}
+
+public class CharDataObject<T> :  UnityEngine.Events.UnityEvent<T, T, int>
+{
+
 }

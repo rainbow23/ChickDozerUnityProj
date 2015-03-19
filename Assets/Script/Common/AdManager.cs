@@ -82,7 +82,7 @@ public class AdManager: SingletonMonoBehaviour<AdManager>
 			showIconAd(level, true);
 			//iOS only
 			showGoodiaHeaderAd(false);
-			PlugInObjectScript.reportGameStartToFlurry();
+			//PlugInObjectScript.reportGameStartToFlurry();
 			//Android	
 			showGenuineAdInAndroid(false);
 		}

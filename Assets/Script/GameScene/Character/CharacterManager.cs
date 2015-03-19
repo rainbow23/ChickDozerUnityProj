@@ -12,14 +12,21 @@ public class CharacterManager : MonoBehaviour
 		set{ _thisCharScore = value;}
 	}
 
-	void Awake()
+	void OnEnable()
 	{
-	
+
+
 	}
 
-	void Start () 
+	protected virtual void Awake()
 	{
-	
+
+	}
+
+	protected virtual void Start () 
+	{
+		string index = gameObjName.Substring(gameObjName.Length - 3);
+		thisCharScore =int.Parse(index);
 	}
 
 	void Update () 

@@ -4,17 +4,22 @@ using System.Collections;
 
 public class ChickManager : CharacterManager{
 	#region variable
+	GameController gameController;
+
 	public static int indexInt;
 	public PhysicMaterial ChickFootMaterial;
 	//public PhysicMaterial ChickHeadMaterial;
+	Transform thisTransform;
 	BoxCollider boxCollider;
 	CapsuleCollider capsuleCollider; 
 	ParticleSystem scoreParticles;
+
 	bool lastActionFlag = false;
 	bool falldownFlag = false;
 	bool sideFalldownFlag = false;
 	bool touchDozer = false;
 	public static bool sceneLoadFromCollection = false;
+
 	private float timer = 0f;
 	Animation anim;
 	/*
@@ -26,30 +31,45 @@ public class ChickManager : CharacterManager{
 	*/
 	#endregion
 	
-	void Awake(){		
+	protected override void Awake(){	
+		gameController = GameObject.Find("GameController").GetComponent<GameController>();
 		anim = GetComponent<Animation>();
 		boxCollider = GetComponentInChildren<BoxCollider>();
 		capsuleCollider = GetComponentInChildren<CapsuleCollider>();
-		string index = gameObjName.Substring(gameObjName.Length - 3);
-		thisCharScore =int.Parse(index);
+		thisTransform = GetComponent<Transform>();
 
 		ChickFootMaterial = (PhysicMaterial)Resources.Load("PhysicMaterials/ChickFoot");
 		//ChickHeadMaterial = (PhysicMaterial)Resources.Load("PhysicMaterials/ChickHead");
 		//GetComponent<Animation>().animatePhysics = true;
 	}
-	
-	void Start (){
+
+
+	protected override void Start (){
+		base.Start();
+		//button.onClick.AddListener(delegate{SomeMethodName(SomeObject);});
+		//gameController.saveCharData.AddListener(delegate{saveData(Vector3 aaa, Vector3 b, int c );});
 		ChickFootMaterial.dynamicFriction = 0.10f;
 		ChickFootMaterial.staticFriction =0.1f;
 		
 		rigidbody.angularDrag = 60f;
 		rigidbody.centerOfMass = new Vector3(0f, -0.5f, -0.7f);
 		scoreParticles = gameObject.transform.FindChild("Particle").GetComponent<ParticleSystem>(); 
-		
+
+
 		//GameObject childHasCapsuleCollider = GetComponentInChildren<CapsuleCollider>().gameObject;
 		//childHasCapsuleCollider.GetComponent<CapsuleCollider>().sharedMaterial = ChickHeadMaterial;
 	}
-	
+
+	/// <summary>
+	/// Save to List
+	/// </summary>
+	 void saveData()
+	{
+		gameController.charPosList.Add(thisTransform.localPosition);
+		gameController.charRotList.Add(thisTransform.localRotation.eulerAngles);
+		gameController.charKindList.Add(thisCharScore);
+	}
+
 	Vector3 velocityValue = new Vector3(0f, 0f, 0f);
 	void initialize(){
 		timer = 0f;
@@ -190,7 +210,9 @@ public class ChickManager : CharacterManager{
 	}
 	
 	void OnEnable(){
-		//UI_GameScene._isMoveChick += moveChick;
+
+		gameController.saveCharData += saveData;
+
 	}
 	void OnDisable(){
 		UnSubscribeEvent();
@@ -199,6 +221,7 @@ public class ChickManager : CharacterManager{
 		UnSubscribeEvent();
 	}
 	void UnSubscribeEvent(){
-		//UI_GameScene._isMoveChick -= moveChick;
+
+		gameController.saveCharData -= saveData;
 	}
 }

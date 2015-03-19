@@ -253,7 +253,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>{
 		//print ("digit2 + digit1: " + nextLevelPercentage);
 		_percentageUpdate(nextLevelPercentage);//Delegate
 	}
-	
+	//dictionary?
 	int nextLevelScore(int currentLevel){
 		int nextLevelScore;
 			switch(currentLevel){

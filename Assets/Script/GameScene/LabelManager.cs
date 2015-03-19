@@ -28,10 +28,11 @@ public class LabelManager : MonoBehaviour {
 				})
 				.ToArray();
 
-		levelLabels[0] = GameObject.Find("LvScore1").GetComponent<UISprite>();
-		levelLabels[1] = GameObject.Find("LvScore2").GetComponent<UISprite>();
-		levelLabels[0].gameObject.SetActive(false);
-		levelLabels[1].gameObject.SetActive(false);
+		for (int i = 0; i < levelLabels.Length; i++) 
+		{
+			levelLabels[i] = GameObject.Find("LvScore" + (i + 1).ToString()).GetComponent<UISprite>();
+			levelLabels[i].gameObject.SetActive(false);
+		}
 		//particle = Resources.Load("Particle/CFXM2_CartoonFight", typeof(GameObject)) as GameObject; 
 	}
 	void Start () 
@@ -60,7 +61,7 @@ public class LabelManager : MonoBehaviour {
 	//引数使わない
 	void UpdateLevel(int score)
 	{
-		int level = GameController.level;
+		int level = GameController.Level;
 		foreach (var each in levelLabels) 
 		{
 			//print ("level: "  + level);

@@ -106,7 +106,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 		if(_isMute == MUTE_ON){
 			return;
 		}
-		print ("_seDic [_nextSEName]: " + _seDic [_nextSEName]);
+		//print ("_seDic [_nextSEName]: " + _seDic [_nextSEName]);
 		AttachSESource.PlayOneShot (_seDic [_nextSEName] as AudioClip);
 	}
 
