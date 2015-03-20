@@ -17,11 +17,8 @@ public class CreateCharManager : MonoBehaviour{
 	public List <int> charKindList =  new List<int>();
 	[System.NonSerialized]
 	public List <bool> isActiveBottomColliderOfCharList = new List<bool>();
-	
-	public delegate void SaveCharData();
-	public event SaveCharData saveCharData;
+
 	public  UnityEngine.Events.UnityEvent  saveCharacterData;
-	//public UnityEngine.Events.UnityAction saveCharacterData;
 
 	private GameObject[] AllChicks;
 	public static Dictionary<int, GameObject> ResourcesLoadChickDic = new Dictionary<int, GameObject>();
@@ -88,14 +85,13 @@ public class CreateCharManager : MonoBehaviour{
 		charKindList.Clear();
 		isActiveBottomColliderOfCharList.Clear();
 
-		//saveCharData(); //delegate to all chicks in scene.
-		saveCharacterData.Invoke();
+		saveCharacterData.Invoke(); //delegate to all chicks in scene.
 
 		Vector3[] charPos = charPosList.ToArray();
 		Vector3[] charRot = charRotList.ToArray();
 		int[] charKind = charKindList.ToArray();
 		bool[] charBottomCollider = isActiveBottomColliderOfCharList.ToArray();
-		
+
 		PlayerPrefsX.SetVector3Array(CHARPOSKEY, charPos);
 		PlayerPrefsX.SetVector3Array(CHARROTKEY, charRot);
 		PlayerPrefsX.SetIntArray(CHARKINDKEY, charKind);

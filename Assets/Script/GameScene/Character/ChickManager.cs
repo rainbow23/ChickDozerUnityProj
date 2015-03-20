@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 //using UnityEditor;
 
 public class ChickManager : CharacterManager{
@@ -63,20 +64,20 @@ public class ChickManager : CharacterManager{
 	/// <summary>
 	/// Save to List
 	/// </summary>
-	 void saveData()
+	void saveData()
 	{
-		if(isFallInBasket)return;
 		createCharManager.charPosList.Add(thisTransform.localPosition);
 		createCharManager.charRotList.Add(thisTransform.localRotation.eulerAngles);
 		createCharManager.charKindList.Add(thisCharScore);
 
-		if(boxCollider.enabled){
+		if(boxCollider.enabled)
 			createCharManager.isActiveBottomColliderOfCharList.Add (true);
-		}
-		else{ 
+		else
 			createCharManager.isActiveBottomColliderOfCharList.Add (false);
-		}
 	}
+
+	//UnityEngine.Events.UnityAction<List<Vector3>,List<Vector3>,List<int>,List<bool>> saveCharData;
+
 
 	Vector3 velocityValue = new Vector3(0f, 0f, 0f);
 	void initialize(){
@@ -117,6 +118,7 @@ public class ChickManager : CharacterManager{
 			//二度当たるのを防ぐためオフにする
 			DisableCollider();
 			gameController.score.Value = thisCharScore;
+			if(thisCharScore == 0) gameController.score.Value += 1;
 			goToBasket();
 		}
 	}
@@ -220,7 +222,6 @@ public class ChickManager : CharacterManager{
 
 	void OnEnable(){
 		createCharManager.saveCharacterData.AddListener(saveData);
-		//createCharManager.saveCharData += saveData;
 	}
 	void OnDisable(){
 		UnSubscribeEvent();
@@ -230,6 +231,5 @@ public class ChickManager : CharacterManager{
 	}
 	void UnSubscribeEvent(){
 		createCharManager.saveCharacterData.RemoveListener(saveData);
-		//createCharManager.saveCharData -= saveData;
 	}
 }
