@@ -12,10 +12,11 @@ public class LabelManager : MonoBehaviour {
 	UISprite[] pointsLabels;
 	UISprite[] levelLabels = new UISprite[2];
 
-	// Use this for initialization
-	void Awake () {
+	GameController gameController;
 
-
+	void Awake () 
+	{
+		gameController = GameObject.Find("GameController").GetComponent<GameController>();
 		ClearCamera = GameObject.Find("ClearCamera").GetComponent<Camera>();
 		camera2D = GameObject.Find("2D Camera").GetComponent<Camera>();
 		hudObj = Resources.Load("HUD/HudGrp", typeof(GameObject)) as GameObject;
@@ -37,11 +38,11 @@ public class LabelManager : MonoBehaviour {
 	}
 	void Start () 
 	{
-		GameController.touchPos.AddListener(ShowScoreEffect);
+		gameController.touchPos.AddListener(ShowScoreEffect);
 		UpdatePoint(0);
 		UpdateLevel(0);
-		GameController.score.AddListener(UpdatePoint);
-		GameController.score.AddListener(UpdateLevel);
+		gameController.score.AddListener(UpdatePoint);
+		gameController.score.AddListener(UpdateLevel);
 	}
 	
 
@@ -49,6 +50,7 @@ public class LabelManager : MonoBehaviour {
 	void UpdatePoint( int score)
 	{
 		int totalScore = GameController.totalScore;
+		//Debug.Log("GameController.totalScore: " + GameController.totalScore);
 		foreach(var each in pointsLabels)
 		{
 			if(totalScore < 1) return;

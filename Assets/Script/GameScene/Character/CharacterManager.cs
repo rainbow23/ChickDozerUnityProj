@@ -15,7 +15,6 @@ public class CharacterManager : MonoBehaviour
 	void OnEnable()
 	{
 
-
 	}
 
 	protected virtual void Awake()
@@ -27,6 +26,8 @@ public class CharacterManager : MonoBehaviour
 	{
 		string index = gameObjName.Substring(gameObjName.Length - 3);
 		thisCharScore =int.Parse(index);
+		if(thisCharScore == 0) thisCharScore += 1; 
+
 	}
 
 	void Update () 

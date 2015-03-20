@@ -45,6 +45,11 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 	//初期化
 	//=================================================================================
 
+	void OnLevelWasLoaded(int level)
+	{
+	
+	}
+
 	private void Awake ()
 	{
 		_isMute = PlayerPrefs.GetInt(MUTE_KEY);
@@ -70,7 +75,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
 	private void Start()
 	{
-		GameController.createCharNum.AddListener(PlayTouchSE);
+
 	}
 
 	//=================================================================================

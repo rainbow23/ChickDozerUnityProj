@@ -7,6 +7,13 @@ public class TouchControl : MonoBehaviour {
 	private int touchCount = 0;
 	private bool touchlimit = false;
 
+	GameController gameController;
+
+	void Awake()
+	{
+		gameController = GameObject.Find("GameController").GetComponent<GameController>();
+	}
+
 	public void On_TouchStart(Gesture gesture)
 	{
 		if(gesture.touchCount==1){
@@ -26,8 +33,8 @@ public class TouchControl : MonoBehaviour {
 			float offsetZ = touchToWorldPos.z + (1.6f * touchCount);
 			touchToWorldPos = new Vector3(touchToWorldPos.x, touchToWorldPos.y, offsetZ);
 
-			GameController.touchPos.Value = touchToWorldPos;
-			GameController.createCharNum.Value += 1;
+			gameController.touchPos.Value = touchToWorldPos;
+			gameController.createCharNum.Value += 1;
 			StartCoroutine(waitTime());
 		}	
 	}

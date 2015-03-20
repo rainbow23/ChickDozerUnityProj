@@ -5,7 +5,7 @@ using System.Collections;
 public class ChickManager : CharacterManager{
 	#region variable
 	GameController gameController;
-
+	CreateCharManager createCharManager;
 	public static int indexInt;
 	public PhysicMaterial ChickFootMaterial;
 	//public PhysicMaterial ChickHeadMaterial;
@@ -15,10 +15,8 @@ public class ChickManager : CharacterManager{
 	ParticleSystem scoreParticles;
 
 	bool lastActionFlag = false;
-	bool falldownFlag = false;
-	bool sideFalldownFlag = false;
+	bool isFallInBasket = false;
 	bool touchDozer = false;
-	public static bool sceneLoadFromCollection = false;
 
 	private float timer = 0f;
 	Animation anim;
@@ -31,8 +29,10 @@ public class ChickManager : CharacterManager{
 	*/
 	#endregion
 	
-	protected override void Awake(){	
+	protected override void Awake()
+	{	
 		gameController = GameObject.Find("GameController").GetComponent<GameController>();
+		createCharManager = GameObject.Find("CreateCharManager").GetComponent<CreateCharManager>();
 		anim = GetComponent<Animation>();
 		boxCollider = GetComponentInChildren<BoxCollider>();
 		capsuleCollider = GetComponentInChildren<CapsuleCollider>();
@@ -44,7 +44,8 @@ public class ChickManager : CharacterManager{
 	}
 
 
-	protected override void Start (){
+	protected override void Start ()
+	{
 		base.Start();
 		//button.onClick.AddListener(delegate{SomeMethodName(SomeObject);});
 		//gameController.saveCharData.AddListener(delegate{saveData(Vector3 aaa, Vector3 b, int c );});
@@ -55,7 +56,6 @@ public class ChickManager : CharacterManager{
 		rigidbody.centerOfMass = new Vector3(0f, -0.5f, -0.7f);
 		scoreParticles = gameObject.transform.FindChild("Particle").GetComponent<ParticleSystem>(); 
 
-
 		//GameObject childHasCapsuleCollider = GetComponentInChildren<CapsuleCollider>().gameObject;
 		//childHasCapsuleCollider.GetComponent<CapsuleCollider>().sharedMaterial = ChickHeadMaterial;
 	}
@@ -65,9 +65,17 @@ public class ChickManager : CharacterManager{
 	/// </summary>
 	 void saveData()
 	{
-		gameController.charPosList.Add(thisTransform.localPosition);
-		gameController.charRotList.Add(thisTransform.localRotation.eulerAngles);
-		gameController.charKindList.Add(thisCharScore);
+		if(isFallInBasket)return;
+		createCharManager.charPosList.Add(thisTransform.localPosition);
+		createCharManager.charRotList.Add(thisTransform.localRotation.eulerAngles);
+		createCharManager.charKindList.Add(thisCharScore);
+
+		if(boxCollider.enabled){
+			createCharManager.isActiveBottomColliderOfCharList.Add (true);
+		}
+		else{ 
+			createCharManager.isActiveBottomColliderOfCharList.Add (false);
+		}
 	}
 
 	Vector3 velocityValue = new Vector3(0f, 0f, 0f);
@@ -105,9 +113,10 @@ public class ChickManager : CharacterManager{
 	void OnTriggerEnter(Collider collider){
 		if(collider.gameObject.tag == "Basket")
 		{
+			isFallInBasket = true;
 			//二度当たるのを防ぐためオフにする
 			DisableCollider();
-			GameController.score.Value = thisCharScore;
+			gameController.score.Value = thisCharScore;
 			goToBasket();
 		}
 	}
@@ -208,11 +217,10 @@ public class ChickManager : CharacterManager{
 			}
 		}
 	}
-	
+
 	void OnEnable(){
-
-		gameController.saveCharData += saveData;
-
+		createCharManager.saveCharacterData.AddListener(saveData);
+		//createCharManager.saveCharData += saveData;
 	}
 	void OnDisable(){
 		UnSubscribeEvent();
@@ -221,7 +229,7 @@ public class ChickManager : CharacterManager{
 		UnSubscribeEvent();
 	}
 	void UnSubscribeEvent(){
-
-		gameController.saveCharData -= saveData;
+		createCharManager.saveCharacterData.RemoveListener(saveData);
+		//createCharManager.saveCharData -= saveData;
 	}
 }

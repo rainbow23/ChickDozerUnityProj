@@ -30,7 +30,3 @@ public class NotificationObject<T> :  UnityEngine.Events.UnityEvent<T>
 	}
 }
 
-public class CharDataObject<T> :  UnityEngine.Events.UnityEvent<T, T, int>
-{
-
-}
