@@ -8,77 +8,94 @@ using UnityEngine.Events;
 /// </summary>
 public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameController> 
 {
-	private const string TOTALSCOREKEY =  "totalScore";
+	private const string SCOREKEY =  "Score";
 	private const string LEVELKEY =  "Level";
+	private const string POINTKEY =  "Point";
+	private const string SAVEDFIRSTRUNKEY =  "savedFirstRun";
+	
+	private int checkFirstRun;
+	public static int  Score{private set; get;}
+	private static int _point = 2000;
+	public static int  Point{
+		get{ return _point;}
+		private set{ _point = value;}
+	}
 
-	public static int  totalScore{private set; get;}
-	public static int Level = 1;	
+	private static int _level = 1;
+	public static int Level{
+		get{ return _level;}
+		private set{ _level = value;}
+	} 
+
 	private bool isLoadedGame = false;
 
 	CreateCharManager createCharManager;
 	AudioManager audioManager;
+	LabelManager labelManager;
+
+	private  UnityEvent  UpdateScoreAndLevel;
 
 	private NotificationObject<int> _score = new NotificationObject<int>(0);
-	public  NotificationObject<int> score
-	{
-		get{ return _score; }
-	}
+	public  NotificationObject<int> score { get{ return _score; }}
 
 	private NotificationObject<Vector3> _touchPos = new NotificationObject<Vector3>();
-	public NotificationObject<Vector3> touchPos
-	{
-		get{ return _touchPos; }
-		//set{ Instance._touchPos = value; }
-	}
+	public NotificationObject<Vector3> touchPos{ get{ return _touchPos; }}
 
 	private NotificationObject<int> _createCharNum = new NotificationObject<int>(0);
-	public NotificationObject<int> createCharNum
-	{
-		get{ return _createCharNum; }
-	}
-
-	void OnLevelWasLoaded(int level)
-	{
-		switch (Application.loadedLevelName) 
-		{
-		case SCENE.TITLE:
-			Destroy(this);
-			break;
-		case SCENE.COLLECTION:
-			Destroy(this);
-			break;
-		}
-	}
+	public NotificationObject<int> createCharNum{ get{ return _createCharNum; }}
 
 	void Awake()
 	{
+		LoadElapseData();
 		//PlayerPrefs.DeleteAll();
+
+		if(checkFirstRun == 0)
+		{
+			Debug.Log("FirstLaunch");
+			Point = 2000;
+			Level = 1;
+			Score = 0;
+			checkFirstRun = 1;
+		}
+		else{ }
+
 		Application.targetFrameRate = 60;
 		isLoadedGame = true;
 		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 		createCharManager = GameObject.Find("CreateCharManager").GetComponent<CreateCharManager>();
+		labelManager = GameObject.Find("LabelManager").GetComponent<LabelManager>();
 	}
 
 	void Start()
 	{
-		LoadElapseData();
-		createCharManager.LoadCharDataFromDisc();
 		score.AddListener(addScore);
 		createCharNum.AddListener(audioManager.PlayTouchSE);
+
+		UpdateScoreAndLevel.AddListener(labelManager.updateLabel);
 	}
 
-	void addScore(int score)
+	/// <summary>
+	/// Modify score and level
+	/// </summary>
+	void addScore(int chickScore)
 	{ 
-		totalScore += score; 
-		UpdateLevel(totalScore);
+		//Debug.Log("chickScore: " +chickScore);
+		Score += chickScore; 
+		_point += chickScore * 10;
+		UpdateLevel();
+
+		//After update score and level  you can call  label action
+		UpdateScoreAndLevel.Invoke();
 	}
 
-	 void UpdateLevel(int updateTotalScore)
+	 void UpdateLevel()
 	{
-		if (updateTotalScore < 10) {  Level = 1; }		
-		else if(updateTotalScore < 21) { Level = 2; }
-		else{Level = 3;}
-		print ("Level: " + Level);
+		int nextLevel = Level + 1;
+		if(Score > DATA.NextLevelScore[nextLevel])
+		{
+			Level += 1;
+			Score -= DATA.NextLevelScore[Level]; //スコアを引き今のレベルの得点だけにする
+		}
 	}
 
 	void OnDestroy()
@@ -93,7 +110,15 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		//離れる時
 		if(pauseStatus) SaveToDisc();
 		//戻る時
-		else LoadElapseData();
+		else{ 
+			#if UNITY_EDITOR
+			//ゲームシーンから再生時OnApplicationPauseが呼ばれてしまうのでLoadElapseData();を呼ばない
+			Debug.Log("OnApplicationPause in UnityEditor");
+			#else
+			Debug.Log("OnApplicationPause in  except UnityEditor");
+			LoadElapseData();
+			#endif
+		}
 	}
 
 	void OnApplicationQuit()
@@ -104,12 +129,14 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void SaveToDisc()
 	{
-		createCharManager.SaveCharDataToDisc();
-
-		PlayerPrefs.SetInt( TOTALSCOREKEY,totalScore);
-		PlayerPrefs.SetInt( LEVELKEY,Level); 
-		PlayerPrefs.Save();
 		Debug.Log("SaveToDisc");
+		createCharManager.SaveCharDataToDisc();
+		PlayerPrefs.SetInt( SCOREKEY, Score);
+		PlayerPrefs.SetInt( LEVELKEY,Level); 
+		PlayerPrefs.SetInt( POINTKEY, Point); 
+		PlayerPrefs.SetInt( SAVEDFIRSTRUNKEY, checkFirstRun); 
+		PlayerPrefs.Save();
+		//Debug.Log("Point: " + Point);
 	}
 
 
@@ -117,8 +144,12 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	//経過時間を保存する
 	void LoadElapseData()
 	{
-		totalScore = PlayerPrefs.GetInt(TOTALSCOREKEY);
+		Debug.Log("LoadElapseData");
+		Score = PlayerPrefs.GetInt(SCOREKEY);
 		Level = PlayerPrefs.GetInt(LEVELKEY);
+		Point = PlayerPrefs.GetInt(POINTKEY);
+		checkFirstRun = PlayerPrefs.GetInt(SAVEDFIRSTRUNKEY);
+		//Debug.Log("Point: " + Point);
 	}
 
 

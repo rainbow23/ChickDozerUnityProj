@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Events;
 
 public class LabelManager : MonoBehaviour {
 	Camera ClearCamera;
@@ -13,6 +14,7 @@ public class LabelManager : MonoBehaviour {
 	UISprite[] levelLabels = new UISprite[2];
 
 	GameController gameController;
+	public UnityAction  updateLabel;
 
 	void Awake () 
 	{
@@ -35,34 +37,34 @@ public class LabelManager : MonoBehaviour {
 			levelLabels[i].gameObject.SetActive(false);
 		}
 		//particle = Resources.Load("Particle/CFXM2_CartoonFight", typeof(GameObject)) as GameObject; 
+		updateLabel = UpdatePoint;
+		updateLabel += UpdateLevel;
 	}
 	void Start () 
 	{
-		gameController.touchPos.AddListener(ShowScoreEffect);
-		UpdatePoint(0);
-		UpdateLevel(0);
-		gameController.score.AddListener(UpdatePoint);
-		gameController.score.AddListener(UpdateLevel);
+		//gameController.touchPos.AddListener(ShowScoreEffect);
+		UpdatePoint();
+		UpdateLevel();
 	}
-	
 
-	//引数使わない
-	void UpdatePoint( int score)
+
+	void UpdatePoint()
 	{
-		int totalScore = GameController.totalScore;
-		//Debug.Log("GameController.totalScore: " + GameController.totalScore);
+		//Debug.Log("UpdatePoint");
+		int point = GameController.Point;
 		foreach(var each in pointsLabels)
 		{
-			if(totalScore < 1) return;
+			if(point < 1) return;
+			//Debug.Log("point: " + point);
 			if(!each.gameObject.activeSelf) each.gameObject.SetActive(true);
-			each.spriteName = "numberFont/" + (totalScore % 10).ToString();
-			totalScore  /= 10;
+			each.spriteName = "numberFont/" + (point % 10).ToString();
+			point  /= 10;
 		}
 	}
 
-	//引数使わない
-	void UpdateLevel(int score)
+	void UpdateLevel()
 	{
+		//Debug.Log("UpdateLevel");
 		int level = GameController.Level;
 		foreach (var each in levelLabels) 
 		{

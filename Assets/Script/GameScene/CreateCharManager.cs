@@ -31,6 +31,7 @@ public class CreateCharManager : MonoBehaviour{
 			//ResourcesLoadChickDic.Add(index, chick);
 		gameController = GameObject.Find("GameController").GetComponent<GameController>();
 		LoadCharFromResources();
+		LoadCharDataFromDisc();
 	}
 
 	void Start()
@@ -50,7 +51,7 @@ public class CreateCharManager : MonoBehaviour{
 	void LoadCharFromResources()
 	{
 		if(AllChicks == null){
-			AllChicks = Resources.LoadAll("Chicks",typeof(GameObject))
+				AllChicks = Resources.LoadAll("Chicks",typeof(GameObject))
 				.Cast<GameObject>()
 				.ToArray();
 			
@@ -63,7 +64,7 @@ public class CreateCharManager : MonoBehaviour{
 		}
 	}
 
-	public void LoadCharDataFromDisc()
+	private void LoadCharDataFromDisc()
 	{
 		Vector3[] charPos = PlayerPrefsX.GetVector3Array(CHARPOSKEY);
 		Vector3[] charRot = PlayerPrefsX.GetVector3Array(CHARROTKEY);

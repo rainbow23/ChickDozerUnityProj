@@ -117,8 +117,11 @@ public class ChickManager : CharacterManager{
 			isFallInBasket = true;
 			//二度当たるのを防ぐためオフにする
 			DisableCollider();
-			gameController.score.Value = thisCharScore;
-			if(thisCharScore == 0) gameController.score.Value += 1;
+			if(thisCharScore == 0) 
+				gameController.score.Value = 1;
+			else
+				gameController.score.Value = thisCharScore;
+
 			goToBasket();
 		}
 	}
@@ -148,12 +151,6 @@ public class ChickManager : CharacterManager{
 					)); //Y移動
 		lastActionFlag = true;
 	}
-	
-	/* not use
-	void moveChick(){
-		rigidbody.isKinematic = false;
-	}
-	*/
 	
 	void destroy(){
 		if(CharacterPool.objectPoolMode){
