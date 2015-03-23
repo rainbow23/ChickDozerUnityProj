@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
-
+using System.Linq;
 /// <summary>
 /// ゲームのステータスや状況を管理
 /// </summary>
@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	private const string LEVELKEY =  "Level";
 	private const string POINTKEY =  "Point";
 	private const string SAVEDFIRSTRUNKEY =  "savedFirstRun";
+	private const string NEXTLEVELPERCENTAGEKEY =  "nextLevelPercentage";
 	
 	private int checkFirstRun;
 	public static int  Score{private set; get;}
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		get{ return _level;}
 		private set{ _level = value;}
 	} 
+	public static int  NextLevelPercentage{private set; get;}
 
 	private bool isLoadedGame = false;
 
@@ -33,7 +35,8 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	AudioManager audioManager;
 	LabelManager labelManager;
 
-	private  UnityEvent  UpdateScoreAndLevel;
+	public  UnityEvent  UpdatePercentage;
+	public  UnityEvent   UpdateScoreAndLevel;
 
 	private NotificationObject<int> _score = new NotificationObject<int>(0);
 	public  NotificationObject<int> score { get{ return _score; }}
@@ -46,8 +49,8 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void Awake()
 	{
-		LoadElapseData();
 		//PlayerPrefs.DeleteAll();
+		LoadElapseData();
 
 		if(checkFirstRun == 0)
 		{
@@ -57,7 +60,9 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 			Score = 0;
 			checkFirstRun = 1;
 		}
-		else{ }
+		else{ 
+
+		}
 
 		Application.targetFrameRate = 60;
 		isLoadedGame = true;
@@ -68,52 +73,102 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void Start()
 	{
-		score.AddListener(addScore);
-		createCharNum.AddListener(audioManager.PlayTouchSE);
 
-		UpdateScoreAndLevel.AddListener(labelManager.updateLabel);
+		score.AddListener(AddScore);
+		createCharNum.AddListener(audioManager.PlayTouchSE);
+		UpdateScoreAndLevel.AddListener(labelManager.updateLabelAction);
+		UpdatePercentage.AddListener(labelManager.updatePercentageAction);
 	}
 
 	/// <summary>
 	/// Modify score and level
 	/// </summary>
-	void addScore(int chickScore)
+	void AddScore(int chickScore)
 	{ 
-		//Debug.Log("chickScore: " +chickScore);
 		Score += chickScore; 
-		_point += chickScore * 10;
+		Point += chickScore * 10;
+		Debug.Log("Score: " + Score);
+
+		UpdateLevelPercentage();
 		UpdateLevel();
 
 		//After update score and level  you can call  label action
 		UpdateScoreAndLevel.Invoke();
 	}
 
+	void UpdateLevelPercentage()
+	{
+		int nextLevel = Level + 1;
+		float nextLevelScore = (float)(DATA.NextLevelScore[nextLevel]);
+		float score = (float)Score;
+		
+		float untilNextScorePercentage = score / nextLevelScore;
+		//Debug.Log("untilNextScorePercentage: " + untilNextScorePercentage);
+		
+		int storeNextLevelPercentage = NextLevelPercentage;
+		
+		//整数一桁を返す
+		if(untilNextScorePercentage > 0.9 && untilNextScorePercentage < 1.0)
+			NextLevelPercentage = 8;
+		else
+			NextLevelPercentage = Mathf.RoundToInt((untilNextScorePercentage) * 10);
+
+		//整数を返す 0,2,4,6,8,10
+		if(NextLevelPercentage % 2 != 0)
+			NextLevelPercentage -= 1;
+		
+		//割り切れた時を考慮 , It"s level up timing
+		if(NextLevelPercentage >= 10)
+		{
+			NextLevelPercentage = 10;
+		}
+
+		Debug.Log("NextLevelPercentage: " + NextLevelPercentage);
+
+		//更新した時だけラベル更新 またはレベルアップした次にかごに入る時
+		if(storeNextLevelPercentage < NextLevelPercentage || NextLevelPercentage == 10 || storeNextLevelPercentage == 10)
+			UpdatePercentage.Invoke();
+	}
+
 	 void UpdateLevel()
 	{
 		int nextLevel = Level + 1;
-		if(Score > DATA.NextLevelScore[nextLevel])
+		if(Score >= DATA.NextLevelScore[nextLevel])
 		{
 			Level += 1;
 			Score -= DATA.NextLevelScore[Level]; //スコアを引き今のレベルの得点だけにする
+			Debug.Log("Level Up: " + Level);
+			Debug.Log("Level Upped Score: " + Score);
 		}
 	}
 
+
+
 	void OnDestroy()
 	{
+		Debug.Log("GameController OnDestroy");
 		score.Dispose();
 		createCharNum.Dispose();
 		touchPos.Dispose();
+		UpdateScoreAndLevel.RemoveAllListeners();
+		UpdatePercentage.RemoveAllListeners();
 	}
 
 	void OnApplicationPause(bool pauseStatus) 
 	{
 		//離れる時
-		if(pauseStatus) SaveToDisc();
+		if(pauseStatus){
+			#if UNITY_EDITOR
+			//ゲームシーンから再生時OnApplicationPauseが呼ばれてしまう
+			Debug.Log("OnApplicationPause go away in UnityEditor");
+			#endif
+			SaveToDisc();
+		} 
 		//戻る時
 		else{ 
 			#if UNITY_EDITOR
 			//ゲームシーンから再生時OnApplicationPauseが呼ばれてしまうのでLoadElapseData();を呼ばない
-			Debug.Log("OnApplicationPause in UnityEditor");
+			Debug.Log("OnApplicationPause come back in UnityEditor");
 			#else
 			Debug.Log("OnApplicationPause in  except UnityEditor");
 			LoadElapseData();
@@ -123,6 +178,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void OnApplicationQuit()
 	{
+		Debug.Log("OnApplicationQuit");
 		//gamesceneで止めるとなぜかtitleで読み込まれていることになる為、boolを作る
 		if(isLoadedGame) SaveToDisc();
 	}
@@ -135,7 +191,10 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		PlayerPrefs.SetInt( LEVELKEY,Level); 
 		PlayerPrefs.SetInt( POINTKEY, Point); 
 		PlayerPrefs.SetInt( SAVEDFIRSTRUNKEY, checkFirstRun); 
+		PlayerPrefs.SetInt( NEXTLEVELPERCENTAGEKEY, NextLevelPercentage);
 		PlayerPrefs.Save();
+		//Debug.Log("Level: " + Level );
+		//Debug.Log("checkFirstRun: " + checkFirstRun );
 		//Debug.Log("Point: " + Point);
 	}
 
@@ -149,6 +208,9 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		Level = PlayerPrefs.GetInt(LEVELKEY);
 		Point = PlayerPrefs.GetInt(POINTKEY);
 		checkFirstRun = PlayerPrefs.GetInt(SAVEDFIRSTRUNKEY);
+		NextLevelPercentage = PlayerPrefs.GetInt(NEXTLEVELPERCENTAGEKEY);
+		//Debug.Log("Level: " + Level );
+		//Debug.Log("checkFirstRun: " + checkFirstRun );
 		//Debug.Log("Point: " + Point);
 	}
 

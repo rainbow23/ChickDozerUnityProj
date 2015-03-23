@@ -77,9 +77,7 @@ public class ChickManager : CharacterManager{
 	}
 
 	//UnityEngine.Events.UnityAction<List<Vector3>,List<Vector3>,List<int>,List<bool>> saveCharData;
-
-
-	Vector3 velocityValue = new Vector3(0f, 0f, 0f);
+		
 	void initialize(){
 		timer = 0f;
 		touchDozer = false;

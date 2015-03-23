@@ -17,7 +17,7 @@ public class CreateCharManager : MonoBehaviour{
 	public List <int> charKindList =  new List<int>();
 	[System.NonSerialized]
 	public List <bool> isActiveBottomColliderOfCharList = new List<bool>();
-
+	//[System.NonSerialized]
 	public  UnityEngine.Events.UnityEvent  saveCharacterData;
 
 	private GameObject[] AllChicks;

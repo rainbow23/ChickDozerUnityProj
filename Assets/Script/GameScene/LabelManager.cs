@@ -12,9 +12,10 @@ public class LabelManager : MonoBehaviour {
 	GameObject particle;
 	UISprite[] pointsLabels;
 	UISprite[] levelLabels = new UISprite[2];
-
+	UISprite percentageLabel;
 	GameController gameController;
-	public UnityAction  updateLabel;
+	public UnityAction  updateLabelAction;
+	public UnityAction updatePercentageAction;
 
 	void Awake () 
 	{
@@ -36,15 +37,20 @@ public class LabelManager : MonoBehaviour {
 			levelLabels[i] = GameObject.Find("LvScore" + (i + 1).ToString()).GetComponent<UISprite>();
 			levelLabels[i].gameObject.SetActive(false);
 		}
+
+		percentageLabel = GameObject.Find("Percentage").GetComponent<UISprite>();
 		//particle = Resources.Load("Particle/CFXM2_CartoonFight", typeof(GameObject)) as GameObject; 
-		updateLabel = UpdatePoint;
-		updateLabel += UpdateLevel;
+		updateLabelAction = UpdatePoint;
+		updateLabelAction += UpdateLevel;
+		updatePercentageAction = UpdateLevelPercentage;
 	}
+
 	void Start () 
 	{
 		//gameController.touchPos.AddListener(ShowScoreEffect);
 		UpdatePoint();
 		UpdateLevel();
+		UpdateLevelPercentage();
 	}
 
 
@@ -74,6 +80,16 @@ public class LabelManager : MonoBehaviour {
 			each.spriteName = "numberFont/" + (level % 10).ToString();
 			level  /= 10;
 		}
+	}
+
+	void UpdateLevelPercentage()
+	{
+		string percentage = GameController.NextLevelPercentage.ToString();
+		string path = "levelpercent_sprite/";
+		string afterPath = "0pcnt";
+		if(percentage == "0"){afterPath = "pcnt";}
+
+		percentageLabel.spriteName = path + percentage + afterPath;
 	}
 	
 	void ShowScoreEffect(Vector3 worldPos)
