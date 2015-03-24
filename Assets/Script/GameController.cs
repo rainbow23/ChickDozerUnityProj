@@ -35,7 +35,9 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	AudioManager audioManager;
 	LabelManager labelManager;
 
+	[HideInInspector]
 	public  UnityEvent  UpdatePercentage;
+	[HideInInspector]
 	public  UnityEvent   UpdateScoreAndLevel;
 
 	private NotificationObject<int> _score = new NotificationObject<int>(0);
@@ -110,6 +112,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		//整数一桁を返す
 		if(untilNextScorePercentage > 0.9 && untilNextScorePercentage < 1.0)
 			NextLevelPercentage = 8;
+
 		else
 			NextLevelPercentage = Mathf.RoundToInt((untilNextScorePercentage) * 10);
 

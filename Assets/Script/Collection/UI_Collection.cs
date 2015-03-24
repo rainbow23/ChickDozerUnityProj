@@ -30,9 +30,6 @@ public class UI_Collection : MonoBehaviour {
 	int showPopUpNum;
 	
 	void Awake(){
-
-
-		
 		if(GameObject.Find("webViewGameObject")  == true){
 			PlugInObjectScript = GameObject.Find("webViewGameObject").GetComponent<PlugInObject>();
 		}

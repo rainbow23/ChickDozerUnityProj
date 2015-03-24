@@ -8,7 +8,9 @@ public class FunctionManager : MonoBehaviour {
 								OnOffSound,
 								ShowOsusumeApps,
 								ShowRanking,
-								GameStart
+								GameStart,
+								GotoCollection,
+								GotoGameScene
 						};
 
 	public FuncType funcType;
@@ -27,23 +29,19 @@ public class FunctionManager : MonoBehaviour {
 	{
 		switch (funcType) 
 		{
-		case FuncType.OnOffSound:
-			thisUISprite = GetComponent<UISprite>();
-			audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+			case FuncType.OnOffSound:
+				thisUISprite = GetComponent<UISprite>();
+				audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
+				if(audioManager.IsMute)
+				{ 
+					audioManager.StopBGM();
+					thisUISprite.spriteName = offSoundBtnSpriteName;
+				}
+				else 
+					thisUISprite.spriteName = onSoundBtnSpriteName;
 
-			if(audioManager.IsMute)
-			{ 
-				audioManager.StopBGM();
-				thisUISprite.spriteName = offSoundBtnSpriteName;
-			}
-			else 
-			{
-				thisUISprite.spriteName = onSoundBtnSpriteName;
-			}
-
-
-			break;
+				break;
 		}
 	}
 
@@ -53,25 +51,30 @@ public class FunctionManager : MonoBehaviour {
 		{
 			switch (funcType) 
 			{
-			case FuncType.HelpFunc:
-				helpFunc();
+				case FuncType.HelpFunc:
+					helpFunc();
+					break;
+				case FuncType.OnOffSound:
+					onOffSound();
+					break;
+				case FuncType.ShowOsusumeApps:
+					
+					break;
+				case FuncType.ShowRanking:
+					
+					break;
+				case FuncType.GameStart:
+					FadeManager.Instance.LoadLevel(SCENE.GAME, FadeManager.Interval);
+					break;
+				case FuncType.GotoCollection:
+					FadeManager.Instance.LoadLevel(SCENE.COLLECTION, FadeManager.Interval);
+					break;
+				case FuncType.GotoGameScene:
+					FadeManager.Instance.LoadLevel(SCENE.GAME, FadeManager.Interval);
+					break;
+				default:
 				break;
-			case FuncType.OnOffSound:
-				onOffSound();
-				break;
-			case FuncType.ShowOsusumeApps:
-				
-				break;
-			case FuncType.ShowRanking:
-				
-				break;
-			case FuncType.GameStart:
-				FadeManager.Instance.LoadLevel(SCENE.GAME, FadeManager.Interval);
-				break;
-			default:
-			break;
 			}
-
 		}
 	}
 
@@ -79,13 +82,9 @@ public class FunctionManager : MonoBehaviour {
 	void helpFunc()
 	{
 		if(showHelp)
-		{
 			helpGameObj.transform.setLocalPosition(0f, 0f, 0f);
-		}
 		else
-		{
 			helpGameObj.transform.setLocalPosition(1000f, 0f, 0f);
-		}
 	}
 
 	void onOffSound()
