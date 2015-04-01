@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(UISprite))]
 public class FunctionManager : MonoBehaviour {
 	public enum FuncType{ 
@@ -23,7 +25,14 @@ public class FunctionManager : MonoBehaviour {
 	private const string offSoundBtnSpriteName = "title_btn_speaker_off";
 	private const string onSoundBtnSpriteName = "title_btn_speaker_on";
 
+	[HideInInspector]
+	public UnityEvent sceneTransitionEvent;
+
 	AudioManager audioManager;
+
+	void Awake()
+	{
+	}
 
 	void Start()
 	{
@@ -67,15 +76,27 @@ public class FunctionManager : MonoBehaviour {
 					FadeManager.Instance.LoadLevel(SCENE.GAME, FadeManager.Interval);
 					break;
 				case FuncType.GotoCollection:
-					FadeManager.Instance.LoadLevel(SCENE.COLLECTION, FadeManager.Interval);
+					gotoCollection();
 					break;
 				case FuncType.GotoGameScene:
-					FadeManager.Instance.LoadLevel(SCENE.GAME, FadeManager.Interval);
+					gotoGameScene();
 					break;
 				default:
 				break;
 			}
 		}
+	}
+
+	void gotoGameScene()
+	{
+		//sceneTransitionEvent();
+		FadeManager.Instance.LoadLevel(SCENE.GAME, FadeManager.Interval);
+	}
+
+	void gotoCollection()
+	{
+		sceneTransitionEvent.Invoke();
+		FadeManager.Instance.LoadLevel(SCENE.COLLECTION, FadeManager.Interval);
 	}
 
 

@@ -44,7 +44,7 @@ public class UIRootManager : MonoBehaviour {
 	void Start()
 	{
 		setPanelSize();
-//		_setPosition(); //delegate 
+		_setPosition(); //delegate 
 	}
 
 

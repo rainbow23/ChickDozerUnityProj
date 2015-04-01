@@ -4290,7 +4290,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 177860194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.48303699, y: -568, z: 0}
+  m_LocalPosition: {x: 0, y: -568, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1968586634}
@@ -8637,6 +8637,11 @@ MonoBehaviour:
   funcType: 5
   showHelp: 1
   helpGameObj: {fileID: 0}
+  sceneTransitionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &412431001
 GameObject:
   m_ObjectHideFlags: 0
@@ -11460,7 +11465,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 478883025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 318.851166, y: 568, z: 0}
+  m_LocalPosition: {x: 318.812897, y: 568, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 725605022}
@@ -19145,7 +19150,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 881676082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 318.851166, y: -568, z: 0}
+  m_LocalPosition: {x: 318.812897, y: -568, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1057783319}
@@ -20931,7 +20936,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 925530715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.48303699, y: 568, z: 0}
+  m_LocalPosition: {x: 0, y: 568, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1238072902}
@@ -33236,7 +33241,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1404011715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -318.851166, y: 568, z: 0}
+  m_LocalPosition: {x: -318.812897, y: 568, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1997008027}
@@ -41256,12 +41261,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 1716305311}
   - 114: {fileID: 1716305312}
+  - 114: {fileID: 1716305313}
   m_Layer: 9
   m_Name: Sprite (BgSky)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1716305311
 Transform:
@@ -41326,6 +41332,19 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 971e8bb60ca3442379b266903e4ae505, type: 2}
   mSpriteName: GameScene/BgSky
   mFillCenter: 1
+--- !u!114 &1716305313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1716305310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c874ca991121b4907a110d333a1cec2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FitToScreenX: 1
+  FitToScreenY: 1
 --- !u!1 &1725410388
 GameObject:
   m_ObjectHideFlags: 0
@@ -41592,6 +41611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db668a5ddb1564dd98cfdeb2ccd4cdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obtainedCharArray: 
   UpdatePercentage:
     m_PersistentCalls:
       m_Calls: []
@@ -41978,6 +41998,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1777197428}
   - 114: {fileID: 1777197429}
+  - 114: {fileID: 1777197430}
   m_Layer: 9
   m_Name: Sprite (BG)
   m_TagString: Untagged
@@ -42048,6 +42069,19 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 971e8bb60ca3442379b266903e4ae505, type: 2}
   mSpriteName: GameScene/BG
   mFillCenter: 1
+--- !u!114 &1777197430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1777197427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c874ca991121b4907a110d333a1cec2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FitToScreenX: 1
+  FitToScreenY: 0
 --- !u!1 &1781729717
 GameObject:
   m_ObjectHideFlags: 0
@@ -52361,7 +52395,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2140294794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -318.851166, y: -568, z: 0}
+  m_LocalPosition: {x: -318.812897, y: -568, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 142734220}

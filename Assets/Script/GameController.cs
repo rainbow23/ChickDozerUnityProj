@@ -13,7 +13,9 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	private const string POINTKEY =  "Point";
 	private const string SAVEDFIRSTRUNKEY =  "savedFirstRun";
 	private const string NEXTLEVELPERCENTAGEKEY =  "nextLevelPercentage";
-	
+
+
+
 	private int checkFirstRun;
 	public static int  Score{private set; get;}
 	private static int _point = 2000;
@@ -28,12 +30,14 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		private set{ _level = value;}
 	} 
 	public static int  NextLevelPercentage{private set; get;}
+	public int[] obtainedCharArray;
 
 	private bool isLoadedGame = false;
 
 	CreateCharManager createCharManager;
 	AudioManager audioManager;
 	LabelManager labelManager;
+	FunctionManager functionManager;
 
 	[HideInInspector]
 	public  UnityEvent  UpdatePercentage;
@@ -57,6 +61,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		if(checkFirstRun == 0)
 		{
 			Debug.Log("FirstLaunch");
+			obtainedCharArray = new int[DATA.ResourcesChickNum];
 			Point = 2000;
 			Level = 1;
 			Score = 0;
@@ -71,15 +76,20 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 		createCharManager = GameObject.Find("CreateCharManager").GetComponent<CreateCharManager>();
 		labelManager = GameObject.Find("LabelManager").GetComponent<LabelManager>();
+		functionManager = GameObject.Find("Background").GetComponent<FunctionManager>();
 	}
 
 	void Start()
 	{
-
 		score.AddListener(AddScore);
 		createCharNum.AddListener(audioManager.PlayTouchSE);
 		UpdateScoreAndLevel.AddListener(labelManager.updateLabelAction);
 		UpdatePercentage.AddListener(labelManager.updatePercentageAction);
+		touchPos.AddListener(createCharManager.Create);
+
+		//Destroyで保存すると他のオブジェクトが削除されていてうまく保存できないので
+		//ボタンを押した時に保存する
+		functionManager.sceneTransitionEvent.AddListener(SaveToDisc);
 	}
 
 	/// <summary>
@@ -89,6 +99,10 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	{ 
 		Score += chickScore; 
 		Point += chickScore * 10;
+
+		obtainedCharArray[chickScore] = 1;
+
+		Debug.Log("obtainedCharArray: " + obtainedCharArray[chickScore]);
 		Debug.Log("Score: " + Score);
 
 		UpdateLevelPercentage();
@@ -155,6 +169,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		touchPos.Dispose();
 		UpdateScoreAndLevel.RemoveAllListeners();
 		UpdatePercentage.RemoveAllListeners();
+		functionManager.sceneTransitionEvent.RemoveAllListeners();
 	}
 
 	void OnApplicationPause(bool pauseStatus) 
@@ -195,6 +210,13 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		PlayerPrefs.SetInt( POINTKEY, Point); 
 		PlayerPrefs.SetInt( SAVEDFIRSTRUNKEY, checkFirstRun); 
 		PlayerPrefs.SetInt( NEXTLEVELPERCENTAGEKEY, NextLevelPercentage);
+
+		PlayerPrefsX.SetIntArray(DATA.OBTAINEDCHARKEY, obtainedCharArray);
+
+		for (int i = 0; i < obtainedCharArray.Length; i++) {
+			Debug.Log("Store obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
+		}
+
 		PlayerPrefs.Save();
 		//Debug.Log("Level: " + Level );
 		//Debug.Log("checkFirstRun: " + checkFirstRun );
@@ -212,12 +234,15 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		Point = PlayerPrefs.GetInt(POINTKEY);
 		checkFirstRun = PlayerPrefs.GetInt(SAVEDFIRSTRUNKEY);
 		NextLevelPercentage = PlayerPrefs.GetInt(NEXTLEVELPERCENTAGEKEY);
+
+		obtainedCharArray = PlayerPrefsX.GetIntArray(DATA.OBTAINEDCHARKEY);
+		for(int i =0; i < obtainedCharArray.Length; i++)
+		{
+			Debug.Log("Load obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
+		}
+
 		//Debug.Log("Level: " + Level );
 		//Debug.Log("checkFirstRun: " + checkFirstRun );
 		//Debug.Log("Point: " + Point);
 	}
-
-
-
-
 }

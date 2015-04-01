@@ -14,6 +14,9 @@ public static class DATA
 	public const string SE_PATH  = "Audio/SE";
 
 
+	public const string OBTAINEDCHARKEY =  "obtainedCharArray";
+
+	public const int ResourcesChickNum = 23;
 	public static Dictionary<int,int> NextLevelScore = new Dictionary<int,int>()
 	{
 		{1,10},

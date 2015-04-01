@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class CreateCharManager : MonoBehaviour{
+public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 
 	private const string CHARPOSKEY = "CharPosKey";
 	private const string CHARROTKEY = "CharRotKey";
@@ -18,17 +18,15 @@ public class CreateCharManager : MonoBehaviour{
 	[System.NonSerialized]
 	public List <bool> isActiveBottomColliderOfCharList = new List<bool>();
 	[HideInInspector]
-	public  UnityEngine.Events.UnityEvent  saveCharacterData;
-
-	private GameObject[] AllChicks;
-	public static Dictionary<int, GameObject> ResourcesLoadChickDic = new Dictionary<int, GameObject>();
+	public  UnityEngine.Events.UnityEvent  saveCharacterData;	
+	public Dictionary<int, GameObject> resourcesLoadChickDic = new Dictionary<int, GameObject>();
 
 	GameController gameController;
 
 	void Awake()
 	{
 			//int index = int.Parse(chick.name.Substring(chick.name.Length -3));
-			//ResourcesLoadChickDic.Add(index, chick);
+			//resourcesLoadChickDic.Add(index, chick);
 		gameController = GameObject.Find("GameController").GetComponent<GameController>();
 		LoadCharFromResources();
 		LoadCharDataFromDisc();
@@ -36,31 +34,33 @@ public class CreateCharManager : MonoBehaviour{
 
 	void Start()
 	{
-		//Create(GameController.touchPos.Value);
-		gameController.touchPos.AddListener(Create);
+
 	}
 
-	void Create(Vector3 touchPos)
+	public void Create(Vector3 touchPos)
 	{
-		//とりあえずレベル１だけしか作らない
-		GameObject obj = Instantiate(AllChicks[0], touchPos, Quaternion.Euler(-30f, 0f, 0f)) as GameObject;
-		obj.name = AllChicks[0].name;
+		//同じレベルのひよこだけだす
+		GameObject levelChar = resourcesLoadChickDic[GameController.Level - 1];
+		GameObject obj = Instantiate(levelChar, touchPos, Quaternion.Euler(-30f, 0f, 0f)) as GameObject;
+		obj.name = levelChar.name;
 		obj.SetActive(true);
 	}
 
 	void LoadCharFromResources()
 	{
-		if(AllChicks == null){
-				AllChicks = Resources.LoadAll("Chicks",typeof(GameObject))
+		var AllChar = Resources.LoadAll("Chicks",typeof(GameObject))
 				.Cast<GameObject>()
+				.OrderBy(t =>{
+					string numString =  t.gameObject.name.Substring(t.gameObject.name.Length - 3);
+					int index = int.Parse(numString);
+					return index;
+				})
 				.ToArray();
-			
-			for (int i = 0; i < AllChicks.Length; i++) 
-			{	
-				string n = AllChicks[i].name;
-				int index = int.Parse(n.Substring(n.Length - 3));
-				ResourcesLoadChickDic.Add(index, AllChicks[i]);
-			}
+
+		int count  = 0;
+		foreach(var character in AllChar){
+			resourcesLoadChickDic.Add(count, character);
+			count += 1;
 		}
 	}
 
@@ -101,14 +101,13 @@ public class CreateCharManager : MonoBehaviour{
 	
 	public void RestoreChick(Vector3  pos, Vector3  rot, int kind, bool isActiveBottomCollider) 
 	{
-		if(ResourcesLoadChickDic.ContainsKey(kind))
+		if(resourcesLoadChickDic.ContainsKey(kind))
 		{
-			GameObject obj = Instantiate(ResourcesLoadChickDic[kind], pos, Quaternion.Euler(rot)) as GameObject;
-			obj.name = AllChicks[kind].name;
+			GameObject obj = Instantiate(resourcesLoadChickDic[kind], pos, Quaternion.Euler(rot)) as GameObject;
+			obj.name = resourcesLoadChickDic[kind].name;
+
 			if(!isActiveBottomCollider)
-			{
 				obj.GetComponentInChildren<BoxCollider>().enabled = false;
-			}
 		}
 		else{ Debug.Log(kind + " key isn't exist");}
 	}
