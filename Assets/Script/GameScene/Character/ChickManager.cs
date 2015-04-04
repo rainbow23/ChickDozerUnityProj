@@ -68,7 +68,7 @@ public class ChickManager : CharacterManager{
 	{
 		createCharManager.charPosList.Add(thisTransform.localPosition);
 		createCharManager.charRotList.Add(thisTransform.localRotation.eulerAngles);
-		createCharManager.charKindList.Add(thisCharScore);
+		createCharManager.charKindList.Add(thisCharNum);
 
 		if(boxCollider.enabled)
 			createCharManager.isActiveBottomColliderOfCharList.Add (true);
@@ -81,7 +81,7 @@ public class ChickManager : CharacterManager{
 	void initialize(){
 		timer = 0f;
 		touchDozer = false;
-		gameObject.transform.setEulerAngles(-30f, 0f, 0f);
+		gameObject.transform.setEulerAngles(0f, 0f, 0f);
 		boxCollider.enabled = true;
 		capsuleCollider.enabled = true;
 		gameObject.transform.localScale = new Vector3(1f,1f,1f);
@@ -115,11 +115,7 @@ public class ChickManager : CharacterManager{
 			isFallInBasket = true;
 			//二度当たるのを防ぐためオフにする
 			DisableCollider();
-			if(thisCharScore == 0) 
-				gameController.score.Value = 1;
-			else
-				gameController.score.Value = thisCharScore;
-
+			gameController.score.Value = thisCharNum;
 			goToBasket();
 		}
 	}

@@ -20,14 +20,12 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 	[HideInInspector]
 	public  UnityEngine.Events.UnityEvent  saveCharacterData;	
 	public Dictionary<int, GameObject> resourcesLoadChickDic = new Dictionary<int, GameObject>();
-
-	GameController gameController;
-
+	
 	void Awake()
 	{
+		//PlayerPrefs.DeleteAll();
 			//int index = int.Parse(chick.name.Substring(chick.name.Length -3));
 			//resourcesLoadChickDic.Add(index, chick);
-		gameController = GameObject.Find("GameController").GetComponent<GameController>();
 		LoadCharFromResources();
 		LoadCharDataFromDisc();
 	}
@@ -41,7 +39,7 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 	{
 		//同じレベルのひよこだけだす
 		GameObject levelChar = resourcesLoadChickDic[GameController.Level - 1];
-		GameObject obj = Instantiate(levelChar, touchPos, Quaternion.Euler(-30f, 0f, 0f)) as GameObject;
+		GameObject obj = Instantiate(levelChar, touchPos, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
 		obj.name = levelChar.name;
 		obj.SetActive(true);
 	}
@@ -51,7 +49,7 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 		var AllChar = Resources.LoadAll("Chicks",typeof(GameObject))
 				.Cast<GameObject>()
 				.OrderBy(t =>{
-					string numString =  t.gameObject.name.Substring(t.gameObject.name.Length - 3);
+					string numString =  t.gameObject.name.Substring(t.gameObject.name.Length - 2);
 					int index = int.Parse(numString);
 					return index;
 				})

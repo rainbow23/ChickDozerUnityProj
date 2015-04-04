@@ -5,11 +5,11 @@ using System.Collections;
 public class CharacterManager : MonoBehaviour 
 {	
 	public string gameObjName { get{return gameObject.name;} }
-	private int _thisCharScore;
-	public int thisCharScore
+	private int _thisCharNum;
+	public int thisCharNum
 	{
-		get{ return _thisCharScore;}
-		set{ _thisCharScore = value;}
+		get{ return _thisCharNum;}
+		set{ _thisCharNum = value;}
 	}
 
 	void OnEnable()
@@ -24,8 +24,8 @@ public class CharacterManager : MonoBehaviour
 
 	protected virtual void Start () 
 	{
-		string index = gameObjName.Substring(gameObjName.Length - 3);
-		thisCharScore =int.Parse(index);
+		string index = gameObjName.Substring(gameObjName.Length - 2);
+		thisCharNum =int.Parse(index);
 	}
 
 	void Update () 

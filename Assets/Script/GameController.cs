@@ -14,8 +14,6 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	private const string SAVEDFIRSTRUNKEY =  "savedFirstRun";
 	private const string NEXTLEVELPERCENTAGEKEY =  "nextLevelPercentage";
 
-
-
 	private int checkFirstRun;
 	public static int  Score{private set; get;}
 	private static int _point = 2000;
@@ -55,7 +53,6 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void Awake()
 	{
-		//PlayerPrefs.DeleteAll();
 		LoadElapseData();
 
 		if(checkFirstRun == 0)
@@ -95,14 +92,21 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	/// <summary>
 	/// Modify score and level
 	/// </summary>
-	void AddScore(int chickScore)
+	void AddScore(int charNum)
 	{ 
-		Score += chickScore; 
-		Point += chickScore * 10;
+		int charScore = charNum +1;
+		Score += charScore; 
+		Point += charScore * 10;
 
-		obtainedCharArray[chickScore] = 1;
+		//if first time get some kind of chick 
+		if(obtainedCharArray[charNum] == 0)
+		{
 
-		Debug.Log("obtainedCharArray: " + obtainedCharArray[chickScore]);
+			obtainedCharArray[charNum] = 1;
+		}
+
+
+		Debug.Log("obtainedCharArray: " + obtainedCharArray[charNum]);
 		Debug.Log("Score: " + Score);
 
 		UpdateLevelPercentage();

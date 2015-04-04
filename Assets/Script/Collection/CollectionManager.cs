@@ -40,10 +40,8 @@ public class CollectionManager : MonoBehaviour {
 
 		for (int i = 0; i < obtainedCharArray.Length; i++) 
 		{
-			//Debug.Log("Load obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
-			Debug.Log("i:" + i);
-
-
+			Debug.Log("Load obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
+			//Debug.Log("i:" + i);
 
 			//if already get chick panel shows chick
 			if(obtainedCharArray[i] == 1)
