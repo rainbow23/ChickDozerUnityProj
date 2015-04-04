@@ -16,7 +16,7 @@ public static class DATA
 
 	public const string OBTAINEDCHARKEY =  "obtainedCharArray";
 
-	public const int ResourcesChickNum = 23;
+	public const int ResourcesChickNum = 32;
 	public static Dictionary<int,int> NextLevelScore = new Dictionary<int,int>()
 	{
 		{1,10},

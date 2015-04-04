@@ -547,7 +547,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 971e8bb60ca3442379b266903e4ae505, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: COLLECTION_BUTTON/CollectionBG
   mFillCenter: 1
 --- !u!114 &11400012

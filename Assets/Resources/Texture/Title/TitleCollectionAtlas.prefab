@@ -42,47 +42,47 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: bcba5a967823448f0aece79d829bd92f, type: 2}
   mSprites:
   - name: chick_name/chick_name_00
-    x: 1479
-    y: 1903
-    width: 106
-    height: 22
+    x: 619
+    y: 2007
+    width: 105
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 7
+    paddingLeft: 8
     paddingRight: 21
-    paddingTop: 9
+    paddingTop: 10
     paddingBottom: 9
   - name: chick_name/chick_name_01
-    x: 1479
-    y: 1945
+    x: 1202
+    y: 2020
     width: 84
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 19
     paddingRight: 31
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_02
-    x: 340
-    y: 2012
+    x: 0
+    y: 1989
     width: 128
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 4
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_03
-    x: 1032
-    y: 2028
+    x: 915
+    y: 2001
     width: 84
     height: 20
     borderLeft: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
     paddingTop: 11
     paddingBottom: 9
   - name: chick_name/chick_name_04
-    x: 1479
-    y: 1925
+    x: 577
+    y: 2028
     width: 106
     height: 20
     borderLeft: 0
@@ -107,34 +107,34 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 10
   - name: chick_name/chick_name_05
-    x: 1326
-    y: 1532
-    width: 108
-    height: 22
+    x: 512
+    y: 2007
+    width: 107
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 8
+    paddingLeft: 9
     paddingRight: 18
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_06
-    x: 1158
-    y: 1511
+    x: 1860
+    y: 1931
     width: 84
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 26
     paddingRight: 24
-    paddingTop: 12
+    paddingTop: 13
     paddingBottom: 6
   - name: chick_name/chick_name_07
-    x: 642
-    y: 1118
+    x: 384
+    y: 1989
     width: 128
     height: 20
     borderLeft: 0
@@ -146,47 +146,47 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_08
-    x: 1052
-    y: 1526
+    x: 1809
+    y: 1604
     width: 106
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 21
     paddingRight: 7
-    paddingTop: 8
+    paddingTop: 9
     paddingBottom: 10
   - name: chick_name/chick_name_09
-    x: 1479
-    y: 1883
-    width: 108
+    x: 256
+    y: 2028
+    width: 107
     height: 20
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 10
+    paddingLeft: 11
     paddingRight: 16
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_10
-    x: 770
-    y: 1103
+    x: 1309
+    y: 1893
     width: 84
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 21
     paddingRight: 29
-    paddingTop: 8
+    paddingTop: 9
     paddingBottom: 10
   - name: chick_name/chick_name_11
-    x: 926
-    y: 1992
+    x: 724
+    y: 1994
     width: 106
     height: 22
     borderLeft: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 10
   - name: chick_name/chick_name_12
-    x: 1242
-    y: 1523
+    x: 1309
+    y: 1935
     width: 84
     height: 20
     borderLeft: 0
@@ -211,60 +211,60 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_13
-    x: 696
-    y: 1996
-    width: 124
+    x: 256
+    y: 2010
+    width: 123
     height: 18
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 8
+    paddingLeft: 9
     paddingRight: 2
     paddingTop: 12
     paddingBottom: 10
   - name: chick_name/chick_name_14
-    x: 106
-    y: 2012
-    width: 106
-    height: 36
+    x: 870
+    y: 1102
+    width: 105
+    height: 35
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 11
+    paddingLeft: 12
     paddingRight: 17
-    paddingTop: 1
+    paddingTop: 2
     paddingBottom: 3
   - name: chick_name/chick_name_15
-    x: 384
-    y: 1990
+    x: 128
+    y: 1989
     width: 128
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 4
     paddingRight: 2
-    paddingTop: 8
+    paddingTop: 9
     paddingBottom: 10
   - name: chick_name/chick_name_16
-    x: 1052
-    y: 1592
-    width: 108
+    x: 363
+    y: 2028
+    width: 107
     height: 20
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 17
+    paddingLeft: 18
     paddingRight: 9
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_17
-    x: 1587
-    y: 1883
+    x: 683
+    y: 2028
     width: 106
     height: 20
     borderLeft: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_18
-    x: 1063
-    y: 1506
+    x: 1309
+    y: 1955
     width: 84
     height: 20
     borderLeft: 0
@@ -289,8 +289,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_19
-    x: 212
-    y: 2012
+    x: 742
+    y: 1116
     width: 128
     height: 22
     borderLeft: 0
@@ -302,60 +302,60 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 10
   - name: chick_name/chick_name_20
-    x: 1052
-    y: 1570
-    width: 108
-    height: 22
+    x: 1804
+    y: 1720
+    width: 107
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 8
+    paddingLeft: 9
     paddingRight: 18
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_21
-    x: 256
-    y: 1990
+    x: 0
+    y: 2010
     width: 128
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 4
     paddingRight: 2
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_22
-    x: 0
-    y: 2012
-    width: 106
-    height: 36
+    x: 1204
+    y: 1902
+    width: 105
+    height: 35
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 11
+    paddingLeft: 12
     paddingRight: 17
-    paddingTop: 1
+    paddingTop: 2
     paddingBottom: 3
   - name: chick_name/chick_name_23
-    x: 128
-    y: 1990
+    x: 256
+    y: 1989
     width: 128
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 4
     paddingRight: 2
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_24
-    x: 926
-    y: 2014
+    x: 1202
+    y: 2000
     width: 106
     height: 20
     borderLeft: 0
@@ -367,140 +367,140 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_25
-    x: 1052
-    y: 1548
-    width: 108
-    height: 22
+    x: 1202
+    y: 1937
+    width: 107
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 7
+    paddingLeft: 8
     paddingRight: 19
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_26
-    x: 1292
-    y: 1977
-    width: 108
-    height: 22
+    x: 1202
+    y: 1958
+    width: 107
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 5
+    paddingLeft: 6
     paddingRight: 21
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_27
-    x: 1247
-    y: 1501
-    width: 86
-    height: 22
+    x: 830
+    y: 1994
+    width: 85
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 20
+    paddingLeft: 21
     paddingRight: 28
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_28
-    x: 1400
-    y: 1977
+    x: 1309
+    y: 1914
     width: 84
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 22
     paddingRight: 28
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_29
-    x: 1333
-    y: 1512
-    width: 108
+    x: 470
+    y: 2028
+    width: 107
     height: 20
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 8
+    paddingLeft: 9
     paddingRight: 18
     paddingTop: 9
     paddingBottom: 11
   - name: chick_name/chick_name_30
-    x: 0
-    y: 1990
+    x: 128
+    y: 2010
     width: 128
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 4
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: chick_name/chick_name_31
-    x: 1108
-    y: 1979
+    x: 384
+    y: 2009
     width: 116
-    height: 20
+    height: 19
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 5
     paddingRight: 13
-    paddingTop: 9
+    paddingTop: 10
     paddingBottom: 11
   - name: chick_name/chick_name_32
-    x: 820
-    y: 1996
+    x: 1202
+    y: 1979
     width: 106
-    height: 22
+    height: 21
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 8
     paddingRight: 20
-    paddingTop: 7
+    paddingTop: 8
     paddingBottom: 11
   - name: COLLECTION_BUTTON/BackToGameButton
-    x: 756
-    y: 1028
-    width: 118
+    x: 855
+    y: 1027
+    width: 117
     height: 75
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
-    paddingRight: 0
+    paddingRight: 1
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTION_BUTTON/collection_button
-    x: 1853
-    y: 1199
-    width: 73
+    x: 1970
+    y: 0
+    width: 72
     height: 90
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 0
+    paddingLeft: 1
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTION_BUTTON/collection_button_GET
-    x: 1970
-    y: 0
+    x: 1211
+    y: 962
     width: 71
-    height: 84
+    height: 83
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -508,19 +508,19 @@ MonoBehaviour:
     paddingLeft: 3
     paddingRight: 3
     paddingTop: 0
-    paddingBottom: 2
+    paddingBottom: 3
   - name: COLLECTION_BUTTON/collection_button_glow
-    x: 1895
-    y: 1386
-    width: 103
-    height: 122
+    x: 1331
+    y: 1487
+    width: 102
+    height: 121
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 9
+    paddingLeft: 10
     paddingRight: 7
-    paddingTop: 8
+    paddingTop: 9
     paddingBottom: 12
   - name: COLLECTION_BUTTON/CollectionBG
     x: 0
@@ -536,21 +536,21 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTION_BUTTON/CollectionCharacter
-    x: 1012
-    y: 1854
-    width: 96
-    height: 137
+    x: 1757
+    y: 1340
+    width: 95
+    height: 136
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 1
+    paddingLeft: 2
     paddingRight: 1
-    paddingTop: 1
+    paddingTop: 2
     paddingBottom: 1
   - name: COLLECTION_BUTTON/CollectionUnit
     x: 548
-    y: 1618
+    y: 1617
     width: 181
     height: 222
     borderLeft: 0
@@ -561,9 +561,35 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 3
     paddingBottom: 3
+  - name: COLLECTIONCharacter/Lv00_0
+    x: 1145
+    y: 1482
+    width: 93
+    height: 131
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv00_1
+    x: 1238
+    y: 1482
+    width: 93
+    height: 131
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: COLLECTIONCharacter/Lv01_0
-    x: 1954
-    y: 1772
+    x: 1145
+    y: 1482
     width: 93
     height: 131
     borderLeft: 0
@@ -575,10 +601,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv01_1
-    x: 1913
-    y: 1641
-    width: 93
-    height: 131
+    x: 1281
+    y: 1355
+    width: 90
+    height: 125
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -588,8 +614,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv02_0
-    x: 1954
-    y: 1772
+    x: 1145
+    y: 1482
     width: 93
     height: 131
     borderLeft: 34
@@ -601,10 +627,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv02_1
-    x: 1585
-    y: 1903
-    width: 90
-    height: 125
+    x: 1431
+    y: 1624
+    width: 94
+    height: 130
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -614,8 +640,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv03_0
-    x: 1954
-    y: 1772
+    x: 1145
+    y: 1482
     width: 93
     height: 131
     borderLeft: 0
@@ -627,32 +653,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv03_1
-    x: 1510
-    y: 1490
-    width: 94
-    height: 130
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv04_0
-    x: 1954
-    y: 1772
-    width: 93
-    height: 131
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv04_1
     x: 1926
     y: 1118
     width: 95
@@ -665,9 +665,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv04_0
+    x: 1145
+    y: 1482
+    width: 93
+    height: 131
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv04_1
+    x: 1718
+    y: 1492
+    width: 91
+    height: 129
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 1
+    paddingRight: 1
+    paddingTop: 3
+    paddingBottom: 1
   - name: COLLECTIONCharacter/Lv05_0
-    x: 1954
-    y: 1772
+    x: 1145
+    y: 1482
     width: 93
     height: 131
     borderLeft: 0
@@ -679,21 +705,21 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv05_1
-    x: 1060
-    y: 1620
-    width: 91
-    height: 129
+    x: 1624
+    y: 1492
+    width: 94
+    height: 133
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 3
-    paddingBottom: 1
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: COLLECTIONCharacter/Lv06_0
-    x: 1954
-    y: 1772
+    x: 1145
+    y: 1482
     width: 93
     height: 131
     borderLeft: 0
@@ -705,10 +731,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv06_1
-    x: 1292
-    y: 1844
-    width: 94
-    height: 133
+    x: 1809
+    y: 1476
+    width: 92
+    height: 128
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -718,8 +744,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv07_0
-    x: 1954
-    y: 1772
+    x: 1145
+    y: 1482
     width: 93
     height: 131
     borderLeft: 0
@@ -731,8 +757,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv07_1
-    x: 1336
-    y: 1620
+    x: 1712
+    y: 1625
     width: 92
     height: 128
     borderLeft: 0
@@ -744,8 +770,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv08_0
-    x: 1954
-    y: 1772
+    x: 1145
+    y: 1482
     width: 93
     height: 131
     borderLeft: 0
@@ -757,34 +783,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv08_1
-    x: 1244
-    y: 1620
-    width: 92
-    height: 128
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv09_0
-    x: 1954
-    y: 1772
-    width: 93
-    height: 131
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv09_1
-    x: 1386
-    y: 1844
+    x: 1619
+    y: 1625
     width: 93
     height: 133
     borderLeft: 0
@@ -795,9 +795,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv10_0
-    x: 1510
-    y: 1348
+  - name: COLLECTIONCharacter/Lv09_0
+    x: 916
+    y: 1859
     width: 94
     height: 142
     borderLeft: 0
@@ -808,9 +808,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv10_1
-    x: 1475
-    y: 1199
+  - name: COLLECTIONCharacter/Lv09_1
+    x: 863
+    y: 1468
     width: 91
     height: 149
     borderLeft: 0
@@ -821,35 +821,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv10_0
+    x: 1083
+    y: 1228
+    width: 114
+    height: 127
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv10_1
+    x: 1069
+    y: 1355
+    width: 114
+    height: 127
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: COLLECTIONCharacter/Lv11_0
-    x: 1176
-    y: 1228
-    width: 114
-    height: 127
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv11_1
-    x: 1062
-    y: 1228
-    width: 114
-    height: 127
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv12_0
-    x: 1290
-    y: 1199
+    x: 1391
+    y: 1198
     width: 88
     height: 156
     borderLeft: 0
@@ -860,9 +860,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 2
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv12_1
-    x: 1159
-    y: 1355
+  - name: COLLECTIONCharacter/Lv11_1
+    x: 1479
+    y: 1198
     width: 88
     height: 156
     borderLeft: 0
@@ -873,20 +873,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv13_0
-    x: 1796
-    y: 1480
-    width: 95
-    height: 135
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv13_1
+  - name: COLLECTIONCharacter/Lv12_0
     x: 1926
     y: 1251
     width: 95
@@ -899,9 +886,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv14_0
-    x: 1526
-    y: 1620
+  - name: COLLECTIONCharacter/Lv12_1
+    x: 1010
+    y: 1913
+    width: 95
+    height: 135
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv13_0
+    x: 1580
+    y: 1758
     width: 93
     height: 131
     borderLeft: 0
@@ -912,9 +912,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 2
-  - name: COLLECTIONCharacter/Lv14_1
-    x: 1151
-    y: 1620
+  - name: COLLECTIONCharacter/Lv13_1
+    x: 1673
+    y: 1758
     width: 93
     height: 129
     borderLeft: 0
@@ -925,9 +925,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 4
-  - name: COLLECTIONCharacter/Lv15_0
-    x: 964
-    y: 1612
+  - name: COLLECTIONCharacter/Lv14_0
+    x: 1204
+    y: 1764
     width: 96
     height: 138
     borderLeft: 0
@@ -936,61 +936,48 @@ MonoBehaviour:
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv14_1
+    x: 1300
+    y: 1755
+    width: 96
+    height: 138
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv15_0
+    x: 1105
+    y: 1913
+    width: 97
+    height: 133
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv15_1
-    x: 916
-    y: 1854
-    width: 96
-    height: 138
+    x: 1371
+    y: 1354
+    width: 97
+    height: 133
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
-    paddingRight: 0
+    paddingRight: 1
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv16_0
-    x: 1717
-    y: 1618
-    width: 98
-    height: 133
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv16_1
-    x: 1619
-    y: 1618
-    width: 98
-    height: 133
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv17_0
-    x: 967
-    y: 1200
-    width: 95
-    height: 160
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv17_1
     x: 1926
     y: 958
     width: 95
@@ -1003,11 +990,50 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv18_0
-    x: 1427
-    y: 1348
+  - name: COLLECTIONCharacter/Lv16_1
+    x: 879
+    y: 1617
+    width: 95
+    height: 160
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv17_0
+    x: 1567
+    y: 1198
     width: 83
     height: 157
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv17_1
+    x: 1650
+    y: 1198
+    width: 83
+    height: 157
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv18_0
+    x: 1051
+    y: 1482
+    width: 94
+    height: 131
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1017,10 +1043,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv18_1
-    x: 1344
-    y: 1355
-    width: 83
-    height: 157
+    x: 1525
+    y: 1624
+    width: 94
+    height: 131
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1030,8 +1056,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv19_0
-    x: 1860
-    y: 1772
+    x: 1051
+    y: 1482
     width: 94
     height: 131
     borderLeft: 0
@@ -1043,34 +1069,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv19_1
-    x: 1766
-    y: 1769
-    width: 94
-    height: 131
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv20_0
-    x: 1860
-    y: 1772
-    width: 94
-    height: 131
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv20_1
-    x: 1891
-    y: 1508
+    x: 1828
+    y: 1198
     width: 98
     height: 133
     borderLeft: 0
@@ -1081,9 +1081,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv21_0
-    x: 879
-    y: 1612
+  - name: COLLECTIONCharacter/Lv20_0
+    x: 974
+    y: 1613
     width: 85
     height: 160
     borderLeft: 0
@@ -1093,25 +1093,51 @@ MonoBehaviour:
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv20_1
+    x: 1059
+    y: 1613
+    width: 85
+    height: 160
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv21_0
+    x: 986
+    y: 1172
+    width: 97
+    height: 138
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv21_1
-    x: 998
-    y: 1028
-    width: 85
-    height: 160
+    x: 1468
+    y: 1354
+    width: 97
+    height: 138
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv22_0
-    x: 1798
-    y: 1339
-    width: 97
-    height: 139
+    x: 1565
+    y: 1355
+    width: 96
+    height: 137
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1121,10 +1147,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv22_1
-    x: 1701
-    y: 1341
-    width: 97
-    height: 139
+    x: 1661
+    y: 1355
+    width: 96
+    height: 137
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1134,10 +1160,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv23_0
-    x: 1700
-    y: 1481
-    width: 96
-    height: 137
+    x: 1396
+    y: 1754
+    width: 92
+    height: 134
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1147,10 +1173,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv23_1
-    x: 1604
-    y: 1481
-    width: 96
-    height: 137
+    x: 1488
+    y: 1755
+    width: 92
+    height: 134
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1160,10 +1186,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv24_0
-    x: 1200
-    y: 1845
-    width: 92
-    height: 134
+    x: 1733
+    y: 1198
+    width: 95
+    height: 142
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1173,10 +1199,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv24_1
-    x: 1108
-    y: 1845
-    width: 92
-    height: 134
+    x: 1240
+    y: 1613
+    width: 95
+    height: 142
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1186,10 +1212,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv25_0
-    x: 1661
-    y: 1199
-    width: 95
-    height: 142
+    x: 1010
+    y: 1773
+    width: 97
+    height: 140
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1199,10 +1225,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv25_1
-    x: 1566
-    y: 1199
-    width: 95
-    height: 142
+    x: 1107
+    y: 1773
+    width: 97
+    height: 140
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1212,36 +1238,36 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv26_0
-    x: 1604
-    y: 1341
-    width: 97
-    height: 140
+    x: 1183
+    y: 1355
+    width: 98
+    height: 127
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv26_1
-    x: 1756
-    y: 1199
-    width: 97
-    height: 140
+    x: 1197
+    y: 1228
+    width: 98
+    height: 127
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv27_0
-    x: 1815
-    y: 1641
-    width: 98
-    height: 128
+    x: 1335
+    y: 1608
+    width: 96
+    height: 132
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1251,10 +1277,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv27_1
-    x: 1428
-    y: 1620
-    width: 98
-    height: 128
+    x: 1433
+    y: 1492
+    width: 96
+    height: 132
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -1264,8 +1290,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv28_0
-    x: 1575
-    y: 1751
+    x: 1335
+    y: 1608
     width: 96
     height: 132
     borderLeft: 0
@@ -1277,34 +1303,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv28_1
-    x: 1479
-    y: 1751
-    width: 96
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv29_0
-    x: 1575
-    y: 1751
-    width: 96
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv29_1
-    x: 1671
-    y: 1751
+    x: 1529
+    y: 1492
     width: 95
     height: 132
     borderLeft: 0
@@ -1315,9 +1315,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv30_0
-    x: 864
-    y: 1358
+  - name: COLLECTIONCharacter/Lv29_0
+    x: 863
+    y: 1310
     width: 103
     height: 158
     borderLeft: 0
@@ -1327,60 +1327,47 @@ MonoBehaviour:
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv29_1
+    x: 966
+    y: 1310
+    width: 103
+    height: 158
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv30_0
+    x: 986
+    y: 1027
+    width: 97
+    height: 145
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv30_1
-    x: 864
-    y: 1200
-    width: 103
-    height: 158
+    x: 954
+    y: 1468
+    width: 97
+    height: 145
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: COLLECTIONCharacter/Lv31_0
-    x: 1378
-    y: 1199
-    width: 97
-    height: 146
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv31_1
-    x: 1247
-    y: 1355
-    width: 97
-    height: 146
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv32_0
-    x: 1926
-    y: 796
-    width: 88
-    height: 162
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv32_1
     x: 1926
     y: 634
     width: 88
@@ -1393,9 +1380,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv33_0
-    x: 1063
-    y: 1355
+  - name: COLLECTIONCharacter/Lv31_1
+    x: 1926
+    y: 796
+    width: 88
+    height: 162
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: COLLECTIONCharacter/Lv32_0
+    x: 1144
+    y: 1613
     width: 96
     height: 151
     borderLeft: 0
@@ -1406,9 +1406,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: COLLECTIONCharacter/Lv33_1
-    x: 967
-    y: 1360
+  - name: COLLECTIONCharacter/Lv32_1
+    x: 1295
+    y: 1198
     width: 96
     height: 151
     borderLeft: 0
@@ -1423,14 +1423,14 @@ MonoBehaviour:
     x: 0
     y: 1138
     width: 548
-    height: 686
+    height: 685
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 2
-    paddingTop: 10
+    paddingTop: 11
     paddingBottom: 6
   - name: title_back_1
     x: 642
@@ -1446,34 +1446,34 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: title_back_10
-    x: 1970
-    y: 84
+    x: 1211
+    y: 1045
     width: 60
-    height: 44
+    height: 43
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 6
     paddingRight: 6
-    paddingTop: 3
+    paddingTop: 4
     paddingBottom: 5
   - name: title_back_11
-    x: 642
-    y: 1028
-    width: 114
-    height: 90
+    x: 742
+    y: 1027
+    width: 113
+    height: 89
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 5
+    paddingLeft: 6
     paddingRight: 3
-    paddingTop: 2
+    paddingTop: 3
     paddingBottom: 4
   - name: title_back_12
     x: 879
-    y: 1772
+    y: 1777
     width: 100
     height: 82
     borderLeft: 0
@@ -1485,21 +1485,21 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 5
   - name: title_back_13
-    x: 874
-    y: 1028
-    width: 124
+    x: 863
+    y: 1138
+    width: 123
     height: 172
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 3
+    paddingLeft: 4
     paddingRight: 1
     paddingTop: 3
     paddingBottom: 3
   - name: title_back_14
     x: 729
-    y: 1618
+    y: 1617
     width: 150
     height: 248
     borderLeft: 0
@@ -1513,15 +1513,15 @@ MonoBehaviour:
   - name: title_back_15
     x: 548
     y: 1138
-    width: 316
-    height: 480
+    width: 315
+    height: 479
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 9
+    paddingLeft: 10
     paddingRight: 9
-    paddingTop: 9
+    paddingTop: 10
     paddingBottom: 13
   - name: title_back_2
     x: 1284
@@ -1538,16 +1538,16 @@ MonoBehaviour:
     paddingBottom: 0
   - name: title_back_3
     x: 696
-    y: 1866
+    y: 1865
     width: 220
-    height: 130
+    height: 129
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 11
     paddingRight: 11
-    paddingTop: 5
+    paddingTop: 6
     paddingBottom: 7
   - name: title_back_4
     x: 1083
@@ -1563,7 +1563,7 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 3
   - name: title_back_5
-    x: 1084
+    x: 1083
     y: 962
     width: 128
     height: 136
@@ -1577,7 +1577,7 @@ MonoBehaviour:
     paddingBottom: 3
   - name: title_back_6
     x: 544
-    y: 1840
+    y: 1839
     width: 152
     height: 168
     borderLeft: 0
@@ -1589,138 +1589,138 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: title_back_7
-    x: 1212
-    y: 962
-    width: 64
-    height: 66
+    x: 1970
+    y: 90
+    width: 63
+    height: 65
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 4
+    paddingLeft: 5
     paddingRight: 4
-    paddingTop: 3
+    paddingTop: 4
     paddingBottom: 3
   - name: title_back_8
-    x: 979
-    y: 1750
+    x: 642
+    y: 1027
     width: 100
-    height: 104
+    height: 103
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 9
     paddingRight: 3
-    paddingTop: 2
+    paddingTop: 3
     paddingBottom: 6
   - name: title_back_9
     x: 1284
     y: 634
     width: 642
-    height: 565
+    height: 564
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
-    paddingTop: 8
+    paddingTop: 9
     paddingBottom: 0
   - name: title_btn_goodia
-    x: 1361
-    y: 1748
+    x: 1766
+    y: 1753
     width: 94
-    height: 96
+    height: 95
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: title_btn_help
-    x: 1267
-    y: 1748
+    x: 1766
+    y: 1848
     width: 94
-    height: 96
+    height: 95
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: title_btn_moreapps
-    x: 1173
-    y: 1749
+    x: 1804
+    y: 1625
     width: 94
-    height: 96
+    height: 95
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: title_btn_ranking
-    x: 1079
-    y: 1749
+    x: 1860
+    y: 1741
     width: 94
-    height: 96
+    height: 95
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: title_btn_speaker_off
-    x: 958
-    y: 1516
+    x: 1860
+    y: 1836
     width: 94
-    height: 96
+    height: 95
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: title_btn_speaker_on
-    x: 864
-    y: 1516
+    x: 1954
+    y: 1386
     width: 94
-    height: 96
+    height: 95
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 2
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: title_taptostart
     x: 642
     y: 962
-    width: 442
-    height: 66
+    width: 441
+    height: 65
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 5
+    paddingLeft: 6
     paddingRight: 5
-    paddingTop: 8
+    paddingTop: 9
     paddingBottom: 8
   - name: title_title
     x: 0
-    y: 1824
+    y: 1823
     width: 544
     height: 166
     borderLeft: 0

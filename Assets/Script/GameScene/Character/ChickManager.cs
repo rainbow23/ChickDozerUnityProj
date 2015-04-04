@@ -54,7 +54,7 @@ public class ChickManager : CharacterManager{
 		ChickFootMaterial.staticFriction =0.1f;
 		
 		rigidbody.angularDrag = 60f;
-		rigidbody.centerOfMass = new Vector3(0f, -0.5f, -0.7f);
+		rigidbody.centerOfMass = new Vector3(0f, -0.5f, 0.0f);
 		scoreParticles = gameObject.transform.FindChild("Particle").GetComponent<ParticleSystem>(); 
 
 		//GameObject childHasCapsuleCollider = GetComponentInChildren<CapsuleCollider>().gameObject;

@@ -63,7 +63,7 @@ public class LabelManager : MonoBehaviour {
 			if(point < 1) return;
 			//Debug.Log("point: " + point);
 			if(!each.gameObject.activeSelf) each.gameObject.SetActive(true);
-			each.spriteName = "numberFont/" + (point % 10).ToString();
+			each.spriteName = (point % 10).ToString();
 			point  /= 10;
 		}
 	}
@@ -77,7 +77,7 @@ public class LabelManager : MonoBehaviour {
 			//print ("level: "  + level);
 			if(level < 1) return;
 			if(!each.gameObject.activeSelf) each.gameObject.SetActive(true);
-			each.spriteName = "numberFont/" + (level % 10).ToString();
+			each.spriteName = (level % 10).ToString();
 			level  /= 10;
 		}
 	}
@@ -85,11 +85,10 @@ public class LabelManager : MonoBehaviour {
 	void UpdateLevelPercentage()
 	{
 		string percentage = GameController.NextLevelPercentage.ToString();
-		string path = "levelpercent_sprite/";
 		string afterPath = "0pcnt";
 		if(percentage == "0"){afterPath = "pcnt";}
 
-		percentageLabel.spriteName = path + percentage + afterPath;
+		percentageLabel.spriteName = percentage + afterPath;
 	}
 	
 	void ShowScoreEffect(Vector3 worldPos)

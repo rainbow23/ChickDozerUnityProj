@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	public static int  NextLevelPercentage{private set; get;}
 	public int[] obtainedCharArray;
 
+	private enum State{ firstGet, got};
+
 	private bool isLoadedGame = false;
 
 	CreateCharManager createCharManager;
@@ -98,16 +100,18 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		Score += charScore; 
 		Point += charScore * 10;
 
+
+		Debug.Log("obtainedCharArray: " + obtainedCharArray[charNum]);
+
 		//if first time get some kind of chick 
 		if(obtainedCharArray[charNum] == 0)
 		{
-
 			obtainedCharArray[charNum] = 1;
 		}
 
 
-		Debug.Log("obtainedCharArray: " + obtainedCharArray[charNum]);
-		Debug.Log("Score: " + Score);
+
+		//Debug.Log("Score: " + Score);
 
 		UpdateLevelPercentage();
 		UpdateLevel();
@@ -167,7 +171,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void OnDestroy()
 	{
-		Debug.Log("GameController OnDestroy");
+		//Debug.Log("GameController OnDestroy");
 		score.Dispose();
 		createCharNum.Dispose();
 		touchPos.Dispose();
@@ -218,7 +222,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		PlayerPrefsX.SetIntArray(DATA.OBTAINEDCHARKEY, obtainedCharArray);
 
 		for (int i = 0; i < obtainedCharArray.Length; i++) {
-			Debug.Log("Store obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
+			//Debug.Log("Store obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
 		}
 
 		PlayerPrefs.Save();
@@ -244,7 +248,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		{
 			Debug.Log("Load obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
 		}
-
+		Debug.Log("GameScene");
 		//Debug.Log("Level: " + Level );
 		//Debug.Log("checkFirstRun: " + checkFirstRun );
 		//Debug.Log("Point: " + Point);
