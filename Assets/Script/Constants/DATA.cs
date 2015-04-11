@@ -55,4 +55,24 @@ public static class DATA
 		{31, 308648},
 		{32, 410263}
 	};
+
+	private int GetRandomByWeight(int[] hoge){
+		int result = 0;
+		int sum = 0;
+		
+		for (int i = 0; i < hoge.Length ; i++){
+			sum += hoge[i];
+		}
+		
+		int t = Random.Range(0,sum);
+		for(int i = 0 ; i < hoge.Length ; i++){
+			if(t <= hoge[i]){
+				result = i;
+				break;
+			}
+			t -= hoge[i];
+		}
+		return result; //
+	}
+
 }

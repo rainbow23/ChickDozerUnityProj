@@ -14,7 +14,6 @@ public class DozerController : MonoBehaviour {
 		}
 		
 		public void MoveDozer(){
-			
 			if(chickTouchDozerBase == false){
 				iTween.MoveTo( this.gameObject, 
 				              iTween.Hash("z", 4f, 
