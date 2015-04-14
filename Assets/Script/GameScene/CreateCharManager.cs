@@ -37,12 +37,58 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 
 	public void Create(Vector3 touchPos)
 	{
-		//同じレベルのひよこだけだす
-		GameObject levelChar = resourcesLoadChickDic[GameController.Level - 1];
-		GameObject obj = Instantiate(levelChar, touchPos, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
-		obj.name = levelChar.name;
+		int levelRange;
+		int odds;
+		if(DATA.Level == 1) {
+			levelRange = 1;
+		}	
+
+		int random = Random.Range(1, 101);
+		if(random > 3){
+			levelRange = DATA.Level - 1;
+			odds = GetRandomByWeight(oddsArray(levelRange));
+		}
+		else{//Show curr level chick in 3%
+			odds = DATA.Level;
+		}
+
+		 
+		Debug.Log("odds: " + odds);
+		GameObject randomChar = resourcesLoadChickDic[odds];
+
+		GameObject obj = Instantiate(randomChar, touchPos, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
+		obj.name = randomChar.name;
 		obj.SetActive(true);
 	}
+
+	private int[] oddsArray(int hoge){
+		int[] level = new int[hoge];
+		Stack<int>  denominator = new Stack<int>();
+		/*
+		 レベルが１上がるごとに新しいひよこを作れる
+		例
+		（レベル４）
+		ひよこ種類：１,    ２,     ３,    ４, 
+		確率：       3/6,  2/6,  1/6,   3%
+		（レベル５）
+		ひよこ種類：１,      ２,      ３,     ４,   ５
+		確率：     4/10, 3/10, 2/10, 1/10,   3%
+		*/
+
+		for (int i = 0; i < level.Length; i++) {
+			int num = i + 1;
+			denominator.Push(num);
+			//Debug.Log("i:push " + num);
+		}
+		
+		for (int i = 0; i < level.Length; i++) {
+			level[i] = denominator.Pop();
+			//Debug.Log("level[" + i +  "]: " + level[i]);
+		}
+		return level;// level;
+	}
+
+	
 
 	void LoadCharFromResources()
 	{
@@ -113,5 +159,26 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 	void OnDestroy ()
 	{
 		saveCharacterData.RemoveAllListeners();
+	}
+
+	private int GetRandomByWeight(int[] hoge){
+		int result = 0;
+		int sum = 0;
+		
+		for (int i = 0; i < hoge.Length ; i++){
+			sum += hoge[i];
+			//print ("i" + i);
+		}
+		
+		int t = Random.Range(1, sum + 1);
+		for(int i = 0 ; i < hoge.Length ; i++){
+			if(t <= hoge[i]){
+				result = i;
+				break;
+			}
+			t -= hoge[i];
+		}
+		//Debug.Log("t:" + t);
+		return result; //
 	}
 }

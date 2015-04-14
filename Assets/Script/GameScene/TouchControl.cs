@@ -4,7 +4,8 @@ using System.Collections;
 public class TouchControl : MonoBehaviour {	
 	private float timer = 0f;
 	private Vector3 touchToWorldPos;
-	private int touchCount = 0;
+	[HideInInspector]
+	public static  int touchCount = 0;
 	private bool touchlimit = false;
 
 	GameController gameController;
@@ -28,9 +29,8 @@ public class TouchControl : MonoBehaviour {
 			
 			//連続タッチ時 Z位置をずらす
 			touchCount += 1;
-			if(touchCount > 1){touchCount = 0;}
 			
-			float offsetZ = touchToWorldPos.z + (1.6f * touchCount);
+			float offsetZ = touchToWorldPos.z + (1.6f * (touchCount % 2));
 			touchToWorldPos = new Vector3(touchToWorldPos.x, touchToWorldPos.y, offsetZ);
 
 			gameController.touchPos.Value = touchToWorldPos;

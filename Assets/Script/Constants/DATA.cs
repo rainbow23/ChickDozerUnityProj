@@ -5,18 +5,39 @@ public static class DATA
 {
 	//プレハブのフォルダへのパス
 	public const string PREFABS_PATH = "Prefabs/";
-
 	//固定データのパス
 	public const string CONSTANTS_PATH = "Assets/Scripts/Constants/";
-
 	//オーディオファイルのパス
 	public const string BGM_PATH = "Audio/BGM";
 	public const string SE_PATH  = "Audio/SE";
 
 
 	public const string OBTAINEDCHARKEY =  "obtainedCharArray";
-
+	public const string SCOREKEY =  "Score";
+	public const string LEVELKEY =  "Level";
+	public const string POINTKEY =  "Point";
+	public const string SAVEDFIRSTRUNKEY =  "savedFirstRun";
+	public const string NEXTLEVELPERCENTAGEKEY =  "nextLevelPercentage";
 	public const int ResourcesChickNum = 32;
+
+	private static int _level = 1;
+	public static int Level{
+		get{ return _level;}
+		set{ _level = value;}
+	}
+
+	private static int _score;
+	public static int  Score{
+		get{return _score;}
+		set{ _score = value;}
+	}
+
+	private static int _point = 2000;
+	public static int  Point{
+				get{ return _point;}
+				set{ _point = value;}
+	}
+	public static int  NextLevelPercentage{set; get;}
 	public static Dictionary<int,int> NextLevelScore = new Dictionary<int,int>()
 	{
 		{1,10},
@@ -56,23 +77,6 @@ public static class DATA
 		{32, 410263}
 	};
 
-	private int GetRandomByWeight(int[] hoge){
-		int result = 0;
-		int sum = 0;
-		
-		for (int i = 0; i < hoge.Length ; i++){
-			sum += hoge[i];
-		}
-		
-		int t = Random.Range(0,sum);
-		for(int i = 0 ; i < hoge.Length ; i++){
-			if(t <= hoge[i]){
-				result = i;
-				break;
-			}
-			t -= hoge[i];
-		}
-		return result; //
-	}
+
 
 }

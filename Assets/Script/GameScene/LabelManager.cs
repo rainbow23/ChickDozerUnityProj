@@ -10,8 +10,9 @@ public class LabelManager : MonoBehaviour {
 	Transform UIRootBottomTransform;
 	GameObject hudObj;
 	GameObject particle;
-	UISprite[] pointsLabels;
-	UISprite[] levelLabels = new UISprite[2];
+	public BitmapNumberManager[] bitmapNumObject;
+	public BitmapNumberManager testBitmap;
+
 	UISprite percentageLabel;
 	GameController gameController;
 	public UnityAction  updateLabelAction;
@@ -24,20 +25,6 @@ public class LabelManager : MonoBehaviour {
 		camera2D = GameObject.Find("2D Camera").GetComponent<Camera>();
 		hudObj = Resources.Load("HUD/HudGrp", typeof(GameObject)) as GameObject;
 		UIRootBottomTransform = GameObject.Find("UI Root/Bottom").transform;
-		pointsLabels = GameObject.Find("PointGrp").GetComponentsInChildren<UISprite>()
-				.OrderBy( t=>{
-					string index = t.name.Substring(t.name.Length - 1);
-					t.gameObject.SetActive(false);
-					return int.Parse(index);
-				})
-				.ToArray();
-
-		for (int i = 0; i < levelLabels.Length; i++) 
-		{
-			levelLabels[i] = GameObject.Find("LvScore" + (i + 1).ToString()).GetComponent<UISprite>();
-			levelLabels[i].gameObject.SetActive(false);
-		}
-
 		percentageLabel = GameObject.Find("Percentage").GetComponent<UISprite>();
 		//particle = Resources.Load("Particle/CFXM2_CartoonFight", typeof(GameObject)) as GameObject; 
 		updateLabelAction = UpdatePoint;
@@ -57,39 +44,24 @@ public class LabelManager : MonoBehaviour {
 	void UpdatePoint()
 	{
 		//Debug.Log("UpdatePoint");
-		int point = GameController.Point;
-		foreach(var each in pointsLabels)
-		{
-			if(point < 1) return;
-			//Debug.Log("point: " + point);
-			if(!each.gameObject.activeSelf) each.gameObject.SetActive(true);
-			each.spriteName = (point % 10).ToString();
-			point  /= 10;
-		}
+		bitmapNumObject[1].UpdateNumber(DATA.Point);
 	}
 
 	void UpdateLevel()
 	{
 		//Debug.Log("UpdateLevel");
-		int level = GameController.Level;
-		foreach (var each in levelLabels) 
-		{
-			//print ("level: "  + level);
-			if(level < 1) return;
-			if(!each.gameObject.activeSelf) each.gameObject.SetActive(true);
-			each.spriteName = (level % 10).ToString();
-			level  /= 10;
-		}
+		bitmapNumObject[0].UpdateNumber(DATA.Level);
 	}
 
 	void UpdateLevelPercentage()
 	{
-		string percentage = GameController.NextLevelPercentage.ToString();
+		string percentage = DATA.NextLevelPercentage.ToString();
 		string afterPath = "0pcnt";
 		if(percentage == "0"){afterPath = "pcnt";}
 
 		percentageLabel.spriteName = percentage + afterPath;
 	}
+
 	
 	void ShowScoreEffect(Vector3 worldPos)
 	{
@@ -118,9 +90,22 @@ public class LabelManager : MonoBehaviour {
 		return new Vector3(camera2DPos.x, 160f, 0f);
 	}
 
-	// Update is called once per frame
+
+	float timer = 0f;
+	int countCheck = 99;
+
 	void Update () {
-		
+		///*
+		timer +=Time.deltaTime;
+
+		if(timer > 0.55f){
+			testBitmap.UpdateNumber(countCheck);	
+			//bitmapNumObject[0].UpdateNumber(countCheck);
+			countCheck +=1;
+			//if(countCheck == 11){Debug.Break();}
+			timer = 0f;
+		}
+		//*/
 	}
 
 }

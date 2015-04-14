@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CommonManager2 : SingletonMonoBehaviour<CommonManager2> {
 
-	private void Awake (){
+	 void Awake (){
 		//シーン移動後、前シーンからのCommonnManagerがいる時はデストロイ
 		if(GameObject.FindGameObjectsWithTag (gameObject.tag).Length > 1){
 			Destroy (gameObject);
