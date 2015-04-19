@@ -11,13 +11,20 @@ public class BasketController : MonoBehaviour {
 	public static event basketHandler2 _hitChickBasket2;
 
 
-	void moveBasket(){
-		iTween.MoveTo(gameObject, iTween.Hash( "x", -2.6f, "time", 4.5f, "easeType", "linear", "loopType", "pingPong", "delay", 0));
+
+
+	void Awake()
+	{
+
 	}
 
 	void Start (){
 		moveBasket();
-	}	
+	}
+
+	void moveBasket(){
+		iTween.MoveTo(gameObject, iTween.Hash( "x", -2.6f, "time", 4.5f, "easeType", "linear", "loopType", "pingPong", "delay", 0));
+	}
 	
 	bool once = false;
 	void OnTriggerEnter(Collider collider){

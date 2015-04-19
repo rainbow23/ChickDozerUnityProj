@@ -52,11 +52,11 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 			odds = DATA.Level;
 		}
 
-		 
 		Debug.Log("odds: " + odds);
 		GameObject randomChar = resourcesLoadChickDic[odds];
 
-		GameObject obj = Instantiate(randomChar, touchPos, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
+		Vector3 pos = new Vector3(touchPos.x, 5.7f, -5.2f);// define new pos
+		GameObject obj = Instantiate(randomChar, pos, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
 		obj.name = randomChar.name;
 		obj.SetActive(true);
 	}

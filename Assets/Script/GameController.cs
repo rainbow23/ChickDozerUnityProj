@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using System.Linq;
+
+
+
+
 /// <summary>
 /// ゲームのステータスや状況を管理
 /// </summary>
@@ -23,8 +27,10 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	[HideInInspector]
 	public  UnityEvent   UpdateScoreAndLevel;
 
-	private NotificationObject<int> _score = new NotificationObject<int>(0);
-	public  NotificationObject<int> score { get{ return _score; }}
+	//private NotificationObject<int> _score = new NotificationObject<int>(0);
+	//public  NotificationObject<int> score { get{ return _score; }}
+
+	public ScoreObject<int, Vector3> scoreObject = new ScoreObject<int, Vector3>();
 
 	private NotificationObject<Vector3> _touchPos = new NotificationObject<Vector3>();
 	public NotificationObject<Vector3> touchPos{ get{ return _touchPos; }}
@@ -59,7 +65,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void Start()
 	{
-		score.AddListener(AddScore);
+		scoreObject.AddListener(AddScore);
 		createCharNum.AddListener(audioManager.PlayTouchSE);
 		UpdateScoreAndLevel.AddListener(labelManager.updateLabelAction);
 		UpdatePercentage.AddListener(labelManager.updatePercentageAction);
@@ -73,12 +79,11 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	/// <summary>
 	/// Modify score and level
 	/// </summary>
-	void AddScore(int charNum)
+	void AddScore(int charNum, Vector3 charPos)
 	{ 
 		int charScore = charNum +1;
 		DATA.Score += charScore; 
 		DATA.Point += charScore * 10;
-
 
 		//Debug.Log("obtainedCharArray: " + obtainedCharArray[charNum]);
 
@@ -88,8 +93,6 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 			obtainedCharArray[charNum] = 1;
 		}
 
-
-
 		//Debug.Log("DATA.Score: " + DATA.Score);
 
 		UpdateLevelPercentage();
@@ -97,6 +100,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 		//After update score and level  you can call  label action
 		UpdateScoreAndLevel.Invoke();
+		labelManager.ShowScoreEffect(charScore * 10, charPos);
 	}
 
 	void UpdateLevelPercentage()
@@ -113,7 +117,6 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		//整数一桁を返す
 		if(untilNextScorePercentage > 0.9 && untilNextScorePercentage < 1.0)
 			DATA.NextLevelPercentage = 8;
-
 		else
 			DATA.NextLevelPercentage = Mathf.RoundToInt((untilNextScorePercentage) * 10);
 
@@ -151,7 +154,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	void OnDestroy()
 	{
 		//Debug.Log("GameController OnDestroy");
-		score.Dispose();
+		//score.RemoveAllListeners();
 		createCharNum.Dispose();
 		touchPos.Dispose();
 		UpdateScoreAndLevel.RemoveAllListeners();

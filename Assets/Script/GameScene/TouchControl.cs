@@ -25,7 +25,7 @@ public class TouchControl : MonoBehaviour {
 			touchToWorldPos = (Vector3)(gesture.GetTouchToWordlPoint(20f, false));
 			if( touchToWorldPos.x >= -1.7f){ touchToWorldPos.x = -1.7f; }
 			if( touchToWorldPos.x <= -6.7f){ touchToWorldPos.x = -6.7f; }
-			touchToWorldPos = new Vector3(touchToWorldPos.x, 5.8f, -5.2f);
+			touchToWorldPos = new Vector3(touchToWorldPos.x, touchToWorldPos.y, touchToWorldPos.z/* -5.2f*/);
 			
 			//連続タッチ時 Z位置をずらす
 			touchCount += 1;

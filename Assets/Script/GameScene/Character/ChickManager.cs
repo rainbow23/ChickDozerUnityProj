@@ -115,12 +115,15 @@ public class ChickManager : CharacterManager{
 			isFallInBasket = true;
 			//二度当たるのを防ぐためオフにする
 			DisableCollider();
-			gameController.score.Value = thisCharNum;
-			goToBasket();
+			//gameController.score.Value = thisCharNum;
+//			gameController.score.Invoke(thisCharNum, transform.position);
+			gameController.scoreObject.Invoke(thisCharNum, transform.position);
+
+			GoToBasket();
 		}
 	}
 	
-	private void goToBasket(){
+	private void GoToBasket(){
 		if(scoreParticles != null){scoreParticles.Play();}
 		if(rigidbody != null){ rigidbody.isKinematic = true; }
 		if(anim != null){ anim.enabled = false;} //newUVひよこは iTween Scaleをするには Animation Componentをoffにする。

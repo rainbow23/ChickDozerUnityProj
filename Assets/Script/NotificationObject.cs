@@ -30,3 +30,26 @@ public class NotificationObject<T> :  UnityEngine.Events.UnityEvent<T>
 	}
 }
 
+[System.Serializable]
+public class ScoreObject<T1, T2>: UnityEngine.Events.UnityEvent<T1, T2>
+{
+
+	/*
+	private int scoreData;
+	private Vector3 positionData;
+
+	public ScoreObject(){}
+	public ScoreObject(int score, Vector3 pos){
+
+	}
+	*/
+
+	public void Dispose()
+	{
+		RemoveAllListeners();
+	}
+}
+
+
+
+
