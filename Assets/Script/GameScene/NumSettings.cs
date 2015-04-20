@@ -32,6 +32,10 @@ public class NumSettings : MonoBehaviour {
 	
 	}
 
+	/// <summary>
+	/// Initialize child Sprite position
+	/// </summary>
+	/// <param name="reachPos">Reach position.</param>
 	public void MoveToX(float reachPos)
 	{
 		thisTransformGrp[0].setLocalPositionX(reachPos);

@@ -118,7 +118,7 @@ public class Pool : MonoBehaviour
 			}
 		}
 		
-		
+		/*
 		Pool[] poolObjects = FindObjectsOfType(typeof(Pool)) as Pool[];
 		
 		foreach(var pool in poolObjects){
@@ -126,14 +126,14 @@ public class Pool : MonoBehaviour
 				return pool;
 			}
 		}
-		
-		/*
+		*/
+
 		foreach (var pool in FindObjectsOfType<Pool>()) {
 			if (pool.prefab == obj) {
 				return pool;
 			}
 		}
-		*/
+
 		
 		var newPool = poolAttachedObject.AddComponent<Pool> ();
 		newPool.prefab = obj;

@@ -3,11 +3,13 @@ using System.Collections;
 
 public class EffectAnimation : MonoBehaviour {
 
+	public GameObject effectObj;
 	Transform thisTransform;
 
 	void Awake()
 	{
 		thisTransform = GetComponent<Transform>();
+		effectObj = Resources.LoadAssetAtPath("Assets/JMO Assets/Cartoon FX/CFX2 Prefabs (Mobile)/Pickup Items/CFXM2_PickupHeart3.prefab", typeof(GameObject)) as GameObject;
 	}
 
 	void Start () {
@@ -15,8 +17,13 @@ public class EffectAnimation : MonoBehaviour {
 	}
 
 	public void MoveUp(){
-		float reachPos = thisTransform.localPosition.y + 50f;
+		GameObject obj = Instantiate(effectObj, Vector3.zero, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
+		obj.transform.parent = thisTransform.parent;
+		obj.transform.localPosition = thisTransform.localPosition;// new Vector3(0f, 0f, 0f);
+		obj.transform.localScale = (Vector3.one);
 
+		float reachPos = thisTransform.localPosition.y + 50f;
+		//Debug.Break();
 		iTween.MoveTo(gameObject, 
 					iTween.Hash( 
 		            "islocal", true,

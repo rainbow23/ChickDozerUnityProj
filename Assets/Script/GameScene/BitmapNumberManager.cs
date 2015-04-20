@@ -26,7 +26,6 @@ public class BitmapNumberManager : MonoBehaviour {
 		//initialize position X
 		foreach(var each in numSprites){
 			each.MoveToX(posX);
-			//each.gameObject.transform.setLocalPositionX(posX);
 			posX -= initializeOffsetX;
 			each.Show(false);
 			//Debug.Log("each.name: " + each.name);
@@ -37,9 +36,7 @@ public class BitmapNumberManager : MonoBehaviour {
 		foreach(var each in numSprites)
 		{
 			//Debug.Log("refernce: " + refernce);
-			if(refernce < 1) {
-				return;
-			}
+			if(refernce < 1) {return;}
 
 			if(refernce == 1){
 				each.First1NumOfChildMoveToX(offsetX);
@@ -50,7 +47,7 @@ public class BitmapNumberManager : MonoBehaviour {
 			if(!each.activeSelf) {each.Show(true);}	
 			
 			int currNum = refernce % 10;
-			//each.AddMoveToX(offsetX * offsetCount);
+			//Not Move child sprite
 			each.gameObject.transform.addLocalPositionX(offsetX * offsetCount);
 			
 			//Debug.Log("offsetCount: " + offsetCount ); 

@@ -114,14 +114,14 @@ public class LabelManager : MonoBehaviour {
 
 
 	float timer = 0f;
-	int countCheck = 9;
+	int countCheck = 1;
 
 	void Update () {
 		///*
 		timer +=Time.deltaTime;
 
 		if(timer > 0.55f){
-			//testBitmap.UpdateNumber(countCheck);	
+			testBitmap.UpdateNumber(countCheck);	
 			countCheck +=1;
 			//if(countCheck == 11){Debug.Break();}
 			timer = 0f;
