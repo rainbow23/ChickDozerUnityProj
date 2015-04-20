@@ -20,7 +20,10 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 	[HideInInspector]
 	public  UnityEngine.Events.UnityEvent  saveCharacterData;	
 	public Dictionary<int, GameObject> resourcesLoadChickDic = new Dictionary<int, GameObject>();
-	
+
+	public Transform poolCharPlace;
+
+
 	void Awake()
 	{
 		//PlayerPrefs.DeleteAll();
@@ -48,16 +51,25 @@ public class CreateCharManager : SingletonMonoBehaviour<CreateCharManager>{
 			levelRange = DATA.Level - 1;
 			odds = GetRandomByWeight(oddsArray(levelRange));
 		}
-		else{//Show curr level chick in 3%
+		else{//Show curr level chick only in 3%
 			odds = DATA.Level;
 		}
 
 		Debug.Log("odds: " + odds);
-		GameObject randomChar = resourcesLoadChickDic[odds];
 
-		Vector3 pos = new Vector3(touchPos.x, 5.7f, -5.2f);// define new pos
-		GameObject obj = Instantiate(randomChar, pos, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
-		obj.name = randomChar.name;
+		Vector3 bornPos = new Vector3(touchPos.x, 5.7f, -5.2f);// define new pos
+		string storeCharName = resourcesLoadChickDic[odds].name;
+
+		var pool = Pool.GetObjectPool(resourcesLoadChickDic[odds]);
+		//GameObject randomChar = resourcesLoadChickDic[odds];
+
+		GameObject obj = pool.GetInstance(poolCharPlace);
+		obj.transform.position = bornPos;
+		obj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+		//GameObject obj = Instantiate(randomChar, pos, Quaternion.Euler(0f, 0f, 0f)) as GameObject;
+
+		obj.name = storeCharName;
 		obj.SetActive(true);
 	}
 

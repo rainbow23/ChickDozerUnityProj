@@ -53,13 +53,15 @@ public class Pool : MonoBehaviour
 			}
 		}
 	}
-	
+
+	/*
 	public GameObject GetInstance ()
 	{
 		return GetInstance(transform);
 	}
-	
-	public GameObject GetInstance (Transform parent)
+	*/
+
+	public GameObject GetInstance (Transform poolPlace)
 	{
 		pooledObjectList.RemoveAll( (obj) => obj == null);
 		
@@ -69,14 +71,14 @@ public class Pool : MonoBehaviour
 				return obj;	
 			}
 		}
-		if (pooledObjectList.Count < maxCount) {
-			GameObject obj = (GameObject)GameObject.Instantiate (prefab);
-			obj.SetActive (true);
-			obj.transform.parent = parent;
-			pooledObjectList.Add (obj);
-			return obj;
-		}
-		return null;
+		//if (pooledObjectList.Count < maxCount) {
+			GameObject obj2 = (GameObject)GameObject.Instantiate (prefab);
+			obj2.SetActive (true);
+			obj2.transform.parent = poolPlace;
+			pooledObjectList.Add (obj2);
+			return obj2;
+		//}
+		//return null;
 	}
 	
 	IEnumerator RemoveObjectCheck ()

@@ -71,7 +71,7 @@ public class CharacterPool : SingletonMonoBehaviour<CharacterPool>{
 		if(objectPoolMode){
 			var pool = Pool.GetObjectPool(allChickObjs[createChickNum]);
 			// インスタンス生成
-			GameObject obj = pool.GetInstance();
+			GameObject obj = pool.GetInstance(this.transform);
 			//rigidbody.centerOfMassが変わっていたのでタップ時初期化
 			obj.rigidbody.centerOfMass = new Vector3(0f, -0.5f, -0.7f);
 			

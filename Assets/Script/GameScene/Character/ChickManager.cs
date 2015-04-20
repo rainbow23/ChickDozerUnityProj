@@ -150,6 +150,10 @@ public class ChickManager : CharacterManager{
 	}
 	
 	void destroy(){
+		initialize();
+		lastActionFlag = false;
+		gameObject.SetActive(false);
+		/*
 		if(CharacterPool.objectPoolMode){
 			initialize();
 			lastActionFlag = false;
@@ -158,6 +162,7 @@ public class ChickManager : CharacterManager{
 		else{
 			Destroy(this.gameObject);
 		}
+		*/
 	}
 	
 
