@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Pool : MonoBehaviour
 {	
@@ -61,7 +62,7 @@ public class Pool : MonoBehaviour
 	}
 	*/
 
-	public GameObject GetInstance (Transform poolPlace)
+	public GameObject GetInstance (Transform parentInfo)
 	{
 		pooledObjectList.RemoveAll( (obj) => obj == null);
 		
@@ -74,7 +75,7 @@ public class Pool : MonoBehaviour
 		//if (pooledObjectList.Count < maxCount) {
 			GameObject obj2 = (GameObject)GameObject.Instantiate (prefab);
 			obj2.SetActive (true);
-			obj2.transform.parent = poolPlace;
+			obj2.transform.parent = parentInfo;
 			pooledObjectList.Add (obj2);
 			return obj2;
 		//}
@@ -105,6 +106,16 @@ public class Pool : MonoBehaviour
 			}
 		}
 	}
+
+	public GameObject[] SaveObjectList()
+	{
+		var objects = from item in  pooledObjectList
+				where item.activeSelf == true
+				select item;
+
+		return objects.ToArray();
+	}
+
 	
 	public static Pool GetObjectPool (GameObject obj)
 	{

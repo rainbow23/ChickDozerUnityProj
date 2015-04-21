@@ -12,11 +12,11 @@ using System.Linq;
 /// </summary>
 public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameController> 
 {	
-	private int checkFirstRun;
 	public int[] obtainedCharArray;
 	private enum State{ firstGet, got};
 	private bool isLoadedGame = false;
 
+	DataEvent dataEvent;
 	CreateCharManager createCharManager;
 	AudioManager audioManager;
 	LabelManager labelManager;
@@ -40,16 +40,17 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 	void Awake()
 	{
-		LoadElapseData();
+		dataEvent = GameObject.Find("DataEvent").GetComponent<DataEvent>();
+		Load();
 
-		if(checkFirstRun == 0)
+		if(DATA.CheckFirstRun == false)
 		{
 			Debug.Log("FirstLaunch");
 			obtainedCharArray = new int[DATA.ResourcesChickNum];
 			DATA.Point = 2000;
 			DATA.Level = 1;
 			DATA.Score = 0;
-			checkFirstRun = 1;
+			DATA.CheckFirstRun = true;
 		}
 		else{ 
 
@@ -73,7 +74,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 		//Destroyで保存すると他のオブジェクトが削除されていてうまく保存できないので
 		//ボタンを押した時に保存する
-		functionManager.sceneTransitionEvent.AddListener(SaveToDisc);
+		functionManager.sceneTransitionEvent.AddListener(Save);
 	}
 
 	/// <summary>
@@ -170,16 +171,16 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 			//ゲームシーンから再生時OnApplicationPauseが呼ばれてしまう
 			Debug.Log("OnApplicationPause go away in UnityEditor");
 			#endif
-			SaveToDisc();
+			Save();
 		} 
 		//戻る時
 		else{ 
 			#if UNITY_EDITOR
-			//ゲームシーンから再生時OnApplicationPauseが呼ばれてしまうのでLoadElapseData();を呼ばない
+			//ゲームシーンから再生時OnApplicationPauseが呼ばれてしまうのでLoad();を呼ばない
 			Debug.Log("OnApplicationPause come back in UnityEditor");
 			#else
 			Debug.Log("OnApplicationPause in  except UnityEditor");
-			LoadElapseData();
+			Load();
 			#endif
 		}
 	}
@@ -188,52 +189,32 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	{
 		Debug.Log("OnApplicationQuit");
 		//gamesceneで止めるとなぜかtitleで読み込まれていることになる為、boolを作る
-		if(isLoadedGame) SaveToDisc();
+		if(isLoadedGame) 
+		{
+			Save();
+		}
 	}
 
-	void SaveToDisc()
+	void Save()
 	{
-		Debug.Log("SaveToDisc");
-		createCharManager.SaveCharDataToDisc();
-		PlayerPrefs.SetInt( DATA.SCOREKEY, DATA.Score);
-		PlayerPrefs.SetInt( DATA.LEVELKEY,DATA.Level); 
-		PlayerPrefs.SetInt( DATA.POINTKEY, DATA.Point); 
-		PlayerPrefs.SetInt( DATA.SAVEDFIRSTRUNKEY, checkFirstRun); 
-		PlayerPrefs.SetInt( DATA.NEXTLEVELPERCENTAGEKEY, DATA.NextLevelPercentage);
-
+		Debug.Log("Save");
 		PlayerPrefsX.SetIntArray(DATA.OBTAINEDCHARKEY, obtainedCharArray);
-
-		for (int i = 0; i < obtainedCharArray.Length; i++) {
-			//Debug.Log("Store obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
-		}
-
 		PlayerPrefs.Save();
-		//Debug.Log("Level: " + Level );
-		//Debug.Log("checkFirstRun: " + checkFirstRun );
-		//Debug.Log("Point: " + Point);
+		dataEvent.SaveGameData();
 	}
 
 
 
 	//経過時間を保存する
-	void LoadElapseData()
+	void Load()
 	{
-		Debug.Log("LoadElapseData");
-		DATA.Score = PlayerPrefs.GetInt(DATA.SCOREKEY);
-		DATA.Level = PlayerPrefs.GetInt(DATA.LEVELKEY);
-		DATA.Point = PlayerPrefs.GetInt(DATA.POINTKEY);
-		checkFirstRun = PlayerPrefs.GetInt(DATA.SAVEDFIRSTRUNKEY);
-		DATA.NextLevelPercentage = PlayerPrefs.GetInt(DATA.NEXTLEVELPERCENTAGEKEY);
-
+		Debug.Log("Load");
 		obtainedCharArray = PlayerPrefsX.GetIntArray(DATA.OBTAINEDCHARKEY);
 		for(int i =0; i < obtainedCharArray.Length; i++)
 		{
 			//Debug.Log("Load obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
 		}
-		Debug.Log("GameScene");
-		//Debug.Log("DATA.Level: " + DATA.Level );
-		//Debug.Log("checkFirstRun: " + checkFirstRun );
-		//Debug.Log("DATA.Point: " + DATA.Point);
+		dataEvent.LoadGameData();
 	}
 
 

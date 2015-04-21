@@ -122,8 +122,7 @@ public class CollectionManager : MonoBehaviour {
 		PlayerPrefs.Save();
 
 		for (int i = 0; i < obtainedCharArray.Length; i++) {
-			Debug.Log("Store obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
+			//Debug.Log("Store obtainedCharArray[" + i + "]: " + obtainedCharArray[i]);
 		}
-		Debug.Log("Collection");
 	}
 }

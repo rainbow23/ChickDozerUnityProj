@@ -20,6 +20,12 @@ public static class DATA
 	public const string NEXTLEVELPERCENTAGEKEY =  "nextLevelPercentage";
 	public const int ResourcesChickNum = 32;
 
+	private static bool _checkFirstRun =false;
+	public static bool CheckFirstRun{
+		get{return _checkFirstRun;}
+		set{ _checkFirstRun = value;}
+	}
+
 	private static int _level = 1;
 	public static int Level{
 		get{ return _level;}

@@ -11,7 +11,11 @@ public class ChickManager : CharacterManager{
 	public PhysicMaterial ChickFootMaterial;
 	//public PhysicMaterial ChickHeadMaterial;
 	Transform thisTransform;
-	BoxCollider boxCollider;
+
+	public BoxCollider boxCollider{
+		private set; 
+		get;
+	}
 	CapsuleCollider capsuleCollider; 
 	ParticleSystem scoreParticles;
 
@@ -64,6 +68,8 @@ public class ChickManager : CharacterManager{
 	/// <summary>
 	/// Save to List
 	/// </summary>
+	/// 
+	/*
 	void saveData()
 	{
 		createCharManager.charPosList.Add(thisTransform.localPosition);
@@ -75,6 +81,7 @@ public class ChickManager : CharacterManager{
 		else
 			createCharManager.isActiveBottomColliderOfCharList.Add (false);
 	}
+	*/
 
 	//UnityEngine.Events.UnityAction<List<Vector3>,List<Vector3>,List<int>,List<bool>> saveCharData;
 		
@@ -220,7 +227,7 @@ public class ChickManager : CharacterManager{
 	}
 
 	void OnEnable(){
-		createCharManager.saveCharacterData.AddListener(saveData);
+	//	createCharManager.saveCharacterData.AddListener(saveData);
 	}
 	void OnDisable(){
 		UnSubscribeEvent();
@@ -229,6 +236,6 @@ public class ChickManager : CharacterManager{
 		UnSubscribeEvent();
 	}
 	void UnSubscribeEvent(){
-		createCharManager.saveCharacterData.RemoveListener(saveData);
+	//	createCharManager.saveCharacterData.RemoveListener(saveData);
 	}
 }
