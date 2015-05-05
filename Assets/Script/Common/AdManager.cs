@@ -32,7 +32,7 @@ public class AdManager: SingletonMonoBehaviour<AdManager>
 	
 	void Start(){
 		PlugInObjectScript = GetComponent<PlugInObject>();
-
+		
 		//init iOS only
 		PlugInObjectScript.Init();
 		PlugInObjectScript.AdstirInit();

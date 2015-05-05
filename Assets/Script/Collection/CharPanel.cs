@@ -3,32 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CharPanel : MonoBehaviour {
-	private const string CHILDPASS = "AnchorBottom/";
-	private const string PICTURE = "Picture";
-	private const string NAME = "Name";
-	private const string GETPANEL = "GetPanel";
-	private string ORDERNUM;
-	private const string PATHCOLLECTION= "COLLECTIONCharacter/Lv";
-	private const string PATHNAME= "chick_name/chick_name_";
-	private const string SHOWCHICK = "_1";
-	private const string HIDECHICK = "_0";
+	private const string ChildPass = "AnchorBottom/";
+	private const string Picture = "Picture";
+	private const string Name = "Name";
+	private const string GetPanel = "GetPanel";
+	private string OrderNum;
+	private const string PathCollection= "COLLECTIONCharacter/Lv";
+	private const string PathName= "chick_name/chick_name_";
+	private const string ShowChick = "_1";
+	private const string HideChick = "_0";
 
 	private Dictionary <string, UISprite> childSpriteDic = new Dictionary<string, UISprite >();
 	UILabel levelLabel;
 
 	void Awake () 
 	{
-		ORDERNUM = this.gameObject.name.Substring(this.gameObject.name.Length - 2);
+		OrderNum = this.gameObject.name.Substring(this.gameObject.name.Length - 2);
 
-		childSpriteDic.Add(PICTURE, ChildUISprite(PICTURE));
-		childSpriteDic.Add(NAME, ChildUISprite(NAME));
-		childSpriteDic.Add(GETPANEL, ChildUISprite(GETPANEL));
+		childSpriteDic.Add(Picture, ChildUISprite(Picture));
+		childSpriteDic.Add(Name, ChildUISprite(Name));
+		childSpriteDic.Add(GetPanel, ChildUISprite(GetPanel));
 
-		levelLabel = transform.FindChild(CHILDPASS + "LevelLabel").GetComponent<UILabel>();
-		levelLabel.text = "レベル" + (int.Parse(ORDERNUM) + 1).ToString();
+		levelLabel = transform.FindChild(ChildPass + "LevelLabel").GetComponent<UILabel>();
+		levelLabel.text = "レベル" + (int.Parse(OrderNum) + 1).ToString();
 
-		childSpriteDic[NAME].spriteName = PATHNAME + ORDERNUM;
-		childSpriteDic[NAME].enabled = false;
+		childSpriteDic[Name].spriteName = PathName + OrderNum;
+		childSpriteDic[Name].enabled = false;
 	}
 
 	void Start () 
@@ -43,28 +43,28 @@ public class CharPanel : MonoBehaviour {
 
 	public void ShowChar(bool on)
 	{
-		string path = PATHCOLLECTION + ORDERNUM;
+		string path = PathCollection + OrderNum;
 		if(on){
-			childSpriteDic[PICTURE].spriteName = path + SHOWCHICK;
-			childSpriteDic[NAME].enabled = true;
+			childSpriteDic[Picture].spriteName = path + ShowChick;
+			childSpriteDic[Name].enabled = true;
 			levelLabel.gameObject.SetActive(false);
-			childSpriteDic[GETPANEL].enabled = true;
+			childSpriteDic[GetPanel].enabled = true;
 		}
 		else{
-			childSpriteDic[PICTURE].spriteName = path + HIDECHICK;
+			childSpriteDic[Picture].spriteName = path + HideChick;
 		}
 	}
 
 	private void PanelAnimation()
 	{
-		Animation anim = childSpriteDic[GETPANEL].GetComponent<Animation>();
+		Animation anim = childSpriteDic[GetPanel].GetComponent<Animation>();
 		anim.clip.wrapMode =WrapMode.Loop;
 		anim.Play();
 	}
 
 	UISprite ChildUISprite(string name)
 	{
-		return transform.FindChild(CHILDPASS + name).GetComponent<UISprite>();
+		return transform.FindChild(ChildPass + name).GetComponent<UISprite>();
 	}
 
 	void Update()

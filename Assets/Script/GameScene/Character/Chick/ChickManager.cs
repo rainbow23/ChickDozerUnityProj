@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class ChickManager : CharacterManager{
 	#region variable
+
+
+
 	GameController gameController;
 	CreateCharManager createCharManager;
 	public static int indexInt;
@@ -33,6 +36,9 @@ public class ChickManager : CharacterManager{
     public static event chickHitExceptBasket  _chickHitExceptBasket;
 	*/
 	#endregion
+
+
+
 	
 	protected override void Awake()
 	{	

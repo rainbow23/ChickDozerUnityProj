@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using System.Linq;
 
-
-
-
 /// <summary>
 /// ゲームのステータスや状況を管理
 /// </summary>
 public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameController> 
 {	
+	[HideInInspector]
 	public int[] obtainedCharArray;
 	private enum State{ firstGet, got};
 	private bool isLoadedGame = false;
@@ -20,6 +18,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 	CreateCharManager createCharManager;
 	AudioManager audioManager;
 	LabelManager labelManager;
+	EffectManager effectManager;
 	FunctionManager functionManager;
 
 	[HideInInspector]
@@ -62,6 +61,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 		createCharManager = GameObject.Find("CreateCharManager").GetComponent<CreateCharManager>();
 		labelManager = GameObject.Find("LabelManager").GetComponent<LabelManager>();
 		functionManager = GameObject.Find("Background").GetComponent<FunctionManager>();
+		effectManager = GameObject.Find("EffectManager").GetComponent<EffectManager>();
 	}
 
 	void Start()
@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour//SingletonMonoBehaviour<GameControll
 
 		//After update score and level  you can call  label action
 		UpdateScoreAndLevel.Invoke();
-		labelManager.ShowScoreEffect(charScore * 10, charPos);
+		effectManager.ShowScoreEffect(charScore * 10, charPos); 
 	}
 
 	void UpdateLevelPercentage()
